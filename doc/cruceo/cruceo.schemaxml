@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemadesigner version="6.5">
+<source>
+<database charset="utf8" collation="utf8_general_ci">cruceo</database>
+</source>
+<canvas zoom="100">
+<tables>
+<table name="categorias" view="colnames">
+<left>45</left>
+<top>230</top>
+<width>112</width>
+<height>94</height>
+<sql_create_table>CREATE TABLE `categorias` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="ciudades" view="colnames">
+<left>39</left>
+<top>42</top>
+<width>113</width>
+<height>94</height>
+<sql_create_table>CREATE TABLE `ciudades` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="cruceros" view="colnames">
+<left>417</left>
+<top>76</top>
+<width>144</width>
+<height>280</height>
+<sql_create_table>CREATE TABLE `cruceros` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) NOT NULL,
+  `detalles` text,
+  `equipamiento` text,
+  `itinerario` text,
+  `img_itinerario` varchar(255) DEFAULT NULL,
+  `img_barco` varchar(255) DEFAULT NULL,
+  `fecha_salida` datetime NOT NULL,
+  `promocion` varchar(255) DEFAULT NULL,
+  `incluido_precio` varchar(255) DEFAULT NULL,
+  `no_incluido_precio` varchar(255) DEFAULT NULL,
+  `naviera_id` int(11) NOT NULL,
+  `zona_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_cruceros_zona` (`zona_id`),
+  KEY `FK_cruceros_naviera` (`naviera_id`),
+  CONSTRAINT `FK_cruceros_naviera` FOREIGN KEY (`naviera_id`) REFERENCES `navieras` (`id`),
+  CONSTRAINT `FK_cruceros_zona` FOREIGN KEY (`zona_id`) REFERENCES `zonas` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="fotos" view="colnames">
+<left>628</left>
+<top>28</top>
+<width>112</width>
+<height>126</height>
+<sql_create_table>CREATE TABLE `fotos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ruta` varchar(255) NOT NULL,
+  `titulo` varchar(255) DEFAULT NULL,
+  `crucero_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_fotos_crucero` (`crucero_id`),
+  CONSTRAINT `FK_fotos_crucero` FOREIGN KEY (`crucero_id`) REFERENCES `cruceros` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="navieras" view="colnames">
+<left>628</left>
+<top>175</top>
+<width>112</width>
+<height>94</height>
+<sql_create_table>CREATE TABLE `navieras` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="zonas" view="colnames">
+<left>630</left>
+<top>313</top>
+<width>112</width>
+<height>94</height>
+<sql_create_table>CREATE TABLE `zonas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="ciudades_cruceros" view="colnames">
+<left>212</left>
+<top>26</top>
+<width>122</width>
+<height>110</height>
+<sql_create_table>CREATE TABLE `ciudades_cruceros` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ciudad_id` int(11) NOT NULL,
+  `crucero_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_ciudades_cruceros_ciudad` (`ciudad_id`),
+  KEY `FK_ciudades_cruceros_crucero` (`crucero_id`),
+  CONSTRAINT `FK_ciudades_cruceros_ciudad` FOREIGN KEY (`ciudad_id`) REFERENCES `ciudades` (`id`),
+  CONSTRAINT `FK_ciudades_cruceros_crucero` FOREIGN KEY (`crucero_id`) REFERENCES `cruceros` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="agencias" view="colnames">
+<left>84</left>
+<top>369</top>
+<width>112</width>
+<height>86</height>
+<sql_create_table>CREATE TABLE `agencias` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="precios" view="colnames">
+<left>227</left>
+<top>214</top>
+<width>112</width>
+<height>158</height>
+<sql_create_table>CREATE TABLE `precios` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `categoria_id` int(11) NOT NULL,
+  `crucero_id` int(11) NOT NULL,
+  `agencia_id` int(11) NOT NULL,
+  `precio` double(8,2) NOT NULL,
+  `url` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_categorias_cruceros_categoria` (`categoria_id`),
+  KEY `FK_categorias_cruceros_crucero` (`crucero_id`),
+  KEY `FK_precios_agencias` (`agencia_id`),
+  CONSTRAINT `FK_precios_agencias` FOREIGN KEY (`agencia_id`) REFERENCES `agencias` (`id`),
+  CONSTRAINT `FK_categorias_cruceros_categoria` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id`),
+  CONSTRAINT `FK_categorias_cruceros_crucero` FOREIGN KEY (`crucero_id`) REFERENCES `cruceros` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+</tables>
+</canvas>
+</schemadesigner>
