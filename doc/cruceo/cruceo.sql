@@ -2,7 +2,8 @@
 SQLyog Ultimate v9.10 
 MySQL - 5.5.16-log : Database - cruceo
 *********************************************************************
-*/
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
@@ -16,6 +17,16 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`cruceo` /*!40100 DEFAULT CHARACTER SET 
 
 USE `cruceo`;
 
+/*Table structure for table `agencias` */
+
+DROP TABLE IF EXISTS `agencias`;
+
+CREATE TABLE `agencias` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 /*Table structure for table `categorias` */
 
 DROP TABLE IF EXISTS `categorias`;
@@ -24,22 +35,6 @@ CREATE TABLE `categorias` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*Table structure for table `categorias_cruceros` */
-
-DROP TABLE IF EXISTS `categorias_cruceros`;
-
-CREATE TABLE `categorias_cruceros` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `categoria_id` int(11) NOT NULL,
-  `crucero_id` int(11) NOT NULL,
-  `precio` double(8,2) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_categorias_cruceros_categoria` (`categoria_id`),
-  KEY `FK_categorias_cruceros_crucero` (`crucero_id`),
-  CONSTRAINT `FK_categorias_cruceros_categoria` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id`),
-  CONSTRAINT `FK_categorias_cruceros_crucero` FOREIGN KEY (`crucero_id`) REFERENCES `cruceros` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Table structure for table `ciudades` */
@@ -114,6 +109,26 @@ CREATE TABLE `navieras` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Table structure for table `precios` */
+
+DROP TABLE IF EXISTS `precios`;
+
+CREATE TABLE `precios` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `categoria_id` int(11) NOT NULL,
+  `crucero_id` int(11) NOT NULL,
+  `agencia_id` int(11) NOT NULL,
+  `precio` double(8,2) NOT NULL,
+  `url` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_categorias_cruceros_categoria` (`categoria_id`),
+  KEY `FK_categorias_cruceros_crucero` (`crucero_id`),
+  KEY `FK_precios_agencias` (`agencia_id`),
+  CONSTRAINT `FK_precios_agencias` FOREIGN KEY (`agencia_id`) REFERENCES `agencias` (`id`),
+  CONSTRAINT `FK_categorias_cruceros_categoria` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id`),
+  CONSTRAINT `FK_categorias_cruceros_crucero` FOREIGN KEY (`crucero_id`) REFERENCES `cruceros` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Table structure for table `zonas` */
