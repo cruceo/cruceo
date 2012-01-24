@@ -1,0 +1,7 @@
+admin_index:
+  pattern:  /admin
+  defaults: { _controller: CruceoUserBundle:Admin:index }
+  
+admin_user:
+  pattern:  /newuser
+  defaults: { _controller: CruceoUserBundle:Admin:user }

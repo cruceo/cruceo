@@ -1,1 +1,7 @@
-.idea/
+/.idea/
+/nbproject/
+/app/logs/*
+/app/cache/*
+/.buildpath
+/.project
+/.settings
