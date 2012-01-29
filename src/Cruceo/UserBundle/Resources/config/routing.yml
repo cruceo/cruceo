@@ -42,3 +42,34 @@ admin_ciudades_delete:
     defaults: { _controller: "CruceoUserBundle:Ciudades:delete" }
     requirements: { _method: post }
 
+#Navieras
+admin_navieras:
+    pattern:  /admin/navieras
+    defaults: { _controller: "CruceoUserBundle:Navieras:index" }
+
+admin_navieras_show:
+    pattern:  /admin/navieras/{id}/show
+    defaults: { _controller: "CruceoUserBundle:Navieras:show" }
+
+admin_navieras_new:
+    pattern:  /admin/navieras/new
+    defaults: { _controller: "CruceoUserBundle:Navieras:new" }
+
+admin_navieras_create:
+    pattern:  /admin/navieras/create
+    defaults: { _controller: "CruceoUserBundle:Navieras:create" }
+    requirements: { _method: post }
+
+admin_navieras_edit:
+    pattern:  /admin/navieras/{id}/edit
+    defaults: { _controller: "CruceoUserBundle:Navieras:edit" }
+
+admin_navieras_update:
+    pattern:  /admin/navieras/{id}/update
+    defaults: { _controller: "CruceoUserBundle:Navieras:update" }
+    requirements: { _method: post }
+
+admin_navieras_delete:
+    pattern:  /admin/navieras/{id}/delete
+    defaults: { _controller: "CruceoUserBundle:Navieras:delete" }
+    requirements: { _method: post }
