@@ -5,6 +5,7 @@ namespace Cruceo\UserBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Cruceo\UserBundle\Entity\BackUser;
+use Cruceo\UserBundle\Form\CrucerosType;
 
 class AdminController extends Controller
 {
@@ -46,5 +47,18 @@ class AdminController extends Controller
         }
 
         return array();
+    }
+
+    /**
+     * Create new Crucero
+     *
+     * @Template()
+     */
+    public function crucerosAction() {
+        $form = $this->createForm(new CrucerosType());
+
+        return array(
+            'form' => $form->createView()
+        );
     }
 }

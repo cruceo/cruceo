@@ -1,7 +1,44 @@
 admin_index:
   pattern:  /admin
   defaults: { _controller: CruceoUserBundle:Admin:index }
+
+admin_cruceros:
+  pattern:  /admin/cruceros
+  defaults: { _controller: CruceoUserBundle:Admin:cruceros }
   
 admin_user:
   pattern:  /newuser
   defaults: { _controller: CruceoUserBundle:Admin:user }
+
+#Ciudades
+admin_ciudades:
+    pattern:  /admin/ciudades
+    defaults: { _controller: "CruceoUserBundle:Ciudades:index" }
+
+admin_ciudades_show:
+    pattern:  /admin/ciudades/{id}/show
+    defaults: { _controller: "CruceoUserBundle:Ciudades:show" }
+
+admin_ciudades_new:
+    pattern:  /admin/ciudades/new
+    defaults: { _controller: "CruceoUserBundle:Ciudades:new" }
+
+admin_ciudades_create:
+    pattern:  /admin/ciudades/create
+    defaults: { _controller: "CruceoUserBundle:Ciudades:create" }
+    requirements: { _method: post }
+
+admin_ciudades_edit:
+    pattern:  /admin/ciudades/{id}/edit
+    defaults: { _controller: "CruceoUserBundle:Ciudades:edit" }
+
+admin_ciudades_update:
+    pattern:  /admin/ciudades/{id}/update
+    defaults: { _controller: "CruceoUserBundle:Ciudades:update" }
+    requirements: { _method: post }
+
+admin_ciudades_delete:
+    pattern:  /admin/ciudades/{id}/delete
+    defaults: { _controller: "CruceoUserBundle:Ciudades:delete" }
+    requirements: { _method: post }
+
