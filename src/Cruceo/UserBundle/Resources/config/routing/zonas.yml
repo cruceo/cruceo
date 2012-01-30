@@ -1,0 +1,30 @@
+admin_zonas:
+    pattern:  /
+    defaults: { _controller: "CruceoUserBundle:Zonas:index" }
+
+admin_zonas_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "CruceoUserBundle:Zonas:show" }
+
+admin_zonas_new:
+    pattern:  /new
+    defaults: { _controller: "CruceoUserBundle:Zonas:new" }
+
+admin_zonas_create:
+    pattern:  /create
+    defaults: { _controller: "CruceoUserBundle:Zonas:create" }
+    requirements: { _method: post }
+
+admin_zonas_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "CruceoUserBundle:Zonas:edit" }
+
+admin_zonas_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "CruceoUserBundle:Zonas:update" }
+    requirements: { _method: post }
+
+admin_zonas_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "CruceoUserBundle:Zonas:delete" }
+    requirements: { _method: post }

@@ -1,0 +1,30 @@
+admin_ciudades:
+    pattern:  /
+    defaults: { _controller: "CruceoUserBundle:Ciudades:index" }
+
+admin_ciudades_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "CruceoUserBundle:Ciudades:show" }
+
+admin_ciudades_new:
+    pattern:  /new
+    defaults: { _controller: "CruceoUserBundle:Ciudades:new" }
+
+admin_ciudades_create:
+    pattern:  /create
+    defaults: { _controller: "CruceoUserBundle:Ciudades:create" }
+    requirements: { _method: post }
+
+admin_ciudades_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "CruceoUserBundle:Ciudades:edit" }
+
+admin_ciudades_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "CruceoUserBundle:Ciudades:update" }
+    requirements: { _method: post }
+
+admin_ciudades_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "CruceoUserBundle:Ciudades:delete" }
+    requirements: { _method: post }
