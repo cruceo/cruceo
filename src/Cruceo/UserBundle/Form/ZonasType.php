@@ -16,6 +16,6 @@ class ZonasType extends AbstractType
 
     public function getName()
     {
-        return 'cruceo_portalbundle_zonastype';
+        return 'zonas';
     }
 }

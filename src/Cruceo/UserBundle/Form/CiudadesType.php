@@ -16,6 +16,6 @@ class CiudadesType extends AbstractType
 
     public function getName()
     {
-        return 'cruceo_portalbundle_ciudadestype';
+        return 'ciudades';
     }
 }

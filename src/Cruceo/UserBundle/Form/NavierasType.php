@@ -16,6 +16,6 @@ class NavierasType extends AbstractType
 
     public function getName()
     {
-        return 'cruceo_portalbundle_navierastype';
+        return 'navieras';
     }
 }

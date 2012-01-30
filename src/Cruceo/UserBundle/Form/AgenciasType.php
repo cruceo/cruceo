@@ -16,6 +16,6 @@ class AgenciasType extends AbstractType
 
     public function getName()
     {
-        return 'cruceo_portalbundle_agenciastype';
+        return 'agencias';
     }
 }

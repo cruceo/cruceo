@@ -16,6 +16,6 @@ class CategoriasType extends AbstractType
 
     public function getName()
     {
-        return 'cruceo_portalbundle_categoriastype';
+        return 'categorias';
     }
 }
