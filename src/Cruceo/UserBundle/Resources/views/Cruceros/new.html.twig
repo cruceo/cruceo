@@ -1,0 +1,15 @@
+{% extends "CruceoUserBundle::layoutAdmin.html.twig" %}
+
+{% block js %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('/bundles/cruceouser/js/jxaz.upload.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/bundles/cruceouser/js/cruceros.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+{{ form_widget(form) }}
+
+<div>
+    <a href="#" name="" class="addphoto">Añadir foto</a>
+</div>
+{% endblock %}

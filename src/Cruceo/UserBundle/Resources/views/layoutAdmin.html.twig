@@ -2,8 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>{% block title %}CRUCEO{% endblock %}</title>
-    {#<link rel="shortcut icon" href="{{ asset('bundles/t5videomitele/images/videop.png') }}" />#}
+    <title>
+        {% block title %}CRUCEO{% endblock %}
+    </title>
+    {% block js %}
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+    {% endblock %}
+
+    {% block css %}
+    {% endblock %}
 </head>
 <body>
 {% block content %}{% endblock %}

@@ -59,4 +59,14 @@ class Navieras
     {
         return $this->nombre;
     }
+
+    /**
+     * Magic method
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getNombre();
+    }
 }

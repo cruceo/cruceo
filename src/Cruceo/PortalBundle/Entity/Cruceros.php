@@ -111,6 +111,30 @@ class Cruceros
      */
     private $zona;
 
+    /**
+     * @var Ciudades
+     *
+     * @ORM\ManyToMany(targetEntity="Ciudades")
+     * @ORM\JoinTable(name="ciudades_cruceros",
+     *      joinColumns={@ORM\JoinColumn(name="crucero_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="ciudad_id", referencedColumnName="id")}
+     *      )
+     */
+    private $ciudades;
+
+    /**
+     * @var Precios
+     *
+     * @ORM\OneToMany(targetEntity="Precios", mappedBy="crucero")
+     */
+    private $precios;
+
+    /**
+     * @var Precios
+     *
+     * @ORM\OneToMany(targetEntity="Fotos", mappedBy="crucero")
+     */
+    private $fotos;
 
 
     /**
@@ -361,5 +385,45 @@ class Cruceros
     public function getZona()
     {
         return $this->zona;
+    }
+
+    /**
+     * Set precios
+     *
+     * @param Cruceo\PortalBundle\Entity\Precios $precio
+     */
+    public function setPrecios(\Cruceo\PortalBundle\Entity\Precios $precio)
+    {
+        $this->precios[] = $precio;
+    }
+
+    /**
+     * Get precios
+     *
+     * @return Doctrine\Common\Collections\Collection $precios
+     */
+    public function getPrecios()
+    {
+        return $this->precios;
+    }
+
+    /**
+     * Set fotos
+     *
+     * @param Cruceo\PortalBundle\Entity\Fotos $foto
+     */
+    public function setFotos(\Cruceo\PortalBundle\Entity\Fotos $foto)
+    {
+        $this->fotos[] = $foto;
+    }
+
+    /**
+     * Get fotos
+     *
+     * @return Doctrine\Common\Collections\Collection $fotos
+     */
+    public function getFotos()
+    {
+        return $this->fotos;
     }
 }

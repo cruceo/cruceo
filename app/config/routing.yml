@@ -26,6 +26,10 @@ CruceoPortalBundle_admin_agencias:
     resource: "@CruceoUserBundle/Resources/config/routing/agencias.yml"
     prefix:   /admin/agencias
 
+CruceoPortalBundle_admin_cruceros:
+    resource: "@CruceoUserBundle/Resources/config/routing/cruceros.yml"
+    prefix:   /admin/cruceros
+
 # Internal routing configuration to handle ESI
 #_internal:
 #   resource: "@FrameworkBundle/Resources/config/routing/internal.xml"

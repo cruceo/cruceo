@@ -48,17 +48,4 @@ class AdminController extends Controller
 
         return array();
     }
-
-    /**
-     * Create new Crucero
-     *
-     * @Template()
-     */
-    public function crucerosAction() {
-        $form = $this->createForm(new CrucerosType());
-
-        return array(
-            'form' => $form->createView()
-        );
-    }
 }

@@ -14,7 +14,7 @@
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="ciudades" view="colnames">
 <left>39</left>
@@ -25,13 +25,13 @@
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="cruceros" view="colnames">
-<left>417</left>
-<top>76</top>
+<left>390</left>
+<top>107</top>
 <width>144</width>
-<height>280</height>
+<height>270</height>
 <sql_create_table>CREATE TABLE `cruceros` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
@@ -77,7 +77,7 @@
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="zonas" view="colnames">
 <left>630</left>
@@ -88,7 +88,7 @@
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="ciudades_cruceros" view="colnames">
 <left>212</left>
@@ -115,7 +115,7 @@
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="precios" view="colnames">
 <left>227</left>
@@ -133,9 +133,9 @@
   KEY `FK_categorias_cruceros_categoria` (`categoria_id`),
   KEY `FK_categorias_cruceros_crucero` (`crucero_id`),
   KEY `FK_precios_agencias` (`agencia_id`),
-  CONSTRAINT `FK_precios_agencias` FOREIGN KEY (`agencia_id`) REFERENCES `agencias` (`id`),
   CONSTRAINT `FK_categorias_cruceros_categoria` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id`),
-  CONSTRAINT `FK_categorias_cruceros_crucero` FOREIGN KEY (`crucero_id`) REFERENCES `cruceros` (`id`)
+  CONSTRAINT `FK_categorias_cruceros_crucero` FOREIGN KEY (`crucero_id`) REFERENCES `cruceros` (`id`),
+  CONSTRAINT `FK_precios_agencias` FOREIGN KEY (`agencia_id`) REFERENCES `agencias` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 </tables>
