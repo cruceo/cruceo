@@ -30,7 +30,7 @@ JXaz.Upload = (function() {
 
     function init(selector, options) {
         this.options = options || {};
-
+console.log(selector);
         $(selector).each(function(i) {
             var $this = $(this);
 
@@ -38,7 +38,8 @@ JXaz.Upload = (function() {
                 $this.bind('change', function() {
                     var files = this.files;
                     for (var x = 0, c = files.length; x < c; ++x) {
-                        fileHandler(files[x], $this, x);
+                    	console.log(i);
+                        fileHandler(files[x], $this, i);
                     }
                 });
             }
@@ -68,7 +69,7 @@ JXaz.Upload = (function() {
             var percent = Math.round(e.loaded * 100 / e.total);
             var tpl = $('#'+_prefix+'_'+_mod.prg_indicator+i);
             if (tpl.length == 0) {
-            	$element.after('<div class="'+_prefix+'_container_progressbar'+i+'">\
+            	$element.after('<div class="'+_prefix+'_container_progressbar">\
            			<div class="'+_prefix+'_progressbar" id="'+_prefix+'_'+_mod.prg_indicator+i+'"></div></div>');
             	tpl = $('#'+_prefix+'_'+_mod.prg_indicator+i);
             }

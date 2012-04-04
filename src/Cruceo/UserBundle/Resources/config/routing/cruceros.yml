@@ -28,3 +28,8 @@ admin_cruceros_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "CruceoUserBundle:Cruceros:delete" }
     requirements: { _method: post }
+
+admin_cruceros_save_photo:
+    pattern:  /photo/save
+    defaults: { _controller: "CruceoUserBundle:Cruceros:savePhoto" }
+    requirements: { _method: post }

@@ -15,11 +15,18 @@ $(document).on('click', 'a.addphoto', function(event) {
     addPhoto();
 });
 
-$(document).on('click', 'input.jxaz', function(){
+$(document).on('click', 'input.jxaz', function() {
+	console.log($(this).attr('id'));
+	//return;
 	JXaz.Upload.create('.jxaz', {
-    	'url': 'upload_old_style.php',
+    	'url': '/app_dev.php/admin/cruceros/photo/save',
         'success': function(response) {
-            console.log(response);
+            var json = $.parseJSON(response);
+            if (json.error == undefined) {
+            	console.log('firehfier');
+            } else {
+            	console.log(json.error);
+            }
         }
     });
 });

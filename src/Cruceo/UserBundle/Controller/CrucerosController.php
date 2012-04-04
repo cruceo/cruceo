@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Cruceo\PortalBundle\Entity\Cruceros;
 use Cruceo\UserBundle\Form\CrucerosType;
+use Symfony\Component\HttpFoundation\Response;
 
 class CrucerosController extends Controller
 {
@@ -38,5 +39,9 @@ class CrucerosController extends Controller
             'entity' => $cruise,
             'form' => $form->createView()
         );
+    }
+
+    public function savePhotoAction() {
+        return new Response(json_encode(array('msg' => 'Imagen subida correctamente')));
     }
 }
