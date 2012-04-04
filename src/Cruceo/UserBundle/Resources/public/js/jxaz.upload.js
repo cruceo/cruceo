@@ -217,6 +217,7 @@ console.log(selector);
         
         var fd = new FormData();
         fd.append(settings.name, file);
+        fd.append('name', settings.name);
 
         xhr.open("POST", settings.url, true);
         xhr.send(fd);

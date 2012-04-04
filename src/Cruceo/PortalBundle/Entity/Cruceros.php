@@ -140,7 +140,7 @@ class Cruceros
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -160,7 +160,7 @@ class Cruceros
     /**
      * Get nombre
      *
-     * @return string 
+     * @return string
      */
     public function getNombre()
     {
@@ -180,7 +180,7 @@ class Cruceros
     /**
      * Get detalles
      *
-     * @return text 
+     * @return text
      */
     public function getDetalles()
     {
@@ -200,7 +200,7 @@ class Cruceros
     /**
      * Get equipamiento
      *
-     * @return text 
+     * @return text
      */
     public function getEquipamiento()
     {
@@ -220,7 +220,7 @@ class Cruceros
     /**
      * Get itinerario
      *
-     * @return text 
+     * @return text
      */
     public function getItinerario()
     {
@@ -240,7 +240,7 @@ class Cruceros
     /**
      * Get imgItinerario
      *
-     * @return string 
+     * @return string
      */
     public function getImgItinerario()
     {
@@ -260,7 +260,7 @@ class Cruceros
     /**
      * Get imgBarco
      *
-     * @return string 
+     * @return string
      */
     public function getImgBarco()
     {
@@ -280,7 +280,7 @@ class Cruceros
     /**
      * Get fechaSalida
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getFechaSalida()
     {
@@ -300,7 +300,7 @@ class Cruceros
     /**
      * Get promocion
      *
-     * @return string 
+     * @return string
      */
     public function getPromocion()
     {
@@ -320,7 +320,7 @@ class Cruceros
     /**
      * Get incluidoPrecio
      *
-     * @return string 
+     * @return string
      */
     public function getIncluidoPrecio()
     {
@@ -340,7 +340,7 @@ class Cruceros
     /**
      * Get noIncluidoPrecio
      *
-     * @return string 
+     * @return string
      */
     public function getNoIncluidoPrecio()
     {
@@ -360,7 +360,7 @@ class Cruceros
     /**
      * Get naviera
      *
-     * @return Cruceo\PortalBundle\Entity\Navieras 
+     * @return Cruceo\PortalBundle\Entity\Navieras
      */
     public function getNaviera()
     {
@@ -380,7 +380,7 @@ class Cruceros
     /**
      * Get zona
      *
-     * @return Cruceo\PortalBundle\Entity\Zonas 
+     * @return Cruceo\PortalBundle\Entity\Zonas
      */
     public function getZona()
     {

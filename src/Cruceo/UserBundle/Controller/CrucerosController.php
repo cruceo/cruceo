@@ -42,6 +42,18 @@ class CrucerosController extends Controller
     }
 
     public function savePhotoAction() {
-        return new Response(json_encode(array('msg' => 'Imagen subida correctamente')));
+    	$request = $this->getRequest();
+    	$photo   = $request->files->get($request->request->get('name'));
+    	$name    = uniqid().'.'.$photo->guessExtension();
+
+    	$photo->move($this->container->getParameter('photos.upload'), $name);
+
+    	$photos = $this->get('session')->get('photos') ?: array();
+    	array_push($photos, $name);
+    	$this->get('session')->remove('photos');
+
+    	$this->get('session')->set('photos', $photos);
+
+        return new Response(json_encode(array('msg' => $name)));
     }
 }
