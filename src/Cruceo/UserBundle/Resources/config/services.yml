@@ -1,0 +1,5 @@
+services:
+  Cruceo.removePhotosDir:
+    class: Cruceo\UserBundle\Listener\RenameImagesDir
+    tags:
+      - { name: doctrine.event_listener, event: preUpdate }

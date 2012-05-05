@@ -2,27 +2,13 @@ admin_navieras:
     pattern:  /
     defaults: { _controller: "CruceoUserBundle:Navieras:index" }
 
-admin_navieras_show:
-    pattern:  /{id}/show
-    defaults: { _controller: "CruceoUserBundle:Navieras:show" }
-
 admin_navieras_new:
     pattern:  /new
     defaults: { _controller: "CruceoUserBundle:Navieras:new" }
 
-admin_navieras_create:
-    pattern:  /create
-    defaults: { _controller: "CruceoUserBundle:Navieras:create" }
-    requirements: { _method: post }
-
 admin_navieras_edit:
     pattern:  /{id}/edit
     defaults: { _controller: "CruceoUserBundle:Navieras:edit" }
-
-admin_navieras_update:
-    pattern:  /{id}/update
-    defaults: { _controller: "CruceoUserBundle:Navieras:update" }
-    requirements: { _method: post }
 
 admin_navieras_delete:
     pattern:  /{id}/delete

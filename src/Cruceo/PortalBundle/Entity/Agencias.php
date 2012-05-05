@@ -33,7 +33,7 @@ class Agencias
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -53,10 +53,15 @@ class Agencias
     /**
      * Get nombre
      *
-     * @return string 
+     * @return string
      */
     public function getNombre()
     {
         return $this->nombre;
+    }
+
+    public function __toString()
+    {
+        return $this->getNombre();
     }
 }

@@ -1,0 +1,88 @@
+{% block collection_widget %}
+{% spaceless %}
+    {% if prototype is defined %}
+        {% set attr = attr|merge({'data-prototype': block('collection_photo_widget') }) %}
+    {% endif %}
+    <div {{ block('widget_container_attributes') }}>
+        <div class="error">{{ form_errors(form) }}</div>
+        {% set n = 0 %}
+        {% for rows in form %}
+            {% set idw = id ~ '_' ~ n %}
+            <div id="{{ idw }}">
+            {% set val = rows.vars.value.ruta %}
+            {% for row in rows %}
+                {% if row.vars.name == 'ruta' %}
+                    {{ form_widget(row) }}
+                {% endif %}
+
+                {% if row.vars.name == 'rutaFile' %}
+                <div class="editPhotoView">
+                    <label>Foto</label>
+                    <div class="viewImage" data-image="{{ val }}"></div>
+    			    <div class="toolImage mb1">
+    			        <img src="/bundles/cruceouser/css/images/refresh.png" data-remove="{{ val }}" class="refreshImage" alt="Eliminar Imagen">
+    			    </div>
+                </div>
+                <div class="mb1" style="display: none;">
+                    {{ form_label(row, 'Foto', { 'attr': { 'class': 'fl' }}) }}
+                    {{ form_widget(row) }}
+                </div>
+                {% endif %}
+
+                {% if row.vars.name == 'titulo' %}
+                <div class="mb1">
+                    {{ form_label(row, 'Título', { 'attr': { 'class': 'fl' }}) }}
+                    {{ form_widget(row, { 'attr': {'class': 'w250'}}) }}
+                </div>
+                {% endif %}
+            {% endfor %}
+                <div class="mt1">
+                    <button type="button" class="remove" data-remove="{{ idw }}">
+                        <img src="/bundles/cruceouser/css/images/remove.png"/>Eliminar
+                    </button>
+                </div>
+                <hr class="separator" />
+            </div>
+            {% set n = n + 1 %}
+        {% endfor %}
+    </div>
+    <div class="tr mt1">
+        <button type="button" class="add_photo">
+            <img src="/bundles/cruceouser/css/images/add.png" alt="Añadir Foto">Añadir Foto
+        </button>
+    </div>
+{% endspaceless %}
+{% endblock collection_widget %}
+
+{% block collection_photo_widget %}
+{% spaceless %}
+{% set idw = id ~ '_$$name$$' %}
+    <div id="{{ idw }}">
+    {% for row in prototype %}
+        {% if row.vars.name == 'ruta' %}
+            {{ form_widget(row) }}
+        {% endif %}
+
+        {% if row.vars.name == 'rutaFile' %}
+            <div class="mb1">
+            {{ form_label(row, 'Foto', { 'attr': { 'class': 'fl' }}) }}
+            {{ form_widget(row) }}
+            </div>
+        {% endif %}
+
+        {% if row.vars.name == 'titulo' %}
+            <div class="mb1">
+            {{ form_label(row, 'Título', { 'attr': { 'class': 'fl' }}) }}
+            {{ form_widget(row, { 'attr': {'class': 'w250'}}) }}
+            </div>
+        {% endif %}
+    {% endfor %}
+        <div class="mt1">
+            <button type="button" class="remove" data-remove="{{ idw }}">
+                <img src="/bundles/cruceouser/css/images/remove.png"/>Eliminar
+            </button>
+        </div>
+        <hr class="separator" />
+    </div>
+{% endspaceless %}
+{% endblock collection_photo_widget %}

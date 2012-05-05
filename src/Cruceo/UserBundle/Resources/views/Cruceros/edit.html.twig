@@ -1,0 +1,151 @@
+{% extends "CruceoUserBundle::layoutAdmin.html.twig" %}
+
+{% form_theme form 'CruceoUserBundle:Form:collection_price.html.twig' %}
+
+{% block content %}
+<h1 class="title cruceros">Editar Crucero</h1>
+
+{#% set vars = {
+	'type'     : 'edit',
+	'url_form' : path('admin_cruceros_edit', { 'id': entity.id }),
+	'form'    : form,
+	'del_form' : delete_form
+} %}
+
+{% include 'CruceoUserBundle:Cruceros:partials/form.html.twig' with vars %}
+
+#}
+<form action="{{ path('admin_cruceros_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(form) }}>
+    {{ form_row(form._token) }}
+    <div class="grid_6">
+        <fieldset class="form">
+            <legend>Generales</legend>
+
+            <div class="mb1 mt1">
+                {{ form_label(form.nombre, null, { 'attr': { 'class' : 'fl'} }) }}
+                {{ form_widget(form.nombre, { 'attr': { 'class' : 'w250'} }) }}
+                {{ form_errors(form.nombre) }}
+            </div>
+
+            <div class="mb1">
+                {{ form_label(form.naviera, null, { 'attr': { 'class' : 'fl'} }) }}
+                {{ form_widget(form.naviera, { 'attr': { 'class' : 'w250'} }) }}
+                {{ form_errors(form.naviera) }}
+            </div>
+
+            <div class="mb1">
+                {{ form_label(form.barco, null, { 'attr': { 'class' : 'fl'} }) }}
+                {{ form_widget(form.barco, { 'attr': { 'class' : 'w250'} }) }}
+                {{ form_errors(form.barco) }}
+            </div>
+
+            <div class="mb1">
+                {{ form_label(form.fechaSalida, 'Fecha de salida', { 'attr': { 'class' : 'fl'} }) }}
+                {{ form_widget(form.fechaSalida, { 'attr': { 'class' : 'dp'} }) }}
+                {{ form_errors(form.fechaSalida) }}
+            </div>
+
+            <div class="mb1">
+                {{ form_label(form.duracion, 'Duración', { 'attr': { 'class' : 'fl'} }) }}
+                {{ form_widget(form.duracion, { 'attr': { 'class' : 'w250'} }) }}
+                {{ form_errors(form.duracion) }}
+            </div>
+
+            <div class="mb1">
+                {{ form_label(form.equipamiento) }}
+                {{ form_widget(form.equipamiento) }}
+                {{ form_errors(form.equipamiento) }}
+            </div>
+
+            <div class="mb1">
+                {{ form_label(form.detalles) }}
+                {{ form_widget(form.detalles) }}
+                {{ form_errors(form.detalles) }}
+            </div>
+        </fieldset>
+
+        <fieldset class="form mt2">
+            <legend>Localización</legend>
+
+            <div class="mb1 mt1">
+                {{ form_label(form.itinerario, null, { 'attr': { 'class' : 'fl'} }) }}
+                {{ form_widget(form.itinerario) }}
+                {{ form_errors(form.itinerario) }}
+            </div>
+
+            <div id="editImgItenerarioView">
+                <label>Imagen Itinerario</label>
+                <div class="viewImage">
+                    <img src="/{{ entity.getUploadDir }}/{{ entity.getImgItinerario }}" />
+			    </div>
+			    <div class="toolImage mb1">
+			        <img alt="eliminar imagen" id="refreshImage" data-remove="{{ entity.getImgItinerario }}" src="{{ asset('/bundles/cruceouser/css/images/refresh.png') }}"/>
+			    </div>
+            </div>
+
+            <div class="mb1" style="display: none;" id="editImgItenerario">
+                {{ form_label(form.imgItinerarioFile, 'Imagen Itinerario', { 'attr': { 'class': 'fl'} }) }}
+                {{ form_widget(form.imgItinerarioFile) }}
+                {{ form_errors(form.imgItinerarioFile) }}
+            </div>
+
+            <div class="mb1">
+                {{ form_label(form.zona, null, { 'attr': { 'class' : 'fl'} }) }}
+                {{ form_widget(form.zona) }}
+                {{ form_errors(form.zona) }}
+            </div>
+
+            <div class="mb1">
+                {{ form_label(form.ciudades, null, { 'attr': { 'class' : 'collection'} }) }}
+                {{ form_widget(form.ciudades) }}
+                {{ form_errors(form.ciudades) }}
+            </div>
+        </fieldset>
+    </div>
+    <div class="grid_6">
+        <fieldset class="form">
+            <legend>Económicos</legend>
+
+            <div class="mb1 mt1">
+                {{ form_label(form.incluidoPrecio, 'Incluido en Precio') }}
+                {{ form_widget(form.incluidoPrecio) }}
+                {{ form_errors(form.incluidoPrecio) }}
+            </div>
+
+            <div class="mb1">
+                {{ form_label(form.noIncluidoPrecio, 'No Incluido en Precio') }}
+                {{ form_widget(form.noIncluidoPrecio) }}
+                {{ form_errors(form.noIncluidoPrecio) }}
+            </div>
+
+            <div class="mb1">
+                {{ form_label(form.promocion, 'Promoción') }}
+                {{ form_widget(form.promocion) }}
+                {{ form_errors(form.promocion) }}
+            </div>
+
+            <div class="mb1">
+                {{ form_label(form.precios, null, { 'attr': { 'class' : 'collection'} }) }}
+                {{ form_widget(form.precios) }}
+                {{ form_errors(form.precios) }}
+            </div>
+        </fieldset>
+    </div>
+
+    <div class="grid_12 cbutton">
+        <div class="grid_6">
+            <button type="button" class="delete" id="bDeleteEntity">
+                <img alt="Eliminar Crucero" src="{{ asset('/bundles/cruceouser/css/images/remove.png') }}"/>Eliminar
+            </button>
+        </div>
+        <div class="grid_6 toright">
+            <button type="submit" class="save">
+                <img alt="Editar Crucero" src="{{ asset('/bundles/cruceouser/css/images/save.png') }}"/>Editar
+            </button>
+        </div>
+    </div>
+</form>
+<form action="{{ path('admin_cruceros_delete', { 'id': entity.id }) }}" method="post" id="deleteEntity">
+    {{ form_widget(delete_form) }}
+</form>
+{% endblock %}

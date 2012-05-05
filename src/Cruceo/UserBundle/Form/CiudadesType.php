@@ -11,11 +11,19 @@ class CiudadesType extends AbstractType
     {
         $builder
             ->add('nombre')
+            ->add('pais', 'country')
         ;
     }
 
     public function getName()
     {
         return 'ciudades';
+    }
+
+    public function getDefaultOptions(array $options)
+    {
+        return array(
+            'data_class' => 'Cruceo\PortalBundle\Entity\Ciudades'
+        );
     }
 }

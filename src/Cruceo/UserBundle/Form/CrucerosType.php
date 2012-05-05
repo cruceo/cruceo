@@ -13,9 +13,12 @@ class CrucerosType extends AbstractType
             ->add('detalles', 'textarea')
             ->add('equipamiento', 'textarea')
             ->add('itinerario', 'textarea')
-            ->add('imgItinerario', 'file')
-            ->add('imgBarco', 'file')
-            ->add('fechaSalida')
+            ->add('imgItinerarioFile', 'file')
+            ->add('fechaSalida', 'date', array(
+                'widget' => 'single_text',
+                'format' => 'dd-MM-yyyy'
+            ))
+            ->add('duracion')
             ->add('promocion', 'textarea')
             ->add('incluidoPrecio', 'textarea')
             ->add('noIncluidoPrecio', 'textarea')
@@ -23,19 +26,23 @@ class CrucerosType extends AbstractType
                 'class' => 'CruceoPortalBundle:Navieras',
                 'empty_value' => 'Selecciona Naviera...'
             ))
+            ->add('barco', 'entity', array(
+                'class' => 'CruceoPortalBundle:Barcos',
+                'empty_value' => 'Selecciona Barco...'
+            ))
             ->add('zona', 'entity', array(
                 'class' => 'CruceoPortalBundle:Zonas',
                 'empty_value' => 'Selecciona Zona...'
             ))
-            /*->add('precios', 'collection', array(
+            ->add('ciudades', 'entity', array(
+                'class' => 'CruceoPortalBundle:Ciudades',
+                'expanded' => true,
+                'multiple' => true
+            ))
+            ->add('precios', 'collection', array(
                 'type' =>  new PreciosType(),
                 'allow_add' => true,
-                'prototype' => true,
-                'by_reference' => false,
-            ));*/
-            ->add('fotos', 'collection', array(
-                'type' =>  new FotosType(),
-                'allow_add' => true,
+                'allow_delete' => true,
                 'prototype' => true,
                 'by_reference' => false,
             ));

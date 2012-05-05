@@ -1,0 +1,42 @@
+<h1 class="title {{ css }}">{{ title }}</h1>
+
+<form action="{{ url_form }}" method="post" {{ form_enctype(form) }}>
+    {{ form_row(form._token) }}
+    <fieldset class="form">
+        <legend>Datos</legend>
+
+        {% for item in form.children %}
+        	{% if item.vars.name not in ['_token'] %}
+	        <div class="mb1 mt1">
+	            {{ form_label(item, null, { 'attr': { 'class' : 'fl'} }) }}
+	            {{ form_widget(item, { 'attr': { 'class' : 'w250'} }) }}
+	            {{ form_errors(item) }}
+	        </div>
+	        {% endif %}
+        {% endfor %}
+    </fieldset>
+{% if type == 'new' %}
+    <div class="grid_12 tr cbutton">
+        <button type="submit" class="save">
+            <img alt="guardar" src="{{ asset('/bundles/cruceouser/css/images/save.png') }}"/>Guardar
+        </button>
+    </div>
+</form>
+{% elseif type == 'edit'  %}
+    <div class="grid_12 cbutton">
+        <div class="grid_6">
+            <button type="button" class="delete" id="bDeleteEntity">
+                <img alt="Eliminar {{ alt }}" src="{{ asset('/bundles/cruceouser/css/images/remove.png') }}"/>Eliminar
+            </button>
+        </div>
+        <div class="grid_6 toright">
+            <button type="submit" class="save">
+                <img alt="Editar {{ alt }}" src="{{ asset('/bundles/cruceouser/css/images/save.png') }}"/>Editar
+            </button>
+        </div>
+    </div>
+</form>
+<form action="{{ url_del }}" method="post" id="deleteEntity">
+    {{ form_widget(del_form) }}
+</form>
+{% endif %}

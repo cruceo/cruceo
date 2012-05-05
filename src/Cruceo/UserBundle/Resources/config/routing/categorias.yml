@@ -2,27 +2,13 @@ admin_categorias:
     pattern:  /
     defaults: { _controller: "CruceoUserBundle:Categorias:index" }
 
-admin_categorias_show:
-    pattern:  /{id}/show
-    defaults: { _controller: "CruceoUserBundle:Categorias:show" }
-
 admin_categorias_new:
     pattern:  /new
     defaults: { _controller: "CruceoUserBundle:Categorias:new" }
 
-admin_categorias_create:
-    pattern:  /create
-    defaults: { _controller: "CruceoUserBundle:Categorias:create" }
-    requirements: { _method: post }
-
 admin_categorias_edit:
     pattern:  /{id}/edit
     defaults: { _controller: "CruceoUserBundle:Categorias:edit" }
-
-admin_categorias_update:
-    pattern:  /{id}/update
-    defaults: { _controller: "CruceoUserBundle:Categorias:update" }
-    requirements: { _method: post }
 
 admin_categorias_delete:
     pattern:  /{id}/delete

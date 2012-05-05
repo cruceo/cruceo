@@ -3,7 +3,7 @@
 namespace Cruceo\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Cruceo\PortalBundle\Entity\Ciudades;
 use Cruceo\UserBundle\Form\CiudadesType;
 
@@ -16,6 +16,7 @@ class CiudadesController extends Controller
     /**
      * Lists all Ciudades entities.
      *
+     * @Template()
      */
     public function indexAction()
     {
@@ -23,78 +24,44 @@ class CiudadesController extends Controller
 
         $entities = $em->getRepository('CruceoPortalBundle:Ciudades')->findAll();
 
-        return $this->render('CruceoUserBundle:Ciudades:index.html.twig', array(
+        return array(
             'entities' => $entities
-        ));
-    }
-
-    /**
-     * Finds and displays a Ciudades entity.
-     *
-     */
-    public function showAction($id)
-    {
-        $em = $this->getDoctrine()->getEntityManager();
-
-        $entity = $em->getRepository('CruceoPortalBundle:Ciudades')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Ciudades entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-
-        return $this->render('CruceoUserBundle:Ciudades:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-
-        ));
-    }
-
-    /**
-     * Displays a form to create a new Ciudades entity.
-     *
-     */
-    public function newAction()
-    {
-        $entity = new Ciudades();
-        $form   = $this->createForm(new CiudadesType(), $entity);
-
-        return $this->render('CruceoUserBundle:Ciudades:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView()
-        ));
+        );
     }
 
     /**
      * Creates a new Ciudades entity.
      *
+     * @Template()
      */
-    public function createAction()
+    public function newAction()
     {
-        $entity  = new Ciudades();
+        $entity = new Ciudades();
+        $form   = $this->createForm(new CiudadesType(), $entity);
         $request = $this->getRequest();
-        $form    = $this->createForm(new CiudadesType(), $entity);
-        $form->bindRequest($request);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getEntityManager();
-            $em->persist($entity);
-            $em->flush();
+        if ('POST' === $request->getMethod()) {
+        	$form->bindRequest($request);
 
-            return $this->redirect($this->generateUrl('admin_ciudades_show', array('id' => $entity->getId())));
-            
+        	if ($form->isValid()) {
+        		$em = $this->getDoctrine()->getEntityManager();
+        		$em->persist($entity);
+        		$em->flush();
+
+        		return $this->redirect($this->generateUrl('admin_ciudades'));
+        	}
         }
 
-        return $this->render('CruceoUserBundle:Ciudades:new.html.twig', array(
+        return array(
             'entity' => $entity,
             'form'   => $form->createView()
-        ));
+        );
     }
 
     /**
-     * Displays a form to edit an existing Ciudades entity.
+     * Edits an existing Ciudades entity.
      *
+     * @Template()
      */
     public function editAction($id)
     {
@@ -107,48 +74,26 @@ class CiudadesController extends Controller
         }
 
         $editForm = $this->createForm(new CiudadesType(), $entity);
-        $deleteForm = $this->createDeleteForm($id);
+        $request  = $this->getRequest();
 
-        return $this->render('CruceoUserBundle:Ciudades:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
+        if ('POST' === $request->getMethod()) {
+        	$editForm->bindRequest($request);
 
-    /**
-     * Edits an existing Ciudades entity.
-     *
-     */
-    public function updateAction($id)
-    {
-        $em = $this->getDoctrine()->getEntityManager();
+        	if ($editForm->isValid()) {
+        		$em->persist($entity);
+        		$em->flush();
 
-        $entity = $em->getRepository('CruceoPortalBundle:Ciudades')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Ciudades entity.');
+        		return $this->redirect($this->generateUrl('admin_ciudades'));
+        	}
         }
 
-        $editForm   = $this->createForm(new CiudadesType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        $request = $this->getRequest();
-
-        $editForm->bindRequest($request);
-
-        if ($editForm->isValid()) {
-            $em->persist($entity);
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('admin_ciudades_edit', array('id' => $id)));
-        }
-
-        return $this->render('CruceoUserBundle:Ciudades:edit.html.twig', array(
+        return array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'form'        => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        ));
+        );
     }
 
     /**

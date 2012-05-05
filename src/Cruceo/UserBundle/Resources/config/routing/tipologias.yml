@@ -1,0 +1,16 @@
+admin_tipologias:
+    pattern:  /
+    defaults: { _controller: "CruceoUserBundle:Tipologias:index" }
+
+admin_tipologias_new:
+    pattern:  /new
+    defaults: { _controller: "CruceoUserBundle:Tipologias:new" }
+
+admin_tipologias_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "CruceoUserBundle:Tipologias:edit" }
+
+admin_tipologias_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "CruceoUserBundle:Tipologias:delete" }
+    requirements: { _method: post }

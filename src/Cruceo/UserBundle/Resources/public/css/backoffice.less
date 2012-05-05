@@ -1,0 +1,418 @@
+.box-shadow(@style, @color) {
+    box-shadow: @arguments;
+    -moz-box-shadow: @arguments;
+    -webkit-box-shadow: @arguments;
+}
+.border-radius(@radius: 5px) {
+	border-radius: @radius;
+	-moz-border-radius: @radius;
+	-webkit-border-radius: @radius;
+	-khtml-border-radius: @radius;
+}
+.linear-gradient-vertical(@color1, @color2) {
+    background: @color2;
+	background: linear-gradient(bottom, @color1, @color2);
+	background: -o-linear-gradient(bottom, @color1, @color2);
+	background: -moz-linear-gradient(bottom, @color1, @color2);
+	background: -webkit-linear-gradient(bottom, @color1, @color2);
+	background: -ms-linear-gradient(bottom, @color1, @color2);
+	filter:     progid:DXImageTransform.Microsoft.gradient(startColorstr=@color1, endColorstr=@color2);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=@{color1}, endColorstr=@{color2})";
+}
+.double-background-gradient(@img, @repeat, @x, @y, @color1, @color2) {
+	background: @color2 url("@{img}") @repeat @x @y;
+	background: url("@{img}") @repeat @x @y, linear-gradient(bottom, @color1, @color2);
+    background: url("@{img}") @repeat @x @y, -o-linear-gradient(bottom, @color1, @color2);
+    background: url("@{img}") @repeat @x @y, -moz-linear-gradient(bottom, @color1, @color2);
+    background: url("@{img}") @repeat @x @y, -webkit-linear-gradient(bottom, @color1, @color2);
+    background: url("@{img}") @repeat @x @y, -ms-linear-gradient(bottom, @color1, @color2);
+    filter:     progid:DXImageTransform.Microsoft.gradient(startColorstr=@color1, endColorstr=@color2);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=@{color1}, endColorstr=@{color2})";                     
+}
+html, body {
+	margin: 0;
+    padding: 0;
+    height:100%;
+}
+div#main {
+	min-height:100%;
+    position:relative;
+    *height: 100%;
+}
+
+div#body {
+    padding: 10px;	
+    padding-bottom: 95px;
+}
+div#footer {
+	background: #2D2D2D url("images/cruceo_logo_sm.png") no-repeat 20px 10px;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+    position:absolute;
+}
+div#footer p {
+	height: 20px;
+	color: #fff;
+    font-size: smaller;
+    font-weight: bold;
+    padding: 30px 0 0 230px;
+}
+div#header {
+	background-color: #2D2D2D;
+	.box-shadow(0 4px 10px, #888);
+}
+#nav {
+    line-height: 100%;
+    padding: 7px 6px 0;
+    display: inline-block;
+}
+#nav li {
+  float: left;
+  list-style: none;
+  margin: 0 5px;
+  padding: 0 0 8px;
+  position: relative;
+}
+
+#nav a {
+  color: #DDD;
+  display: block;
+  font-weight: bold;
+  padding:  8px 20px;
+  text-decoration: none;
+  .border-radius(10px);
+  border: 1px solid transparent;
+  text-shadow: 0 1px 0 #000;
+}
+
+#nav a.cruceros:hover, #nav li:hover > a.cruceros {
+	.linear-gradient-vertical(#0067CD, #84B7EB);
+	.box-shadow(inset 0 0 10px, #000000);
+    color: #fff;
+}
+#nav a.barcos:hover, #nav li:hover > a.barcos {
+    .linear-gradient-vertical(#5E5F61, #DADFE3);
+    .box-shadow(inset 0 0 10px, #000000);
+    color: #fff;
+}
+#nav a.navieras:hover, #nav li:hover > a.navieras {
+    .linear-gradient-vertical(#E8730C, #FAC46C);
+    .box-shadow(inset 0 0 10px, #000000);
+    color: #fff;
+}
+#nav a.agencias:hover, #nav li:hover > a.agencias {
+    .linear-gradient-vertical(#209908, #AAED9C);
+    .box-shadow(inset 0 0 10px, #000000);
+    color: #fff;
+}
+#nav a.zonas:hover, #nav li:hover > a.zonas {
+    .linear-gradient-vertical(#68007A, #D991E6);
+    .box-shadow(inset 0 0 10px, #000000);
+    color: #fff;
+}
+#nav a.ciudades:hover, #nav li:hover > a.ciudades {
+    .linear-gradient-vertical(#AD0000, #F55858);
+    .box-shadow(inset 0 0 10px, #000000);
+    color: #fff;
+}
+
+#nav ul li a:hover, legend {
+  .linear-gradient-vertical(#D4C70F, #EDE657);
+  .border-radius(8px);
+  color: #222 !important;
+  text-shadow: 0 1px 2px rgba(255,255,255, .7);
+  border: 1px solid #222;
+}
+
+legend {
+	.border-radius(7px); 
+}
+
+#nav li:hover > ul {
+  display: block;
+}
+
+#nav ul {
+  border: solid 1px #666;
+  display: none;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 35px;
+  width: 185px;
+  .border-radius(10px);
+  .box-shadow(0 1px 3px, #000);
+}
+#nav ul.cruceros, #nav ul.cruceros ul {
+	.linear-gradient-vertical(#0067CD, #84B7EB);
+}
+#nav ul.barcos, #nav ul.barcos ul {
+    .linear-gradient-vertical(#5E5F61, #DADFE3);
+}
+#nav ul.navieras, #nav ul.navieras ul {
+	.linear-gradient-vertical(#E8730C, #FAC46C);
+}
+#nav ul.agencias, #nav ul.agencias ul {
+	.linear-gradient-vertical(#209908, #AAED9C);
+}
+#nav ul.zonas, #nav ul.zonas ul {
+	.linear-gradient-vertical(#68007A, #D991E6);
+}
+#nav ul.ciudades, #nav ul.ciudades ul {
+	.linear-gradient-vertical(#AD0000, #F55858);
+}
+#nav ul li {
+  float: none;
+  margin: 0;
+  padding: 0;
+}
+#nav ul a {
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 1px 0 #000;
+}
+
+#nav ul ul {
+    left: 186px;
+    top: 0;
+    background: red;
+}
+
+#nav:after {
+  clear: both;
+  content: ".";
+  display: block;
+  height: 0;
+  line-height: 0;
+  visibility: hidden;
+}
+html[xmlns] #nav { display: block; }
+* html #nav { height: 1%; }
+
+h1.title {
+    .linear-gradient-vertical(#AD0000, #F55858);
+    border: 1px solid #2D2D2D;
+    .border-radius(7px);
+    .box-shadow(2px 2px 4px, #282828);
+    padding: 0;
+    text-align: center;
+    margin: 20px 0 30px;
+}
+
+input[type=text], input[type=password], input[type=number], textarea, select {
+	.border-radius(8px);
+	border: 1px solid #666;
+	.linear-gradient-vertical(#FFF, #EEE);
+	padding: 5px;
+	.box-shadow(1px 2px 2px, #AAAAAA);
+}
+input[type=text]:focus, input[type=password]:focus, input[type=number]:focus, textarea:focus, select:focus {
+    border: 1px solid #0066CD;
+}
+textarea {
+	width: 415px;
+	height: 120px;
+}
+fieldset.form {
+	border: 1px solid #666;
+	.border-radius(10px);
+	padding: 10px; 
+	.box-shadow(2px 2px 4px, #282828);
+    background: #fff;
+    margin-bottom: 10px;
+}
+
+label {font-weight: bold; color: #000;}
+label.fl {
+    display: block;
+    float: left;
+    margin-right: 5px;
+    width: 150px;
+}
+label:hover { color: #0066CD;}
+label.fl:hover:after {
+	content: " »";
+}
+
+legend {
+	font-weight: bold;
+    min-width: 125px;
+    padding: 1px 5px;
+    text-align: center;
+    float: left;
+    margin-top: -24px;
+}
+label.collection {
+	.linear-gradient-vertical(#878383, #D6CFCF);
+    border: 1px solid #2D2D2D;
+    display: block;
+    margin-bottom: 10px;
+    padding: 2px 10px;
+    .border-radius(7px);
+    text-align: center;
+}
+label.collection:hover {color: #000;}
+
+h1.cruceros {
+	.linear-gradient-vertical(#0067CD, #84B7EB);
+    color: #fff;
+    border: 1px solid #004382;
+}
+h1.navieras {
+    .linear-gradient-vertical(#E8730C, #FAC46C);
+    color: #fff;
+    border: 1px solid #A5530B;
+}
+h1.agencias {
+    .linear-gradient-vertical(#209908, #AAED9C);
+    color: #fff;
+    border: 1px solid #146004;
+}
+h1.zonas {
+    .linear-gradient-vertical(#68007A, #D991E6);
+    color: #fff;
+    border: 1px solid #520260;
+}
+h1.ciudades {
+    .linear-gradient-vertical(#AD0000, #F55858);
+    color: #fff;
+    border: 1px solid #930505;
+}
+h1.tipologias {
+	.linear-gradient-vertical(#774915, #997B58);
+    color: #fff;
+    border: 1px solid #563005;
+}
+hr.separator {
+	border: 1px solid #CCCCCC;
+    margin: 15px 0;
+}
+
+table {
+    *border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;    
+}
+
+.bordered {
+    border: 1px solid #282828;
+    .border-radius(6px 6px 0 0);
+    .box-shadow(2px 2px 4px, #282828);         
+}
+
+.bordered td, .bordered th {
+    padding: 5px 10px;
+    text-align: left;
+    border-top: 1px solid #666;    
+}
+
+.bordered th {
+	.linear-gradient-vertical(#2D2D2D, #524B4B);
+    font-weight: bold;
+    color: #fff;
+    border-top: none; 
+}
+
+.bordered td:first-child, .bordered th:first-child {
+    border-left: none;
+}
+
+.bordered th:first-child {
+    .border-radius(4px 0 0 0);
+}
+
+.bordered th:last-child {
+    .border-radius(0 4px 0 0);
+}
+
+.bordered tr:last-child td:first-child {
+    .border-radius(0 0 0 6px);
+}
+
+.bordered tr:last-child td:last-child {
+    .border-radius(0 0 6px 0);
+}
+.bordered tbody tr:nth-child(even) {
+  .linear-gradient-vertical(#F2F2F2, #E5E5E5);
+}
+.bordered tbody tr:hover {
+    background: #FFFBAF;
+}
+button {
+	cursor: pointer;
+    font-weight: bold;
+    padding: 2px 3px;
+    .border-radius();
+	.linear-gradient-vertical(#E1E1E1, #ccc);
+	border: 1px solid #666666;
+    .box-shadow(1px 1px 2px, #333333);
+}
+button img { margin-right: 5px;}
+button:hover {
+	.linear-gradient-vertical(#ccc, #e1e1e1);
+}
+button.save {
+	.linear-gradient-vertical(#85BF58, #4CA20B); 
+	min-width: 100px;
+	border: 1px solid #285C00;
+	.box-shadow(1px 1px 2px, #111);
+}
+button.save:hover {
+   .linear-gradient-vertical(#4CA20B, #85BF58);
+}
+button.delete {
+    .linear-gradient-vertical(#E55454, #C92222); 
+    min-width: 100px;
+    border: 1px solid #A70000;
+    .box-shadow(1px 1px 2px, #111);
+    color: #ddd;
+}
+button.delete:hover {
+   .linear-gradient-vertical(#C92222, #E55454);
+}
+div.cbutton {
+	.linear-gradient-vertical(#E1E1E1, #ccc);
+	.box-shadow(1px 1px 2px, #111);
+	border: 1px solid #666666;
+    .border-radius(6px);
+    margin: 10px 0;
+    padding: 10px;
+}
+.tr {text-align: right;}
+
+div.viewImage {
+    border: 1px solid #666;
+    text-align: center;
+    padding: 5px;
+    .border-radius(5px 5px 0 0);
+}
+div.toolImage {
+	background: #444444;
+    border: 1px solid #444444;
+    .border-radius(0 0 5px 5px);
+    padding: 4px;
+    text-align: right;
+}
+div.toolImage img {
+	cursor: pointer;
+}
+div.toright {
+	float: right;
+    margin-left: 0;
+    margin-right: 0;
+    text-align: right;
+}
+div.info {
+	 .double-background-gradient("images/info.png", no-repeat, 5px, 5px, #5696F7, #C7DCFC);
+	 border: 1px solid #0043A8;
+	 .border-radius();
+	 padding: 10px 10px 10px 45wpx;
+	 font-weight: bolder;
+	 font-size: 16px;
+	 color: #fafafa;
+	 .box-shadow(1px 2px 3px, #111);
+	 text-shadow: 0 1px 1px #000;
+	 padding: 10px 10px 10px 42px
+}

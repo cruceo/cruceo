@@ -3,7 +3,7 @@
 namespace Cruceo\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Cruceo\PortalBundle\Entity\Zonas;
 use Cruceo\UserBundle\Form\ZonasType;
 
@@ -16,6 +16,7 @@ class ZonasController extends Controller
     /**
      * Lists all Zonas entities.
      *
+     * @Template()
      */
     public function indexAction()
     {
@@ -23,78 +24,44 @@ class ZonasController extends Controller
 
         $entities = $em->getRepository('CruceoPortalBundle:Zonas')->findAll();
 
-        return $this->render('CruceoUserBundle:Zonas:index.html.twig', array(
+        return array(
             'entities' => $entities
-        ));
-    }
-
-    /**
-     * Finds and displays a Zonas entity.
-     *
-     */
-    public function showAction($id)
-    {
-        $em = $this->getDoctrine()->getEntityManager();
-
-        $entity = $em->getRepository('CruceoPortalBundle:Zonas')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Zonas entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-
-        return $this->render('CruceoUserBundle:Zonas:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-
-        ));
-    }
-
-    /**
-     * Displays a form to create a new Zonas entity.
-     *
-     */
-    public function newAction()
-    {
-        $entity = new Zonas();
-        $form   = $this->createForm(new ZonasType(), $entity);
-
-        return $this->render('CruceoUserBundle:Zonas:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView()
-        ));
+        );
     }
 
     /**
      * Creates a new Zonas entity.
      *
+     * @Template()
      */
-    public function createAction()
+    public function newAction()
     {
-        $entity  = new Zonas();
+        $entity = new Zonas();
+        $form   = $this->createForm(new ZonasType(), $entity);
         $request = $this->getRequest();
-        $form    = $this->createForm(new ZonasType(), $entity);
-        $form->bindRequest($request);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getEntityManager();
-            $em->persist($entity);
-            $em->flush();
+        if ('POST' === $request->getMethod()) {
+        	$form->bindRequest($request);
 
-            return $this->redirect($this->generateUrl('admin_zonas_show', array('id' => $entity->getId())));
-            
+        	if ($form->isValid()) {
+        		$em = $this->getDoctrine()->getEntityManager();
+        		$em->persist($entity);
+        		$em->flush();
+
+        		return $this->redirect($this->generateUrl('admin_zonas'));
+        	}
         }
 
-        return $this->render('CruceoUserBundle:Zonas:new.html.twig', array(
+        return array(
             'entity' => $entity,
             'form'   => $form->createView()
-        ));
+        );
     }
 
     /**
-     * Displays a form to edit an existing Zonas entity.
+     * Edits an existing Zonas entity.
      *
+     * @Template()
      */
     public function editAction($id)
     {
@@ -107,48 +74,27 @@ class ZonasController extends Controller
         }
 
         $editForm = $this->createForm(new ZonasType(), $entity);
-        $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('CruceoUserBundle:Zonas:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
+        $request  = $this->getRequest();
 
-    /**
-     * Edits an existing Zonas entity.
-     *
-     */
-    public function updateAction($id)
-    {
-        $em = $this->getDoctrine()->getEntityManager();
+        if ('POST' === $request->getMethod()) {
+        	$editForm->bindRequest($request);
 
-        $entity = $em->getRepository('CruceoPortalBundle:Zonas')->find($id);
+        	if ($editForm->isValid()) {
+        		$em->persist($entity);
+        		$em->flush();
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Zonas entity.');
+        		return $this->redirect($this->generateUrl('admin_zonas'));
+        	}
         }
 
-        $editForm   = $this->createForm(new ZonasType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        $request = $this->getRequest();
-
-        $editForm->bindRequest($request);
-
-        if ($editForm->isValid()) {
-            $em->persist($entity);
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('admin_zonas_edit', array('id' => $id)));
-        }
-
-        return $this->render('CruceoUserBundle:Zonas:edit.html.twig', array(
+        return array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'form'        => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        ));
+        );
     }
 
     /**

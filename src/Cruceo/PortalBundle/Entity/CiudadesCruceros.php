@@ -36,7 +36,7 @@ class CiudadesCruceros
      *
      * @ORM\ManyToOne(targetEntity="Cruceros")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="crucero_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="crucero_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     private $crucero;
@@ -46,7 +46,7 @@ class CiudadesCruceros
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -66,7 +66,7 @@ class CiudadesCruceros
     /**
      * Get ciudad
      *
-     * @return Cruceo\PortalBundle\Entity\Ciudades 
+     * @return Cruceo\PortalBundle\Entity\Ciudades
      */
     public function getCiudad()
     {
@@ -86,7 +86,7 @@ class CiudadesCruceros
     /**
      * Get crucero
      *
-     * @return Cruceo\PortalBundle\Entity\Cruceros 
+     * @return Cruceo\PortalBundle\Entity\Cruceros
      */
     public function getCrucero()
     {

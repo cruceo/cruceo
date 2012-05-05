@@ -1,41 +1,16 @@
 {% extends "CruceoUserBundle::layoutAdmin.html.twig" %}
 
 {% block content %}
-<h1>Zonas list</h1>
 
-<table class="records_list">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Nombre</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-    {% for entity in entities %}
-        <tr>
-            <td><a href="{{ path('admin_zonas_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-            <td>{{ entity.nombre }}</td>
-            <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('admin_zonas_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('admin_zonas_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-            </td>
-        </tr>
-    {% endfor %}
-    </tbody>
-</table>
+{% set vars = {
+	'title'    : 'Zonas',
+	'css'      : 'zonas',
+	'url'      : 'admin_zonas_edit',
+	'entities' : entities,
+	'headers'  : ['Nombre'],
+	'fields'   : ['nombre']
+} %}
 
-<ul>
-    <li>
-        <a href="{{ path('admin_zonas_new') }}">
-            Create a new entry
-        </a>
-    </li>
-</ul>
+{% include "CruceoUserBundle:Admin:partials/simplelist.html.twig" with vars %}
+
 {% endblock %}

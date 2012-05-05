@@ -60,4 +60,6 @@ jms_security_extra:
     secure_all_services: false
 
 parameters:
-    photos.upload: %kernel.root_dir%/../web/photos
+    photos.upload_tmp: %kernel.root_dir%/../web/photos/.tmp
+    photos.web_tmp: /photos/.tmp
+    photos.web: /photos

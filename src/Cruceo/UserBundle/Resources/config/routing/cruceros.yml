@@ -2,10 +2,6 @@ admin_cruceros:
     pattern:  /
     defaults: { _controller: "CruceoUserBundle:Cruceros:index" }
 
-admin_cruceros_show:
-    pattern:  /{id}/show
-    defaults: { _controller: "CruceoUserBundle:Cruceros:show" }
-
 admin_cruceros_new:
     pattern:  /new
     defaults: { _controller: "CruceoUserBundle:Cruceros:new" }
@@ -28,8 +24,8 @@ admin_cruceros_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "CruceoUserBundle:Cruceros:delete" }
     requirements: { _method: post }
-
-admin_cruceros_save_photo:
-    pattern:  /photo/save
-    defaults: { _controller: "CruceoUserBundle:Cruceros:savePhoto" }
+    
+admin_cruceros_delete_itinerario:
+    pattern:  /img/{img}/remove
+    defaults: { _controller: "CruceoUserBundle:Cruceros:deleteImage", _format: json|html }
     requirements: { _method: post }

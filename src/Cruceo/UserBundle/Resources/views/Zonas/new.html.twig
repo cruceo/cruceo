@@ -1,20 +1,15 @@
 {% extends "CruceoUserBundle::layoutAdmin.html.twig" %}
 
 {% block content %}
-<h1>Zonas creation</h1>
+{% set vars = {
+	'type'     : 'new',
+	'title'    : 'Nueva Zona',
+	'css'      : 'zonas',
+	'alt'      : 'Zona',
+	'url_form' : path('admin_zonas_new'),
+	'form'     : form,
+} %}
 
-<form action="{{ path('admin_zonas_create') }}" method="post" {{ form_enctype(form) }}>
-    {{ form_widget(form) }}
-    <p>
-        <button type="submit">Create</button>
-    </p>
-</form>
+{% include 'CruceoUserBundle:Form:simpleform.html.twig' with vars %}
 
-<ul class="record_actions">
-    <li>
-        <a href="{{ path('admin_zonas') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
 {% endblock %}

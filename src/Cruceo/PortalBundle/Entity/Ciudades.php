@@ -28,12 +28,19 @@ class Ciudades
      */
     private $nombre;
 
+    /**
+     * @var string $pais
+     *
+     * @ORM\Column(name="pais", type="string", length=100, nullable=false)
+     */
+    private $pais;
+
 
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -53,10 +60,35 @@ class Ciudades
     /**
      * Get nombre
      *
-     * @return string 
+     * @return string
      */
     public function getNombre()
     {
         return $this->nombre;
+    }
+
+    /**
+     * Set pais
+     *
+     * @param string $pais
+     */
+    public function setPais($pais)
+    {
+        $this->pais = $pais;
+    }
+
+    /**
+     * Get pais
+     *
+     * @return string
+     */
+    public function getPais()
+    {
+        return $this->pais;
+    }
+
+    public function __toString()
+    {
+        return $this->getNombre().' ('.$this->getPais().')';
     }
 }

@@ -10,7 +10,10 @@ class FotosType extends AbstractType
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder
-            ->add('file', 'file', array('attr' => array('class' => 'jxaz')))
+            ->add('ruta', 'hidden')
+            ->add('rutaFile', 'file', array(
+                'required' => false
+            ))
             ->add('titulo')
 
         ;
@@ -18,7 +21,7 @@ class FotosType extends AbstractType
 
     public function getName()
     {
-        return 'cruceo_portalbundle_fotostype';
+        return 'fotos';
     }
 
     public function getDefaultOptions(array $options)

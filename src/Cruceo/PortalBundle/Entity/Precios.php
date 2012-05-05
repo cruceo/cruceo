@@ -36,21 +36,18 @@ class Precios
     private $url;
 
     /**
-     * @var Categorias
+     * @var date $fecha
      *
-     * @ORM\ManyToOne(targetEntity="Categorias")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="categoria_id", referencedColumnName="id")
-     * })
+     * @ORM\Column(name="fecha", type="date", nullable=false)
      */
-    private $categoria;
+    private $fecha;
 
     /**
      * @var Cruceros
      *
      * @ORM\ManyToOne(targetEntity="Cruceros")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="crucero_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="crucero_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     private $crucero;
@@ -65,12 +62,22 @@ class Precios
      */
     private $agencia;
 
+    /**
+     * @var Tipologias
+     *
+     * @ORM\ManyToOne(targetEntity="Tipologias")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="tipologia_id", referencedColumnName="id")
+     * })
+     */
+    private $tipologia;
+
 
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -90,7 +97,7 @@ class Precios
     /**
      * Get precio
      *
-     * @return float 
+     * @return float
      */
     public function getPrecio()
     {
@@ -110,7 +117,7 @@ class Precios
     /**
      * Get url
      *
-     * @return string 
+     * @return string
      */
     public function getUrl()
     {
@@ -118,23 +125,23 @@ class Precios
     }
 
     /**
-     * Set categoria
+     * Set fecha
      *
-     * @param Cruceo\PortalBundle\Entity\Categorias $categoria
+     * @param date $fecha
      */
-    public function setCategoria(\Cruceo\PortalBundle\Entity\Categorias $categoria)
+    public function setFecha($fecha)
     {
-        $this->categoria = $categoria;
+        $this->fecha = $fecha;
     }
 
     /**
-     * Get categoria
+     * Get fecha
      *
-     * @return Cruceo\PortalBundle\Entity\Categorias 
+     * @return date
      */
-    public function getCategoria()
+    public function getFecha()
     {
-        return $this->categoria;
+        return $this->fecha;
     }
 
     /**
@@ -150,7 +157,7 @@ class Precios
     /**
      * Get crucero
      *
-     * @return Cruceo\PortalBundle\Entity\Cruceros 
+     * @return Cruceo\PortalBundle\Entity\Cruceros
      */
     public function getCrucero()
     {
@@ -170,10 +177,30 @@ class Precios
     /**
      * Get agencia
      *
-     * @return Cruceo\PortalBundle\Entity\Agencias 
+     * @return Cruceo\PortalBundle\Entity\Agencias
      */
     public function getAgencia()
     {
         return $this->agencia;
+    }
+
+    /**
+     * Set tipologia
+     *
+     * @param Cruceo\PortalBundle\Entity\Tipologias $tipologia
+     */
+    public function setTipologia(\Cruceo\PortalBundle\Entity\Tipologias $tipologia)
+    {
+        $this->tipologia = $tipologia;
+    }
+
+    /**
+     * Get tipologia
+     *
+     * @return Cruceo\PortalBundle\Entity\Tipologias
+     */
+    public function getTipologia()
+    {
+        return $this->tipologia;
     }
 }

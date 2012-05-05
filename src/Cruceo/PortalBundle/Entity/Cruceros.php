@@ -3,12 +3,15 @@
 namespace Cruceo\PortalBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Cruceo\PortalBundle\Lib\Util;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Cruceo\PortalBundle\Entity\Cruceros
  *
  * @ORM\Table(name="cruceros")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Cruceo\PortalBundle\Repository\CrucerosRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Cruceros
 {
@@ -25,6 +28,7 @@ class Cruceros
      * @var string $nombre
      *
      * @ORM\Column(name="nombre", type="string", length=255, nullable=false)
+     * @Assert\NotBlank
      */
     private $nombre;
 
@@ -46,6 +50,7 @@ class Cruceros
      * @var text $itinerario
      *
      * @ORM\Column(name="itinerario", type="text", nullable=true)
+     * @Assert\NotBlank
      */
     private $itinerario;
 
@@ -57,18 +62,23 @@ class Cruceros
     private $imgItinerario;
 
     /**
-     * @var string $imgBarco
-     *
-     * @ORM\Column(name="img_barco", type="string", length=255, nullable=true)
+     * @var File $imgItinerarioFile
      */
-    private $imgBarco;
+    private $imgItinerarioFile;
 
     /**
      * @var datetime $fechaSalida
      *
-     * @ORM\Column(name="fecha_salida", type="datetime", nullable=false)
+     * @ORM\Column(name="fecha_salida", type="date", nullable=false)
      */
     private $fechaSalida;
+
+    /**
+     * @var integer $duracion
+     *
+     * @ORM\Column(name="duracion", type="integer", nullable=true)
+     */
+    private $duracion;
 
     /**
      * @var string $promocion
@@ -125,16 +135,19 @@ class Cruceros
     /**
      * @var Precios
      *
-     * @ORM\OneToMany(targetEntity="Precios", mappedBy="crucero")
+     * @ORM\OneToMany(targetEntity="Precios", mappedBy="crucero", cascade={"persist", "remove"})
      */
     private $precios;
 
     /**
-     * @var Precios
+     * @var Barcos
      *
-     * @ORM\OneToMany(targetEntity="Fotos", mappedBy="crucero")
+     * @ORM\ManyToOne(targetEntity="Barcos")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="barco_id", referencedColumnName="id")
+     * })
      */
-    private $fotos;
+    private $barco;
 
 
     /**
@@ -242,35 +255,35 @@ class Cruceros
      *
      * @return string
      */
+    public function getImgItinerarioFile()
+    {
+        return $this->imgItinerarioFile;
+    }
+
+    /**
+     * Set imgItinerario
+     *
+     * @param string $imgItinerario
+     */
+    public function setImgItinerarioFile($imgItinerarioFile)
+    {
+        $this->imgItinerarioFile = $imgItinerarioFile;
+    }
+
+    /**
+     * Get imgItinerario
+     *
+     * @return string
+     */
     public function getImgItinerario()
     {
         return $this->imgItinerario;
     }
 
     /**
-     * Set imgBarco
-     *
-     * @param string $imgBarco
-     */
-    public function setImgBarco($imgBarco)
-    {
-        $this->imgBarco = $imgBarco;
-    }
-
-    /**
-     * Get imgBarco
-     *
-     * @return string
-     */
-    public function getImgBarco()
-    {
-        return $this->imgBarco;
-    }
-
-    /**
      * Set fechaSalida
      *
-     * @param datetime $fechaSalida
+     * @param date $fechaSalida
      */
     public function setFechaSalida($fechaSalida)
     {
@@ -285,6 +298,26 @@ class Cruceros
     public function getFechaSalida()
     {
         return $this->fechaSalida;
+    }
+
+    /**
+     * Set duracion
+     *
+     * @param integer $duracion
+     */
+    public function setDuracion($duracion)
+    {
+        $this->duracion = $duracion;
+    }
+
+    /**
+     * Get duracion
+     *
+     * @return integer
+     */
+    public function getDuracion()
+    {
+        return $this->duracion;
     }
 
     /**
@@ -390,11 +423,15 @@ class Cruceros
     /**
      * Set precios
      *
-     * @param Cruceo\PortalBundle\Entity\Precios $precio
+     * @param Array $precios
      */
-    public function setPrecios(\Cruceo\PortalBundle\Entity\Precios $precio)
+    public function setPrecios($precios)
     {
-        $this->precios[] = $precio;
+        $this->precios = $precios;
+
+        foreach ($this->precios as $precio) {
+            $precio->setCrucero($this);
+        }
     }
 
     /**
@@ -408,22 +445,111 @@ class Cruceros
     }
 
     /**
-     * Set fotos
+     * Set barco
      *
-     * @param Cruceo\PortalBundle\Entity\Fotos $foto
+     * @param Cruceo\PortalBundle\Entity\Barcos $barco
      */
-    public function setFotos(\Cruceo\PortalBundle\Entity\Fotos $foto)
+    public function setBarco(\Cruceo\PortalBundle\Entity\Barcos $barco)
     {
-        $this->fotos[] = $foto;
+        $this->barco = $barco;
     }
 
     /**
-     * Get fotos
+     * Get barco
      *
-     * @return Doctrine\Common\Collections\Collection $fotos
+     * @return Cruceo\PortalBundle\Entity\Barcos
      */
-    public function getFotos()
+    public function getBarco()
     {
-        return $this->fotos;
+        return $this->barco;
+    }
+
+    public function __construct()
+    {
+        $this->ciudades = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->precios = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add ciudades
+     *
+     * @param Cruceo\PortalBundle\Entity\Ciudades $ciudades
+     */
+    public function addCiudades(\Cruceo\PortalBundle\Entity\Ciudades $ciudades)
+    {
+        $this->ciudades[] = $ciudades;
+    }
+
+    /**
+     * Get ciudades
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getCiudades()
+    {
+        return $this->ciudades;
+    }
+
+    /**
+     * Add precios
+     *
+     * @param Cruceo\PortalBundle\Entity\Precios $precios
+     */
+    public function addPrecios(\Cruceo\PortalBundle\Entity\Precios $precios)
+    {
+        $this->precios[] = $precios;
+    }
+
+    /*************************************
+     * Functions for uploads img_itinario
+     *************************************/
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload()
+    {
+        if (null !== $this->imgItinerarioFile) {
+            $this->imgItinerario = uniqid().'.'.$this->imgItinerarioFile->guessExtension();
+        }
+    }
+
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload()
+    {
+        if (null === $this->imgItinerarioFile) {
+            return;
+        }
+
+        $this->imgItinerarioFile->move($this->getUploadRootDir(), $this->imgItinerario);
+
+        unset($this->imgItinerarioFile);
+    }
+
+    /**
+     * @ORM\PreRemove()
+     */
+    public function removeUpload()
+    {
+        if ($this->imgItinerario) {
+            @unlink($this->getUploadRootDir().DIRECTORY_SEPARATOR.$this->imgItinerario);
+            @rmdir($this->getUploadRootDir());
+        }
+    }
+
+    public function getUploadRootDir($name = null)
+    {
+        return __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.
+            '..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'web'.DIRECTORY_SEPARATOR.$this->getUploadDir($name);
+    }
+
+    public function getUploadDir($name = null)
+    {
+        $name = null === $name ? $this->getNombre() : $name;
+
+        return 'cruises/'.Util::sanitizeString(strtolower($name), array(), array(' ' => '-')).'-'.$this->getId();
     }
 }

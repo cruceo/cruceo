@@ -1,0 +1,52 @@
+<div id="header">
+    <ul id="nav">
+        <li>
+            <a href="{{ path('admin_cruceros') }}" class="cruceros">Cruceros</a>
+            <ul class="cruceros">
+                <li><a href="{{ path('admin_cruceros_new') }}">Nuevo</a></li>
+                <li>
+                    <a href="{{ path('admin_tipologias') }}">Tipos de Estancias</a>
+                    <ul>
+                        <li><a href="{{ path('admin_tipologias_new') }}">Nuevo</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="{{ path('admin_barcos') }}" class="barcos">Barcos</a>
+            <ul class="barcos">
+                <li><a href="{{ path('admin_barcos_new') }}">Nuevo</a></li>
+                <li>
+                    <a href="{{ path('admin_categorias') }}">Categorías Barcos</a>
+                    <ul>
+                        <li><a href="{{ path('admin_categorias_new') }}">Nueva</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="{{ path('admin_navieras') }}" class="navieras">Navieras</a>
+            <ul class="navieras">
+                <li><a href="{{ path('admin_navieras_new') }}">Nueva</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="{{ path('admin_agencias') }}" class="agencias">Agencias</a>
+            <ul class="agencias">
+                <li><a href="{{ path('admin_agencias_new') }}">Nueva</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="{{ path('admin_zonas') }}" class="zonas">Zonas</a>
+            <ul class="zonas">
+                <li><a href="{{ path('admin_zonas_new') }}">Nueva</a></li>
+            </ul>
+         </li>
+        <li>
+            <a href="{{ path('admin_ciudades') }}" class="ciudades">Ciudades</a>
+            <ul class="ciudades">
+                <li><a href="{{ path('admin_ciudades_new') }}">Nueva</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>

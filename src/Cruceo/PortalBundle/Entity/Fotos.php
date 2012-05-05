@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="fotos")
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
  */
 class Fotos
 {
@@ -29,6 +30,12 @@ class Fotos
     private $ruta;
 
     /**
+     * @var File $rutaFile
+     *
+     */
+    private $rutaFile;
+
+    /**
      * @var string $titulo
      *
      * @ORM\Column(name="titulo", type="string", length=255, nullable=true)
@@ -36,21 +43,21 @@ class Fotos
     private $titulo;
 
     /**
-     * @var Cruceros
+     * @var Barcos
      *
-     * @ORM\ManyToOne(targetEntity="Cruceros")
+     * @ORM\ManyToOne(targetEntity="Barcos")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="crucero_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="barco_id", referencedColumnName="id")
      * })
      */
-    private $crucero;
+    private $barco;
 
 
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -70,11 +77,31 @@ class Fotos
     /**
      * Get ruta
      *
-     * @return string 
+     * @return string
      */
     public function getRuta()
     {
         return $this->ruta;
+    }
+
+    /**
+     * Set rutaFile
+     *
+     * @param string $rutaFile
+     */
+    public function setRutaFile($rutaFile)
+    {
+        $this->rutaFile = $rutaFile;
+    }
+
+    /**
+     * Get rutaFile
+     *
+     * @return string
+     */
+    public function getRutaFile()
+    {
+        return $this->rutaFile;
     }
 
     /**
@@ -90,7 +117,7 @@ class Fotos
     /**
      * Get titulo
      *
-     * @return string 
+     * @return string
      */
     public function getTitulo()
     {
@@ -98,22 +125,62 @@ class Fotos
     }
 
     /**
-     * Set crucero
+     * Set barco
      *
-     * @param Cruceo\PortalBundle\Entity\Cruceros $crucero
+     * @param Cruceo\PortalBundle\Entity\Barcos $barco
      */
-    public function setCrucero(\Cruceo\PortalBundle\Entity\Cruceros $crucero)
+    public function setBarco(\Cruceo\PortalBundle\Entity\Barcos $barco)
     {
-        $this->crucero = $crucero;
+        $this->barco = $barco;
     }
 
     /**
-     * Get crucero
+     * Get barco
      *
-     * @return Cruceo\PortalBundle\Entity\Cruceros 
+     * @return Cruceo\PortalBundle\Entity\Barcos
      */
-    public function getCrucero()
+    public function getBarco()
     {
-        return $this->crucero;
+        return $this->barco;
+    }
+
+    /*************************************
+     * Functions for uploads ruta
+    *************************************/
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload()
+    {
+        if (null !== $this->rutaFile) {
+            $this->ruta = uniqid().'.'.$this->rutaFile->guessExtension();
+        }
+    }
+
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload()
+    {
+        if (null === $this->rutaFile) {
+            return;
+        }
+
+        $this->rutaFile->move($this->getBarco()->getUploadRootDir(), $this->ruta);
+
+        unset($this->rutaFile);
+    }
+
+    /**
+     * @ORM\PreRemove()
+     */
+    public function removeUpload()
+    {
+        if ($this->ruta) {
+            $barco = $this->getBarco();
+            @unlink($barco->getUploadRootDir().DIRECTORY_SEPARATOR.$this->ruta);
+        }
     }
 }

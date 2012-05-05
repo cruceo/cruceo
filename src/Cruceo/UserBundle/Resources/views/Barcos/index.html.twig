@@ -1,0 +1,16 @@
+{% extends "CruceoUserBundle::layoutAdmin.html.twig" %}
+
+{% block content %}
+
+{% set vars = {
+	'title'    : 'Barcos',
+	'css'      : 'barcos',
+	'url'      : 'admin_barcos_edit',
+	'entities' : entities,
+	'headers'  : ['Nombre', 'Categoría'],
+	'fields'   : ['nombre', 'categoria']
+} %}
+
+{% include "CruceoUserBundle:Admin:partials/simplelist.html.twig" with vars %}
+
+{% endblock %}

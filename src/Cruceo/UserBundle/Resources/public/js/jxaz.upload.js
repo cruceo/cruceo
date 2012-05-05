@@ -30,7 +30,7 @@ JXaz.Upload = (function() {
 
     function init(selector, options) {
         this.options = options || {};
-console.log(selector);
+
         $(selector).each(function(i) {
             var $this = $(this);
 
@@ -38,7 +38,6 @@ console.log(selector);
                 $this.bind('change', function() {
                     var files = this.files;
                     for (var x = 0, c = files.length; x < c; ++x) {
-                    	console.log(i);
                         fileHandler(files[x], $this, i);
                     }
                 });

@@ -1,0 +1,31 @@
+admin_barcos:
+    pattern:  /
+    defaults: { _controller: "CruceoUserBundle:Barcos:index" }
+
+admin_barcos_new:
+    pattern:  /new
+    defaults: { _controller: "CruceoUserBundle:Barcos:new" }
+
+admin_barcos_create:
+    pattern:  /create
+    defaults: { _controller: "CruceoUserBundle:Barcos:create" }
+    requirements: { _method: post }
+
+admin_barcos_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "CruceoUserBundle:Barcos:edit" }
+
+admin_barcos_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "CruceoUserBundle:Barcos:update" }
+    requirements: { _method: post }
+
+admin_barcos_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "CruceoUserBundle:Barcos:delete" }
+    requirements: { _method: post }
+
+admin_cruceros_delete_photo:
+    pattern:  /img/{img}/remove
+    defaults: { _controller: "CruceoUserBundle:Barcos:deletePhoto", _format: json|html }
+    requirements: { _method: post }

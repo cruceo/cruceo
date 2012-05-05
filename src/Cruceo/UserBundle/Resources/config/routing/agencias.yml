@@ -2,27 +2,13 @@ admin_agencias:
     pattern:  /
     defaults: { _controller: "CruceoUserBundle:Agencias:index" }
 
-admin_agencias_show:
-    pattern:  /{id}/show
-    defaults: { _controller: "CruceoUserBundle:Agencias:show" }
-
 admin_agencias_new:
     pattern:  /new
     defaults: { _controller: "CruceoUserBundle:Agencias:new" }
 
-admin_agencias_create:
-    pattern:  /create
-    defaults: { _controller: "CruceoUserBundle:Agencias:create" }
-    requirements: { _method: post }
-
 admin_agencias_edit:
     pattern:  /{id}/edit
     defaults: { _controller: "CruceoUserBundle:Agencias:edit" }
-
-admin_agencias_update:
-    pattern:  /{id}/update
-    defaults: { _controller: "CruceoUserBundle:Agencias:update" }
-    requirements: { _method: post }
 
 admin_agencias_delete:
     pattern:  /{id}/delete
