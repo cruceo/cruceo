@@ -1,0 +1,29 @@
+{% extends "CruceoUserBundle::layoutLogin.html.twig" %}
+
+{% block content %}
+{% if error %}
+    <div class="errorlogin">Usuario o contraseña errónea</div>
+{% endif %}
+
+<div id="login">
+<form action="{{ path('login_check') }}" method="post">
+    <div id="flogin">
+        <div class="mt3 mb1">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="_username" value="{{ last_username }}" />
+        </div>
+
+        <div class="mb1">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="_password" />
+        </div>
+
+        <div class="tr mr3 mt2">
+            <button type="submit">
+                <img alt="Login" src="{{ asset('/bundles/cruceouser/css/images/lock.png') }}"/>Login
+            </button>
+        </div>
+    </div>
+</form>
+</div>
+{% endblock %}

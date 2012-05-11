@@ -1,34 +1,5 @@
-.box-shadow(@style, @color) {
-    box-shadow: @arguments;
-    -moz-box-shadow: @arguments;
-    -webkit-box-shadow: @arguments;
-}
-.border-radius(@radius: 5px) {
-	border-radius: @radius;
-	-moz-border-radius: @radius;
-	-webkit-border-radius: @radius;
-	-khtml-border-radius: @radius;
-}
-.linear-gradient-vertical(@color1, @color2) {
-    background: @color2;
-	background: linear-gradient(bottom, @color1, @color2);
-	background: -o-linear-gradient(bottom, @color1, @color2);
-	background: -moz-linear-gradient(bottom, @color1, @color2);
-	background: -webkit-linear-gradient(bottom, @color1, @color2);
-	background: -ms-linear-gradient(bottom, @color1, @color2);
-	filter:     progid:DXImageTransform.Microsoft.gradient(startColorstr=@color1, endColorstr=@color2);
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=@{color1}, endColorstr=@{color2})";
-}
-.double-background-gradient(@img, @repeat, @x, @y, @color1, @color2) {
-	background: @color2 url("@{img}") @repeat @x @y;
-	background: url("@{img}") @repeat @x @y, linear-gradient(bottom, @color1, @color2);
-    background: url("@{img}") @repeat @x @y, -o-linear-gradient(bottom, @color1, @color2);
-    background: url("@{img}") @repeat @x @y, -moz-linear-gradient(bottom, @color1, @color2);
-    background: url("@{img}") @repeat @x @y, -webkit-linear-gradient(bottom, @color1, @color2);
-    background: url("@{img}") @repeat @x @y, -ms-linear-gradient(bottom, @color1, @color2);
-    filter:     progid:DXImageTransform.Microsoft.gradient(startColorstr=@color1, endColorstr=@color2);
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=@{color1}, endColorstr=@{color2})";                     
-}
+@import "function.less";
+
 html, body {
 	margin: 0;
     padding: 0;
@@ -380,7 +351,6 @@ div.cbutton {
     margin: 10px 0;
     padding: 10px;
 }
-.tr {text-align: right;}
 
 div.viewImage {
     border: 1px solid #666;
@@ -415,4 +385,18 @@ div.info {
 	 .box-shadow(1px 2px 3px, #111);
 	 text-shadow: 0 1px 1px #000;
 	 padding: 10px 10px 10px 42px
+}
+div#logout {
+    float: right;
+    margin-top: -32px;
+    padding-right: 10px;
+    width: 60px;
+}
+div#logout a {
+	margin-left: 3px;
+	color: #fafafa;
+	font-weight: bold;
+}
+div#logout a:hover {
+	color: #EA0D02;
 }

@@ -1,0 +1,31 @@
+.box-shadow(@style, @color) {
+    box-shadow: @arguments;
+    -moz-box-shadow: @arguments;
+    -webkit-box-shadow: @arguments;
+}
+.border-radius(@radius: 5px) {
+    border-radius: @radius;
+    -moz-border-radius: @radius;
+    -webkit-border-radius: @radius;
+    -khtml-border-radius: @radius;
+}
+.linear-gradient-vertical(@color1, @color2) {
+    background: @color2;
+    background: linear-gradient(bottom, @color1, @color2);
+    background: -o-linear-gradient(bottom, @color1, @color2);
+    background: -moz-linear-gradient(bottom, @color1, @color2);
+    background: -webkit-linear-gradient(bottom, @color1, @color2);
+    background: -ms-linear-gradient(bottom, @color1, @color2);
+    filter:     progid:DXImageTransform.Microsoft.gradient(startColorstr=@color1, endColorstr=@color2);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=@{color1}, endColorstr=@{color2})";
+}
+.double-background-gradient(@img, @repeat, @x, @y, @color1, @color2) {
+    background: @color2 url("@{img}") @repeat @x @y;
+    background: url("@{img}") @repeat @x @y, linear-gradient(bottom, @color1, @color2);
+    background: url("@{img}") @repeat @x @y, -o-linear-gradient(bottom, @color1, @color2);
+    background: url("@{img}") @repeat @x @y, -moz-linear-gradient(bottom, @color1, @color2);
+    background: url("@{img}") @repeat @x @y, -webkit-linear-gradient(bottom, @color1, @color2);
+    background: url("@{img}") @repeat @x @y, -ms-linear-gradient(bottom, @color1, @color2);
+    filter:     progid:DXImageTransform.Microsoft.gradient(startColorstr=@color1, endColorstr=@color2);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=@{color1}, endColorstr=@{color2})";                     
+}

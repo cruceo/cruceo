@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Cruceo\UserBundle\Entity\BackUser;
 use Cruceo\UserBundle\Form\CrucerosType;
+use Symfony\Component\Security\Core\SecurityContext;
 
 class AdminController extends Controller
 {
@@ -48,4 +49,37 @@ class AdminController extends Controller
 
         return array();
     }
+
+    /**
+     * Login Action
+     *
+     * @Template()
+     */
+    public function loginAction()
+    {
+        $request = $this->getRequest();
+        $session = $request->getSession();
+
+        if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
+            $error = $request->attributes->get(SecurityContext::AUTHENTICATION_ERROR);
+        } else {
+            $error = $session->get(SecurityContext::AUTHENTICATION_ERROR);
+            $session->remove(SecurityContext::AUTHENTICATION_ERROR);
+        }
+
+        return array(
+            'last_username' => $session->get(SecurityContext::LAST_USERNAME),
+            'error'         => $error,
+        );
+    }
+
+    /**
+     * The security layer will intercept this request
+     */
+    public function loginCheckAction() {}
+
+    /**
+     * The security layer will intercept this request
+     */
+    public function logoutAction() {}
 }

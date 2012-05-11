@@ -3,36 +3,22 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>
-        {% block title %}CRUCEO{% endblock %}
+        {% block title %}CRUCEO BACKOFFICE{% endblock %}
     </title>
     {% block css %}
         <link rel="stylesheet" type="text/css" href="{{ asset('bundles/cruceouser/css/960/reset.css') }}" media="all" />
         <link rel="stylesheet" type="text/css" href="{{ asset('bundles/cruceouser/css/960/960.css') }}" media="all" />
         <link rel="stylesheet" type="text/css" href="{{ asset('bundles/cruceouser/css/text.css') }}" media="all" />
         <link rel="stylesheet" type="text/css" href="{{ asset('bundles/cruceoportal/css/jquery/jquery-ui.css') }}" media="all" />
-        <link rel="stylesheet/less" type="text/css" href="{{ asset('bundles/cruceouser/css/function.less') }}" media="all" />
-        <link rel="stylesheet/less" type="text/css" href="{{ asset('bundles/cruceouser/css/backoffice.less') }}" media="all" />
+        <link rel="stylesheet/less" type="text/css" href="{{ asset('bundles/cruceouser/css/login.less') }}" media="all" />
     {% endblock %}
 
     {% block js %}
         <script type="text/javascript" src="{{ asset('bundles/cruceoportal/js/jquery.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/cruceoportal/js/jquery-ui.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/cruceoportal/js/jquery.ui.datepicker-es.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/cruceouser/js/less.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('/bundles/cruceouser/js/cruceros2.js') }}"></script>
     {% endblock %}
 </head>
 <body>
-<div id="main">
-    {% include "CruceoUserBundle:Admin:partials/header.html.twig" %}
-
-    <div id="body">
-        <div class="container_12">
-        {% block content %}{% endblock %}
-        </div>
-    </div>
-
-    {% include "CruceoUserBundle:Admin:partials/footer.html.twig" %}
-</div>
+    {% block content %}{% endblock %}
 </body>
 </html>

@@ -10,14 +10,26 @@ security:
             entity: { class: CruceoUserBundle:BackUser }
 
     firewalls:
-        admin_area:
-            pattern:    ^/admin
-            http_basic:
-                realm:    "Admin Cruceo"
-                provider: administrators
+        login:
+            pattern: ^/admin/login$
+            security: false
+            
         newuser:
             pattern:  ^/newuser
             security: false
+
+        admin_area:
+            pattern:    ^/admin
+            #http_basic:
+            #    realm:    "Admin Cruceo"
+            #    provider: administrators
+            form_login:
+                check_path: /admin/login_check
+                login_path: /admin/login
+                default_target_path: /admin
+            logout:
+                path:   /admin/logout
+                target: /admin/login
 
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }

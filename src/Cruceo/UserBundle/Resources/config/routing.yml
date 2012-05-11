@@ -1,3 +1,6 @@
+#
+# Routing admin
+#
 admin_index:
   pattern:  /admin
   defaults: { _controller: CruceoUserBundle:Admin:index }
@@ -5,3 +8,50 @@ admin_index:
 admin_user:
   pattern:  /newuser
   defaults: { _controller: CruceoUserBundle:Admin:user }
+  
+login:
+  pattern: /admin/login
+  defaults: { _controller: CruceoUserBundle:Admin:login }
+  
+logout:
+  pattern: /admin/logout
+  defaults: { _controller: CruceoUserBundle:Admin:logout }
+  
+login_check:
+  pattern: /admin/login_check
+  defaults: { _controller: CruceoUserBundle:Admin:loginCheck }
+  
+#
+# Routing components
+#  
+CruceoPortalBundle_admin_ciudades:
+    resource: "@CruceoUserBundle/Resources/config/routing/ciudades.yml"
+    prefix:   /admin/ciudades
+
+CruceoPortalBundle_admin_navieras:
+    resource: "@CruceoUserBundle/Resources/config/routing/navieras.yml"
+    prefix:   /admin/navieras
+
+CruceoPortalBundle_admin_zonas:
+    resource: "@CruceoUserBundle/Resources/config/routing/zonas.yml"
+    prefix:   /admin/zonas
+
+CruceoPortalBundle_admin_categorias:
+    resource: "@CruceoUserBundle/Resources/config/routing/categorias.yml"
+    prefix:   /admin/categorias
+
+CruceoPortalBundle_admin_agencias:
+    resource: "@CruceoUserBundle/Resources/config/routing/agencias.yml"
+    prefix:   /admin/agencias
+
+CruceoPortalBundle_admin_cruceros:
+    resource: "@CruceoUserBundle/Resources/config/routing/cruceros.yml"
+    prefix:   /admin/cruceros
+    
+CruceoPortalBundle_admin_barcos:
+    resource: "@CruceoUserBundle/Resources/config/routing/barcos.yml"
+    prefix:   /admin/barcos
+
+CruceoPortalBundle_admin_tipologias:
+    resource: "@CruceoUserBundle/Resources/config/routing/tipologias.yml"
+    prefix:   /admin/tipos
