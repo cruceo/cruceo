@@ -11,7 +11,6 @@ class CrucerosType extends AbstractType
         $builder
             ->add('nombre')
             ->add('detalles', 'textarea')
-            ->add('equipamiento', 'textarea')
             ->add('itinerario', 'textarea')
             ->add('imgItinerarioFile', 'file')
             ->add('fechaSalida', 'date', array(
@@ -34,10 +33,17 @@ class CrucerosType extends AbstractType
                 'class' => 'CruceoPortalBundle:Zonas',
                 'empty_value' => 'Selecciona Zona...'
             ))
-            ->add('ciudades', 'entity', array(
+            /*->add('ciudades', 'entity', array(
                 'class' => 'CruceoPortalBundle:Ciudades',
                 'expanded' => true,
                 'multiple' => true
+            ))*/
+            ->add('ciudades', 'collection', array(
+                'type' =>  new CiudadesCrucerosType(),
+                'allow_add' => true,
+                'allow_delete' => true,
+                'prototype' => true,
+                'by_reference' => false,
             ))
             ->add('precios', 'collection', array(
                 'type' =>  new PreciosType(),
@@ -57,7 +63,8 @@ class CrucerosType extends AbstractType
     public function getDefaultOptions(array $options)
     {
         return array(
-            'data_class' => 'Cruceo\PortalBundle\Entity\Cruceros'
+            'data_class' => 'Cruceo\PortalBundle\Entity\Cruceros',
+            'em'         => ''
         );
     }
 }

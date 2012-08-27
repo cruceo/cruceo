@@ -17,7 +17,8 @@ class CrucerosController extends Controller
      *
      * @Template()
      */
-    public function indexAction() {
+    public function indexAction()
+    {
         $em = $this->getDoctrine()->getEntityManager();
 
         $entities = $em->getRepository('CruceoPortalBundle:Cruceros')->findAll();
@@ -32,7 +33,8 @@ class CrucerosController extends Controller
      *
      * @Template()
      */
-    public function newAction() {
+    public function newAction()
+    {
         $entity  = new Cruceros();
         $form    = $this->createForm(new CrucerosType(), $entity);
         $request = $this->getRequest();
@@ -96,9 +98,14 @@ class CrucerosController extends Controller
         }
 
         $originalPrices = array();
+        $originalCities = array();
 
         foreach ($entity->getPrecios() as $precio) {
         	$originalPrices[] = $precio;
+        }
+
+        foreach ($entity->getCiudades() as $ciudad) {
+            $originalCities[] = $ciudad;
         }
 
         $editForm   = $this->createForm(new CrucerosType(), $entity);
@@ -119,6 +126,18 @@ class CrucerosController extends Controller
 
             foreach ($originalPrices as $precio) {
                 $em->remove($precio);
+            }
+
+            foreach ($entity->getCiudades() as $ciudad) {
+                foreach ($originalCities as $key => $toDel) {
+                    if ($toDel->getId() === $ciudad->getId()) {
+                        unset($originalCities[$key]);
+                    }
+                }
+            }
+
+            foreach ($originalCities as $ciudad) {
+                $em->remove($ciudad);
             }
 
             $em->persist($entity);
@@ -163,8 +182,8 @@ class CrucerosController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder(array('id' => $id))
-        ->add('id', 'hidden')
-        ->getForm()
+            ->add('id', 'hidden')
+            ->getForm()
         ;
     }
 
@@ -175,7 +194,8 @@ class CrucerosController extends Controller
      * @throws NotFoundHttpException
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function deleteImageAction($img) {
+    public function deleteImageAction($img)
+    {
         $request = $this->getRequest();
 
         if ($request->isXmlHttpRequest()) {
@@ -189,6 +209,44 @@ class CrucerosController extends Controller
             @unlink($entity->getUploadRootDir().DIRECTORY_SEPARATOR.$img);
 
             return new Response(json_encode(array('msg' => 'OK', 'image' => $img)));
+        } else {
+            throw new NotFoundHttpException();
+        }
+    }
+
+    public function searchCitiesAction($country)
+    {
+        $request = $this->getRequest();
+
+        if ($request->isXmlHttpRequest()) {
+            $cities = $this->getDoctrine()->getEntityManager()->getRepository('CruceoPortalBundle:Ciudades')
+                ->getAllCitiesByCountry($country);
+
+            if (count($cities)) {
+                $msg = $cities;
+            } else {
+                $msg = array('error' => 1, 'msg' => 'No existen ciudades para el país elegido');
+            }
+
+
+            return new Response(json_encode($msg));
+        } else {
+            throw new NotFoundHttpException();
+        }
+    }
+
+    public function searchCountriesAction()
+    {
+        $request = $this->getRequest();
+        $cities  = $request->request->get('cities');
+
+        if ($request->isXmlHttpRequest() && is_array($cities)) {
+            $countries = $this->getDoctrine()->getEntityManager()->getRepository('CruceoPortalBundle:Ciudades')
+                ->getCountriesInCities($cities);
+
+            return new Response(json_encode($countries));
+        } else {
+            throw new NotFoundHttpException();
         }
     }
 }

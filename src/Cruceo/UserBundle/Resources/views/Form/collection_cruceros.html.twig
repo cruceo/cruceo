@@ -1,0 +1,133 @@
+{% block collection_widget %}
+{% spaceless %}
+    {% if id == 'cruceros_precios' %}
+        {% if prototype is defined %}
+            {% set attr = attr|merge({'data-prototype': block('collection_price_widget') }) %}
+        {% endif %}
+        <div {{ block('widget_container_attributes') }}>
+            <div class="error">{{ form_errors(form) }}</div>
+            {% set n = 0 %}
+            {% for rows in form %}
+                {% set idw = id ~ '_' ~ n %}
+                <div id="{{ idw }}">
+                {% for row in rows %}
+                    <div class="mb1">
+                        {% set title = row.vars.name == 'caracteristicasTipologia' ? 'Características Estancia' : null %}
+                        {% set cssClass = row.vars.name == 'caracteristicasTipologia' ? null : 'fl' %}
+                        {{ form_label(row, title, { 'attr': { 'class': cssClass }}) }}
+                        {{ form_widget(row) }}
+                    </div>
+                {% endfor %}
+                    <div class="mt1">
+                        <button type="button" class="remove" data-remove="{{ idw }}">
+                            <img src="/bundles/cruceouser/css/images/remove.png"/>Eliminar
+                        </button>
+                    </div>
+                    <hr class="separator" />
+                </div>
+                {% set n = n + 1 %}
+            {% endfor %}
+            {{ form_rest(form) }}
+        </div>
+        <div class="tr">
+            <button class="add_price" type="button">
+                <img alt="añadir precio" src="{{ asset('/bundles/cruceouser/css/images/add.png') }}"/>Añadir precio
+            </button>
+        </div>
+    {% elseif id == 'cruceros_ciudades' %}
+        {% if prototype is defined %}
+            {% set attr = attr|merge({'data-prototype': block('collection_city_widget') }) %}
+        {% endif %}
+        <div {{ block('widget_container_attributes') }}>
+            <div class="error">{{ form_errors(form) }}</div>
+            {% set n = 0 %}
+            {% for rows in form %}
+                {% set idw = id ~ '_' ~ n %}
+                <div id="{{ idw }}">
+                    {% for row in rows %}
+                        <div class="mb1">
+                            {% set title = null %}
+                            {% if row.vars.name == 'horaLlegada' %}
+                                {% set title = 'Hora de llegada' %}
+                            {% elseif row.vars.name == 'horaSalida' %}
+                                {% set title = 'Hora de salida' %}
+                            {% elseif row.vars.name == 'diaCrucero' %}
+                                {% set title = 'Día del crucero' %}
+                            {% endif %}
+
+                            {{ form_label(row, title, { 'attr': { 'class': 'fl'}}) }}
+                            {{ form_widget(row) }}
+                        </div>
+                    {% endfor %}
+                    <div class="mt1">
+                        <button type="button" class="remove" data-remove="{{ idw }}">
+                            <img src="/bundles/cruceouser/css/images/remove.png"/>Eliminar
+                        </button>
+                    </div>
+                    <hr class="separator" />
+                </div>
+                {% set n = n + 1 %}
+            {% endfor %}
+            {{ form_rest(form) }}
+        </div>
+        <div class="tr">
+            <button class="add_city" type="button">
+                <img alt="añadir precio" src="{{ asset('/bundles/cruceouser/css/images/add.png') }}"/>Añadir ciudad
+            </button>
+        </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock collection_widget %}
+
+{% block collection_price_widget %}
+    {% spaceless %}
+        {% set idw = id ~ '_$$name$$' %}
+        <div id="{{ idw }}">
+        {% for row in prototype %}
+            {% set title = row.vars.name == 'caracteristicasTipologia' ? 'Características Estancia' : null %}
+            {% set cssClass = row.vars.name == 'caracteristicasTipologia' ? null : 'fl' %}
+            <div class="mb1">
+                {{ form_label(row, title, { 'attr': { 'class': cssClass }}) }}
+                {{ form_widget(row) }}
+            </div>
+        {% endfor %}
+            <div class="mt1">
+                <button type="button" class="remove" data-remove="{{ idw }}">
+                    <img src="/bundles/cruceouser/css/images/remove.png"/>Eliminar
+                </button>
+            </div>
+            <hr class="separator" />
+        </div>
+    {% endspaceless %}
+{% endblock collection_price_widget %}
+
+{% block collection_city_widget %}
+    {% spaceless %}
+        {% set idw = id ~ '_$$name$$' %}
+        <div id="{{ idw }}">
+        {% for row in prototype %}
+            {% set title = row.vars.name == 'caracteristicasTipologia' ? 'Características Estancia' : null %}
+            {% set cssClass = row.vars.name == 'caracteristicasTipologia' ? null : 'fl' %}
+            <div class="mb1">
+                {% set title = null %}
+                {% if row.vars.name == 'horaLlegada' %}
+                    {% set title = 'Hora de llegada' %}
+                {% elseif row.vars.name == 'horaSalida' %}
+                    {% set title = 'Hora de salida' %}
+                {% elseif row.vars.name == 'diaCrucero' %}
+                    {% set title = 'Día del crucero' %}
+                {% endif %}
+
+                {{ form_label(row, title, { 'attr': { 'class': 'fl'}}) }}
+                {{ form_widget(row) }}
+            </div>
+        {% endfor %}
+            <div class="mt1">
+                <button type="button" class="remove" data-remove="{{ idw }}">
+                    <img src="/bundles/cruceouser/css/images/remove.png"/>Eliminar
+                </button>
+            </div>
+            <hr class="separator" />
+        </div>
+    {% endspaceless %}
+{% endblock collection_city_widget %}

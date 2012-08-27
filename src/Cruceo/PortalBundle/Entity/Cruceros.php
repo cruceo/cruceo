@@ -40,13 +40,6 @@ class Cruceros
     private $detalles;
 
     /**
-     * @var text $equipamiento
-     *
-     * @ORM\Column(name="equipamiento", type="text", nullable=true)
-     */
-    private $equipamiento;
-
-    /**
      * @var text $itinerario
      *
      * @ORM\Column(name="itinerario", type="text", nullable=true)
@@ -70,6 +63,7 @@ class Cruceros
      * @var datetime $fechaSalida
      *
      * @ORM\Column(name="fecha_salida", type="date", nullable=false)
+     * @Assert\NotBlank
      */
     private $fechaSalida;
 
@@ -108,6 +102,7 @@ class Cruceros
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="naviera_id", referencedColumnName="id")
      * })
+     * @Assert\NotBlank
      */
     private $naviera;
 
@@ -118,24 +113,35 @@ class Cruceros
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="zona_id", referencedColumnName="id")
      * })
+     * @Assert\NotBlank
      */
     private $zona;
 
     /**
-     * @var Ciudades
+     * @var Ciudades old
      *
-     * @ORM\ManyToMany(targetEntity="Ciudades")
-     * @ORM\JoinTable(name="ciudades_cruceros",
+     * @ ORM\ManyToMany(targetEntity="Ciudades", cascade={"persist"})
+     * @ ORM\JoinTable(name="ciudades_cruceros",
      *      joinColumns={@ORM\JoinColumn(name="crucero_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="ciudad_id", referencedColumnName="id")}
      *      )
      */
-    private $ciudades;
+    //private $ciudades;
+
+    /**
+     * @var ciudadesCruceros
+     *
+     * @ORM\OneToMany(targetEntity="CiudadesCruceros", mappedBy="crucero", cascade={"all"})
+     */
+    protected $ciudadesCruceros;
+
+    protected $ciudades;
 
     /**
      * @var Precios
      *
      * @ORM\OneToMany(targetEntity="Precios", mappedBy="crucero", cascade={"persist", "remove"})
+     * @Assert\NotBlank
      */
     private $precios;
 
@@ -146,6 +152,7 @@ class Cruceros
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="barco_id", referencedColumnName="id")
      * })
+     * @Assert\NotBlank
      */
     private $barco;
 
@@ -198,26 +205,6 @@ class Cruceros
     public function getDetalles()
     {
         return $this->detalles;
-    }
-
-    /**
-     * Set equipamiento
-     *
-     * @param text $equipamiento
-     */
-    public function setEquipamiento($equipamiento)
-    {
-        $this->equipamiento = $equipamiento;
-    }
-
-    /**
-     * Get equipamiento
-     *
-     * @return text
-     */
-    public function getEquipamiento()
-    {
-        return $this->equipamiento;
     }
 
     /**
@@ -466,39 +453,50 @@ class Cruceros
 
     public function __construct()
     {
+        $this->ciudadesCruceros = new \Doctrine\Common\Collections\ArrayCollection();
         $this->ciudades = new \Doctrine\Common\Collections\ArrayCollection();
         $this->precios = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-    /**
-     * Add ciudades
-     *
-     * @param Cruceo\PortalBundle\Entity\Ciudades $ciudades
-     */
-    public function addCiudades(\Cruceo\PortalBundle\Entity\Ciudades $ciudades)
+    public function getCiudades()
     {
-        $this->ciudades[] = $ciudades;
+        return $this->ciudadesCruceros;
+    }
+
+    public function setCiudades($ciudadesCruceros)
+    {
+        foreach($ciudadesCruceros as $ciudadCrucero)
+        {
+            $ciudadCrucero->setCrucero($this);
+
+            $this->addCiudadCrucero($ciudadCrucero);
+        }
+    }
+
+    public function getOrder()
+    {
+        return $this;
+    }
+
+    public function addCiudadCrucero($ciudadCrucero)
+    {
+        $this->ciudadesCruceros[] = $ciudadCrucero;
     }
 
     /**
-     * Get ciudades
+     * Get OLD ciudades
      *
      * @return Doctrine\Common\Collections\Collection
      */
-    public function getCiudades()
+    /*public function getCiudades()
     {
         return $this->ciudades;
-    }
+    }*/
 
-    /**
-     * Add precios
-     *
-     * @param Cruceo\PortalBundle\Entity\Precios $precios
-     */
-    public function addPrecios(\Cruceo\PortalBundle\Entity\Precios $precios)
+    /*public function setCiudades($ciudades)
     {
-        $this->precios[] = $precios;
-    }
+        $this->ciudades = $ciudades;
+    }*/
 
     /*************************************
      * Functions for uploads img_itinario

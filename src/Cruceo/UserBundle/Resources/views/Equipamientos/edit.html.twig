@@ -1,0 +1,18 @@
+{% extends "CruceoUserBundle::layoutAdmin.html.twig" %}
+
+{% block content %}
+
+{% set vars = {
+	'type'     : 'edit',
+	'title'    : 'Editar Equipamiento',
+	'css'      : 'equipamientos',
+	'alt'      : 'Equipamientos',
+	'url_form' : path('admin_equipamientos_edit', { 'id': entity.id }),
+	'url_del'  : path('admin_equipamientos_delete', { 'id': entity.id }),
+	'form'     : form,
+	'del_form' : delete_form
+} %}
+
+{% include 'CruceoUserBundle:Form:simpleform.html.twig' with vars %}
+
+{% endblock %}

@@ -4,17 +4,17 @@ namespace Cruceo\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Cruceo\PortalBundle\Entity\Ciudades;
-use Cruceo\UserBundle\Form\CiudadesType;
+use Cruceo\PortalBundle\Entity\TiposLugares;
+use Cruceo\UserBundle\Form\TiposLugaresType;
 
 /**
- * Ciudades controller.
+ * Categorias controller.
  *
  */
-class CiudadesController extends Controller
+class TiposLugaresController extends Controller
 {
     /**
-     * Lists all Ciudades entities.
+     * Lists all TiposLugares entities.
      *
      * @Template()
      */
@@ -22,7 +22,7 @@ class CiudadesController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entities = $em->getRepository('CruceoPortalBundle:Ciudades')->findAll();
+        $entities = $em->getRepository('CruceoPortalBundle:TiposLugares')->findAll();
 
         return array(
             'entities' => $entities
@@ -30,14 +30,14 @@ class CiudadesController extends Controller
     }
 
     /**
-     * Creates a new Ciudades entity.
+     * Creates a new TiposLugares entity.
      *
      * @Template()
      */
     public function newAction()
     {
-        $entity = new Ciudades();
-        $form   = $this->createForm(new CiudadesType(), $entity);
+        $entity = new TiposLugares();
+        $form   = $this->createForm(new TiposLugaresType(), $entity);
         $request = $this->getRequest();
 
         if ('POST' === $request->getMethod()) {
@@ -48,7 +48,7 @@ class CiudadesController extends Controller
         		$em->persist($entity);
         		$em->flush();
 
-        		return $this->redirect($this->generateUrl('admin_ciudades'));
+        		return $this->redirect($this->generateUrl('admin_tipos_lugares'));
         	}
         }
 
@@ -59,7 +59,7 @@ class CiudadesController extends Controller
     }
 
     /**
-     * Edits an existing Ciudades entity.
+     * Edits an existing TiposLugares entity.
      *
      * @Template()
      */
@@ -67,41 +67,23 @@ class CiudadesController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entity = $em->getRepository('CruceoPortalBundle:Ciudades')->find($id);
+        $entity = $em->getRepository('CruceoPortalBundle:TiposLugares')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Ciudades entity.');
+            throw $this->createNotFoundException('Unable to find TiposLugares entity.');
         }
 
-        $editForm = $this->createForm(new CiudadesType(), $entity);
+        $editForm = $this->createForm(new TiposLugaresType(), $entity);
         $request  = $this->getRequest();
 
         if ('POST' === $request->getMethod()) {
-            $originalPlaces = array();
-
-            foreach ($entity->getLugaresTuristicos() as $place) {
-                $originalPlaces[] = $place;
-            }
-
         	$editForm->bindRequest($request);
 
         	if ($editForm->isValid()) {
-                foreach ($entity->getLugaresTuristicos() as $place) {
-                    foreach ($originalPlaces as $key => $toDel) {
-                        if ($toDel->getId() === $place->getId()) {
-                            unset($originalPlaces[$key]);
-                        }
-                    }
-                }
-
-                foreach ($originalPlaces as $place) {
-                    $em->remove($place);
-                }
-
         		$em->persist($entity);
         		$em->flush();
 
-        		return $this->redirect($this->generateUrl('admin_ciudades'));
+        		return $this->redirect($this->generateUrl('admin_tipos_lugares'));
         	}
         }
 
@@ -109,13 +91,13 @@ class CiudadesController extends Controller
 
         return array(
             'entity'      => $entity,
-            'form'        => $editForm->createView(),
+            'form'		  => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
 
     /**
-     * Deletes a Ciudades entity.
+     * Deletes a TiposLugares entity.
      *
      */
     public function deleteAction($id)
@@ -127,17 +109,17 @@ class CiudadesController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
-            $entity = $em->getRepository('CruceoPortalBundle:Ciudades')->find($id);
+            $entity = $em->getRepository('CruceoPortalBundle:TiposLugares')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Ciudades entity.');
+                throw $this->createNotFoundException('Unable to find TiposLugares entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('admin_ciudades'));
+        return $this->redirect($this->generateUrl('admin_tipos_lugares'));
     }
 
     private function createDeleteForm($id)

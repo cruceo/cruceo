@@ -29,3 +29,13 @@ admin_cruceros_delete_itinerario:
     pattern:  /img/{img}/remove
     defaults: { _controller: "CruceoUserBundle:Cruceros:deleteImage", _format: json|html }
     requirements: { _method: post }
+
+admin_cruceros_search_cities:
+    pattern:  /search/cities/{country}
+    defaults: { _controller: "CruceoUserBundle:Cruceros:searchCities", _format: json|html }
+    requirements: { _method: post }
+
+admin_cruceros_search_countries:
+    pattern:  /search/countries
+    defaults: { _controller: "CruceoUserBundle:Cruceros:searchCountries", _format: json|html }
+    requirements: { _method: post }

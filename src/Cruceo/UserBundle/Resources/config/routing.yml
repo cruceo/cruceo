@@ -55,3 +55,11 @@ CruceoPortalBundle_admin_barcos:
 CruceoPortalBundle_admin_tipologias:
     resource: "@CruceoUserBundle/Resources/config/routing/tipologias.yml"
     prefix:   /admin/tipos
+
+CruceoPortalBundle_admin_equipamientos:
+    resource: "@CruceoUserBundle/Resources/config/routing/equipamientos.yml"
+    prefix:   /admin/equipamientos
+
+CruceoPortalBundle_admin_tipos_lugares:
+    resource: "@CruceoUserBundle/Resources/config/routing/tiposLugares.yml"
+    prefix:   /admin/tipos-lugares

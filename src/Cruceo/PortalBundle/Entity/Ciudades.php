@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Cruceo\PortalBundle\Entity\Ciudades
  *
  * @ORM\Table(name="ciudades")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Cruceo\PortalBundle\Repository\CiudadesRepository")
  */
 class Ciudades
 {
@@ -35,12 +35,25 @@ class Ciudades
      */
     private $pais;
 
+    /**
+     * @var lugaresTuristicos
+     *
+     * @ORM\OneToMany(targetEntity="LugaresTuristicos", mappedBy="ciudades", cascade={"persist", "remove"})
+     */
+    private $lugaresTuristicos;
+
+    /**
+     * @var ciudadesCruceros
+     *
+     * @ORM\OneToMany(targetEntity="CiudadesCruceros" , mappedBy="ciudad" , cascade={"all"})
+     */
+    protected $ciudadesCruceros;
 
 
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -60,7 +73,7 @@ class Ciudades
     /**
      * Get nombre
      *
-     * @return string
+     * @return string 
      */
     public function getNombre()
     {
@@ -80,15 +93,45 @@ class Ciudades
     /**
      * Get pais
      *
-     * @return string
+     * @return string 
      */
     public function getPais()
     {
         return $this->pais;
     }
 
+    /**
+     * Get lugaresTuristicos
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getLugaresTuristicos()
+    {
+        return $this->lugaresTuristicos;
+    }
+
+    /**
+     * Set lugaresTuristicos
+     *
+     * @param Array $lugaresTuristicos
+     */
+    public function setLugaresTuristicos($lugaresTuristicos)
+    {
+        $this->lugaresTuristicos = $lugaresTuristicos;
+
+        foreach ($this->lugaresTuristicos as $lugar) {
+            $lugar->setCiudades($this);
+        }
+    }
+
+    /**
+     * Magic method object to string
+     *
+     * @return string
+     */
     public function __toString()
     {
         return $this->getNombre().' ('.$this->getPais().')';
     }
+
 }

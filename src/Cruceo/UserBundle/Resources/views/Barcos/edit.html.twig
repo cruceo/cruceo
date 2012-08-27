@@ -51,6 +51,12 @@
                 {{ form_widget(form.descripcion) }}
                 {{ form_errors(form.descripcion) }}
             </div>
+
+            <div class="mb1 mt1">
+                {{ form_label(form.equipamientos, null, { 'attr': { 'class' : 'collection'} }) }}
+                {{ form_widget(form.equipamientos) }}
+                {{ form_errors(form.equipamientos) }}
+            </div>
         </fieldset>
     </div>
     <div class="grid_6">

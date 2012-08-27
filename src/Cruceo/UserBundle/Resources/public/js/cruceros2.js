@@ -6,6 +6,22 @@ function addPrice() {
     datePick();
 }
 
+function addPlace() {
+    var collectionHolder = $('#ciudades_lugares_turisticos');
+    var prototype = collectionHolder.attr('data-prototype');
+    form = prototype.replace(/\$\$name\$\$/g, collectionHolder.children().length);
+    form = $(form).filter('div').first().html($(form).html());
+    collectionHolder.append(form);
+}
+
+function addCity() {
+    var collectionHolder = $('#cruceros_ciudades');
+    var prototype = collectionHolder.attr('data-prototype');
+    form = prototype.replace(/\$\$name\$\$/g, collectionHolder.children().length);
+    form = $(form).filter('div').first().html($(form).html());
+    collectionHolder.append(form);
+}
+
 function showMsg(msg) {
 	alert(msg);
 }
@@ -33,8 +49,47 @@ function datePick() {
 	$('.dp').datepicker({dateFormat: 'dd-mm-yy'});
 }
 
+function findCountries() {
+    if ($('.searchCountry').length > 0) {
+        var search = new Array();
+        var objs = new Array();
+
+        $('.searchCountry').each(function() {
+            var v = $(this).val();
+            if ( v != '') {
+                search.push(v);
+                objs.push($(this));
+            }
+        });
+
+        if (search.length > 0) {
+            $.post('/admin/cruceros/search/countries', {'cities': search}, function(json) {
+                $.each(objs, function(k, item) {
+                    for (var x= 0, c=json.length; x<c; ++x) {
+                        if (item.val() == json[x].id) {
+                            var n = item.attr('id').match(/\w+_(\d+)_\w+/i)[1];
+                            $('#cruceros_ciudades_'+n+'_pais option').filter(function() {
+                                return $(this).val() == json[x].pais;
+                            }).attr('selected', true);
+                            break;
+                        }
+                    }
+                });
+            }, 'json');
+        }
+    }
+}
+
 $(document).on('click', 'button.add_price', function() {
     addPrice();
+});
+
+$(document).on('click', 'button.add_tourist_place', function() {
+    addPlace();
+});
+
+$(document).on('click', 'button.add_city', function() {
+    addCity();
 });
 
 $(document).on('click', 'button.remove', function() {
@@ -51,7 +106,7 @@ $(document).on('click', 'button#bDeleteEntity', function() {
 $(document).on('click', '#refreshImage', function() {
 	var $tool = $(this);
 	if (confirm('¿Quieres eliminar la imagen y cargar otra?')) {
-		$.post('/app_dev.php/admin/cruceros/img/'+$tool.attr('data-remove')+'/remove', {}, function() {
+		$.post('/admin/cruceros/img/'+$tool.attr('data-remove')+'/remove', {}, function() {
 			$rem = $('#editImgItenerarioView');
 			$rem.hide('slow', function() { $(this).remove(); });
 			$('#editImgItenerario').show();
@@ -61,11 +116,12 @@ $(document).on('click', '#refreshImage', function() {
 
 $(document).ready(function() {
 	datePick();
+    findCountries();
 });
 
 $(document).on('click', 'img.view_photo', function() {
 	$e = $(this);
-    $.post('/app_dev.php/admin/cruceros/photo/view', {'photo': $e.attr('data-view')}, function(json) {
+    $.post('/admin/cruceros/photo/view', {'photo': $e.attr('data-view')}, function(json) {
     	if (json.error != undefined) {
 			showMsg(json.msg);
 		} else {
@@ -77,7 +133,7 @@ $(document).on('click', 'img.view_photo', function() {
 $(document).on('click', 'img.delete_photo', function() {
 	var $e = $(this);
 	if (confirm('¿Quieres eliminar la foto?')) {
-		$.post('/app_dev.php/admin/cruceros/photo/remove', {'photo': $e.attr('data-remove')}, function(json) {
+		$.post('/admin/cruceros/photo/remove', {'photo': $e.attr('data-remove')}, function(json) {
 			if (json.error != undefined) {
 				showMsg(json.msg);
 			} else {
@@ -91,9 +147,24 @@ $(document).on('click', 'img.delete_photo', function() {
 	}
 });
 
+$(document).on('change', '.searchCity', function() {
+    var n = $(this).attr('id').match(/\w+_(\d+)_\w+/i)[1];
+    $.post('/admin/cruceros/search/cities/'+$(this).val(), {}, function(json) {
+        if (json.error != undefined) {
+            showDialog(json.msg, 'NO HAY CIUDADES', 370, 100);
+        } else {
+            var opts = '';
+            for (var x= 0, c=json.length; x<c; ++x) {
+                opts += '<option value="'+json[x].id+'">'+json[x].nombre+'</option>';
+            }
+            $('#cruceros_ciudades_'+n+'_ciudad').html(opts);
+        }
+    }, 'json');
+});
+
 $(document).on('click', 'input.jxaz', function() {
 	JXaz.Upload.create('.jxaz', {
-    	'url': '/app_dev.php/admin/cruceros/photo/save',
+    	'url': '/admin/cruceros/photo/save',
         'success': function(response, element, file) {
             var json = $.parseJSON(response);
             if (json.error == undefined) {

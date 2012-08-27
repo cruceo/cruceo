@@ -38,7 +38,6 @@ class BarcosController extends Controller
      */
     public function newAction()
     {
-        $this->get('session')->remove('photos');
         $entity = new Barcos();
         $form   = $this->createForm(new BarcosType(), $entity);
 

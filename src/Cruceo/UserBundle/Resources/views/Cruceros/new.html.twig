@@ -1,6 +1,6 @@
 {% extends "CruceoUserBundle::layoutAdmin.html.twig" %}
 
-{% form_theme form 'CruceoUserBundle:Form:collection_price.html.twig' %}
+{% form_theme form 'CruceoUserBundle:Form:collection_cruceros.html.twig' %}
 
 {% block content %}
 <h1 class="title cruceros">Nuevo Crucero</h1>
@@ -39,12 +39,6 @@
                 {{ form_label(form.duracion, 'Duración', { 'attr': { 'class' : 'fl'} }) }}
                 {{ form_widget(form.duracion, { 'attr': { 'class' : 'w250'} }) }}
                 {{ form_errors(form.duracion) }}
-            </div>
-
-            <div class="mb1">
-                {{ form_label(form.equipamiento) }}
-                {{ form_widget(form.equipamiento) }}
-                {{ form_errors(form.equipamiento) }}
             </div>
 
             <div class="mb1">

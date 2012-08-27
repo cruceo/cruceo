@@ -12,6 +12,13 @@ class CiudadesType extends AbstractType
         $builder
             ->add('nombre')
             ->add('pais', 'country')
+            ->add('lugares_turisticos', 'collection', array(
+                'type' =>  new LugaresTuristicosType(),
+                'allow_add' => true,
+                'allow_delete' => true,
+                'prototype' => true,
+                'by_reference' => false,
+            ));
         ;
     }
 

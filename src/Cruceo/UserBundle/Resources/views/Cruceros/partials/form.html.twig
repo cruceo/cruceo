@@ -1,10 +1,11 @@
-{% form_theme form 'CruceoUserBundle:Form:collection_price.html.twig' %}
+{% form_theme form 'CruceoUserBundle:Form:collection_cruceros.html.twig' %}
 
 <form action="{{ url_form }}" method="post" {{ form_enctype(form) }}>
     {{ form_row(form._token) }}
     <div class="mb1">
-		                        {{ form_errors(form) }}
-                            </div>
+        {{ form_errors(form) }}
+    </div>
+
     <div class="grid_6">
         <fieldset class="form">
             <legend>Generales</legend>

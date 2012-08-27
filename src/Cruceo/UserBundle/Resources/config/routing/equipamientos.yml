@@ -1,0 +1,16 @@
+admin_equipamientos:
+    pattern:  /
+    defaults: { _controller: "CruceoUserBundle:Equipamientos:index" }
+
+admin_equipamientos_new:
+    pattern:  /new
+    defaults: { _controller: "CruceoUserBundle:Equipamientos:new" }
+
+admin_equipamientos_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "CruceoUserBundle:Equipamientos:edit" }
+
+admin_equipamientos_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "CruceoUserBundle:Equipamientos:delete" }
+    requirements: { _method: post }

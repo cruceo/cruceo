@@ -1,15 +1,47 @@
 {% extends "CruceoUserBundle::layoutAdmin.html.twig" %}
 
-{% block content %}
-{% set vars = {
-	'type'     : 'new',
-	'title'    : 'Nueva Ciudad',
-	'css'      : 'ciudades',
-	'alt'      : 'Ciudad',
-	'url_form' : path('admin_ciudades_new'),
-	'form'     : form,
-} %}
+{% form_theme form 'CruceoUserBundle:Form:collection_tourist_places.html.twig' %}
 
-{% include 'CruceoUserBundle:Form:simpleform.html.twig' with vars %}
+{% block content %}
+
+<h1 class="title ciudades">Nueva Ciudad</h1>
+
+<form action="{{ path('admin_ciudades_new') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_row(form._token) }}
+    <div class="grid_12">
+        <fieldset class="form">
+            <legend>Datos</legend>
+
+            <div class="mb1 mt1">
+                {{ form_label(form.nombre, null, { 'attr': { 'class' : 'fl'} }) }}
+                {{ form_widget(form.nombre, { 'attr': { 'class' : 'w250'} }) }}
+                {{ form_errors(form.nombre) }}
+            </div>
+
+            <div class="mb1">
+                {{ form_label(form.pais, null, { 'attr': { 'class' : 'fl'} }) }}
+                {{ form_widget(form.pais, { 'attr': { 'class' : 'w250'} }) }}
+                {{ form_errors(form.pais) }}
+            </div>
+        </fieldset>
+    </div>
+
+    <div class="grid_12 mt1">
+        <fieldset class="form">
+            <legend>Lugares Turísticos</legend>
+
+            <div class="mt1">
+                {{ form_widget(form.lugares_turisticos) }}
+                {{ form_errors(form.lugares_turisticos) }}
+            </div>
+        </fieldset>
+    </div>
+
+    <div class="grid_12 tr cbutton">
+        <button type="submit" class="save">
+            <img alt="guardar" src="{{ asset('/bundles/cruceouser/css/images/save.png') }}"/>Guardar
+        </button>
+    </div>
+</form>
 
 {% endblock %}

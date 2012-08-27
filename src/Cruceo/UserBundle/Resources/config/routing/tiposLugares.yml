@@ -1,0 +1,16 @@
+admin_tipos_lugares:
+    pattern:  /
+    defaults: { _controller: "CruceoUserBundle:TiposLugares:index" }
+
+admin_tipos_lugares_new:
+    pattern:  /new
+    defaults: { _controller: "CruceoUserBundle:TiposLugares:new" }
+
+admin_tipos_lugares_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "CruceoUserBundle:TiposLugares:edit" }
+
+admin_tipos_lugares_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "CruceoUserBundle:TiposLugares:delete" }
+    requirements: { _method: post }

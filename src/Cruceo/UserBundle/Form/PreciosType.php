@@ -25,6 +25,11 @@ class PreciosType extends AbstractType
                 'format' => 'dd-MM-yyyy',
                 'attr' => array('class' => 'dp')
             ))
+            ->add('caracteristicasTipologia', 'textarea', array(
+                'attr' => array(
+                    'label' => 'Características tipo estancia'
+                )
+            ))
         ;
     }
 

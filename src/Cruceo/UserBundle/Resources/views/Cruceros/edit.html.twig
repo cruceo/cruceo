@@ -1,21 +1,11 @@
 {% extends "CruceoUserBundle::layoutAdmin.html.twig" %}
 
-{% form_theme form 'CruceoUserBundle:Form:collection_price.html.twig' %}
+{% form_theme form 'CruceoUserBundle:Form:collection_cruceros.html.twig' %}
 
 {% block content %}
 <h1 class="title cruceros">Editar Crucero</h1>
 
-{#% set vars = {
-	'type'     : 'edit',
-	'url_form' : path('admin_cruceros_edit', { 'id': entity.id }),
-	'form'    : form,
-	'del_form' : delete_form
-} %}
-
-{% include 'CruceoUserBundle:Cruceros:partials/form.html.twig' with vars %}
-
-#}
-<form action="{{ path('admin_cruceros_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(form) }}>
+<form action="{{ path('admin_cruceros_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(form) }} novalidate="novalidate">
     {{ form_row(form._token) }}
     <div class="grid_6">
         <fieldset class="form">
@@ -52,12 +42,6 @@
             </div>
 
             <div class="mb1">
-                {{ form_label(form.equipamiento) }}
-                {{ form_widget(form.equipamiento) }}
-                {{ form_errors(form.equipamiento) }}
-            </div>
-
-            <div class="mb1">
                 {{ form_label(form.detalles) }}
                 {{ form_widget(form.detalles) }}
                 {{ form_errors(form.detalles) }}
@@ -84,7 +68,7 @@
             </div>
 
             <div class="mb1" style="display: none;" id="editImgItenerario">
-                {{ form_label(form.imgItinerarioFile, 'Imagen Itinerario', { 'attr': { 'class': 'fl'} }) }}
+                {{ form_label(form.imgItinerarioFile, 'Imagen Itinerario', { 'attr': { 'class': 'fl' } }) }}
                 {{ form_widget(form.imgItinerarioFile) }}
                 {{ form_errors(form.imgItinerarioFile) }}
             </div>

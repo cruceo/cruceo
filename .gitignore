@@ -8,3 +8,4 @@
 /web/bundles/*
 /cruises/*
 /photos/*
+.DS_Store

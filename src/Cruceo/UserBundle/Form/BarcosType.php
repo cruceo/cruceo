@@ -19,6 +19,11 @@ class BarcosType extends AbstractType
             ->add('velocidad')
             ->add('manga')
             ->add('eslora')
+            ->add('equipamientos', 'entity', array(
+                'class' => 'CruceoPortalBundle:Equipamientos',
+                'expanded' => true,
+                'multiple' => true
+            ))
             ->add('fotos', 'collection', array(
                 'type' =>  new FotosType(),
                 'allow_add' => true,
@@ -37,7 +42,7 @@ class BarcosType extends AbstractType
     public function getDefaultOptions(array $options)
     {
         return array(
-        'data_class' => 'Cruceo\PortalBundle\Entity\Barcos'
+            'data_class' => 'Cruceo\PortalBundle\Entity\Barcos'
         );
     }
 }

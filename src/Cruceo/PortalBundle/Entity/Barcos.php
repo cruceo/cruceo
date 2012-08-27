@@ -75,6 +75,16 @@ class Barcos
      */
     private $fotos;
 
+    /**
+     * @var Equipamientos
+     *
+     * @ORM\ManyToMany(targetEntity="Equipamientos")
+     * @ORM\JoinTable(name="equipamientos_barcos",
+     *      joinColumns={@ORM\JoinColumn(name="barcos_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="equipamientos_id", referencedColumnName="id")}
+     *      )
+     */
+    private $equipamientos;
 
 
     /**
@@ -234,6 +244,7 @@ class Barcos
     public function __construct()
     {
         $this->fotos = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->equipamientos = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -273,5 +284,25 @@ class Barcos
         if (is_dir($this->getUploadDir())) {
             Util::deleteDir($dir);
         }
+    }
+
+    /**
+     * Get equipamientos
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getEquipamientos()
+    {
+        return $this->equipamientos;
+    }
+
+    /**
+     * Set equipamientos
+     *
+     * @param Array $equipamientos
+     */
+    public function setEquipamientos($equipamientos)
+    {
+        $this->equipamientos = $equipamientos;
     }
 }

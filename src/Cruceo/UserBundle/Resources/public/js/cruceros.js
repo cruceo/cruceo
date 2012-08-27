@@ -41,10 +41,12 @@ $(document).ready(function() {
 $(document).on('click', 'img.refreshImage', function() {
 	var $tool = $(this);
 	if (confirm('¿Quieres eliminar la imagen y cargar otra?')) {
-		$.post('/app_dev.php/admin/barcos/img/'+$tool.attr('data-remove')+'/remove', {}, function() {
+		$.post('/admin/barcos/img/'+$tool.attr('data-remove')+'/remove', {}, function() {
 			$rem = $($tool.parent()).parent();
 			$bro = $rem.next();
+			$bef = $rem.prev();
 			$rem.hide('slow', function() { $(this).remove(); });
+			$bef.val('');
 			$bro.show();
 		});
 		
@@ -54,7 +56,7 @@ $(document).on('click', 'img.refreshImage', function() {
 $(document).on('click', 'img.delete_photo', function() {
 	var $e = $(this);
 	if (confirm('¿Quieres eliminar la foto?')) {
-		$.post('/app_dev.php/admin/barcos/photo/remove', {'photo': $e.attr('data-remove')}, function(json) {
+		$.post('/admin/barcos/photo/remove', {'photo': $e.attr('data-remove')}, function(json) {
 			if (json.error != undefined) {
 				showMsg(json.msg);
 			} else {
@@ -74,7 +76,7 @@ $(document).on('click', 'button.add_photo', function() {
 
 $(document).on('click', 'img.view_photo', function() {
 	$e = $(this);
-    $.post('/app_dev.php/admin/barcos/photo/view', {'photo': $e.attr('data-view')}, function(json) {
+    $.post('/admin/barcos/photo/view', {'photo': $e.attr('data-view')}, function(json) {
     	if (json.error != undefined) {
 			showMsg(json.msg);
 		} else {
@@ -85,7 +87,7 @@ $(document).on('click', 'img.view_photo', function() {
 
 $(document).on('click', 'input.jxaz', function() {
 	JXaz.Upload.create('input.jxaz', {
-    	'url': '/app_dev.php/admin/barcos/photo/save',
+    	'url': '/admin/barcos/photo/save',
         'success': function(response, element, file) {
             var json = $.parseJSON(response);
             if (json.error == undefined) {

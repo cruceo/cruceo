@@ -1,0 +1,16 @@
+{% extends "CruceoUserBundle::layoutAdmin.html.twig" %}
+
+{% block content %}
+
+{% set vars = {
+	'title'    : 'Tipos Lugares Turísticos',
+	'css'      : 'tipos_lugares',
+	'url'      : 'admin_tipos_lugares_edit',
+	'entities' : entities,
+	'headers'  : ['Nombre'],
+	'fields'   : ['nombre']
+} %}
+
+{% include "CruceoUserBundle:Admin:partials/simplelist.html.twig" with vars %}
+
+{% endblock %}
