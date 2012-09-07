@@ -50,6 +50,13 @@ class Precios
     private $caracteristicasTipologia;
 
     /**
+     * @var text $destacado
+     *
+     * @ORM\Column(name="destacado", type="integer", nullable=true)
+     */
+    private $destacado;
+
+    /**
      * @var Cruceros
      *
      * @ORM\ManyToOne(targetEntity="Cruceros")
@@ -84,7 +91,7 @@ class Precios
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -104,7 +111,7 @@ class Precios
     /**
      * Get precio
      *
-     * @return float 
+     * @return float
      */
     public function getPrecio()
     {
@@ -124,7 +131,7 @@ class Precios
     /**
      * Get url
      *
-     * @return string 
+     * @return string
      */
     public function getUrl()
     {
@@ -144,7 +151,7 @@ class Precios
     /**
      * Get fecha
      *
-     * @return date 
+     * @return date
      */
     public function getFecha()
     {
@@ -164,11 +171,31 @@ class Precios
     /**
      * Get caracteristicasTipologia
      *
-     * @return text 
+     * @return text
      */
     public function getCaracteristicasTipologia()
     {
         return $this->caracteristicasTipologia;
+    }
+
+    /**
+     * Set destacado
+     *
+     * @param integer $destacado
+     */
+    public function setDestacado($destacado)
+    {
+        $this->destacado = $destacado;
+    }
+
+    /**
+     * Get destacado
+     *
+     * @return integer
+     */
+    public function getDestacado()
+    {
+        return $this->destacado;
     }
 
     /**
@@ -184,7 +211,7 @@ class Precios
     /**
      * Get crucero
      *
-     * @return Cruceo\PortalBundle\Entity\Cruceros 
+     * @return Cruceo\PortalBundle\Entity\Cruceros
      */
     public function getCrucero()
     {
@@ -204,7 +231,7 @@ class Precios
     /**
      * Get agencia
      *
-     * @return Cruceo\PortalBundle\Entity\Agencias 
+     * @return Cruceo\PortalBundle\Entity\Agencias
      */
     public function getAgencia()
     {
@@ -224,7 +251,7 @@ class Precios
     /**
      * Get tipologia
      *
-     * @return Cruceo\PortalBundle\Entity\Tipologias 
+     * @return Cruceo\PortalBundle\Entity\Tipologias
      */
     public function getTipologia()
     {

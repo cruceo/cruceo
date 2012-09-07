@@ -1,0 +1,13 @@
+{% extends "CruceoPortalBundle::layout.html.twig" %}
+
+{% block content %}
+
+<!-- highlighted -->
+{% render "CruceoPortalBundle:Home:highlighted" %}
+<!-- END highlighted -->
+
+<!-- shipping-companies -->
+{% render "CruceoPortalBundle:Shipping:list" %}
+<!-- END shipping-companies -->
+
+{% endblock %}

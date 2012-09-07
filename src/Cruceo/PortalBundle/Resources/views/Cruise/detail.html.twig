@@ -1,0 +1,91 @@
+{% extends "CruceoPortalBundle::layout.html.twig" %}
+
+{% block content %}
+<h1>{{ entity.getNombre }}</h1>
+
+<div id="offers-cruise">
+    <h2>Precios</h2>
+    {% for offer in entity.getPrecios if offer.getDestacado %}
+    <div class="offer-highligthed-cruise">
+        {{ offer.getAgencia.getNombre }}<br />
+        {{ offer.getPrecio }} &euro;
+    </div>
+    {% endfor %}
+
+    <ul class="offers-normal-cruise">
+        {% for offer in entity.getPrecios if offer.getDestacado is null %}
+        <li>{{ offer.getAgencia.getNombre }}.....{{ offer.getPrecio }} &euro;</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div id="zone-cruise">
+    <h2>Zona: <span>{{ entity.getZona.getNombre }}</span></h2>
+</div>
+
+<div id="ship-cruise">
+    <h2>Barco: <a href="{{ path('ship_detail', {'slug': entity.getBarco.getSlug} ) }}">{{ entity.getBarco.getNombre }}</a></h2>
+</div>
+
+<div id="shipping-company-cruise">
+    <h2>Naviera: <a href="{{ path('shipping_detail', {'slug': entity.getNaviera.getSlug} ) }}">{{ entity.getNaviera.getNombre }}</a></h2>
+</div>
+
+<div id="duration-cruise">
+    <h2>Duración: <span>{{ entity.getDuracion }} días</span></h2>
+</div>
+
+<div id="route-cruise">
+    <h2>Itinerario</h2>
+    <div id="route-image-cruise">
+        <img src="/{{ entity.getUploadDir ~ '/' ~ entity.getImgItinerario }}" alt="Itinerario {{ entity.getNombre }}" title="Itinerario {{ entity.getNombre }}" />
+    </div>
+    <div id="route-cruise">
+        <table>
+            <thead>
+                <tr>
+                    <th>Ciudad</th>
+                    <th>Día/s</th>
+                    <th>Hora llegada</th>
+                    <th>Hora salida</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cc in entity.getCiudades %}
+                <tr>
+                    <td>
+                        <a href="{{ path('city_detail', {'slug': cc.getCiudad.getSlug}) }}">{{ cc.getCiudad.getNombre }}</a>
+                    </td>
+                    <td>{{ cc.getDiaCrucero }}</td>
+                    <td>{{ cc.getHoraLlegada|date('H:i') }}</td>
+                    <td>{{ cc.getHoraSalida|date('H:i') }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="details-cruise">
+    <h2>Detalles</h2>
+    <p>{{ entity.getDetalles }}</p>
+</div>
+
+<div id="price-include-cruise">
+    <h2>Incluido en el precio</h2>
+    <p>{{ entity.getIncluidoPrecio }}</p>
+</div>
+
+<div id="price-not-include-cruise">
+    <h2>No incluido en el precio</h2>
+    <p>{{ entity.getNoIncluidoPrecio }}</p>
+</div>
+
+{% if entity.getPromocion %}
+<div id="promotion-cruise">
+    <h2>Promoción</h2>
+    <p>{{ entity.getPromocion }}</p>
+</div>
+{% endif %}
+
+{% endblock %}

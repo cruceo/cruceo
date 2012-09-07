@@ -59,6 +59,13 @@ class Barcos
     private $eslora;
 
     /**
+     * @var string $slug
+     *
+     * @ORM\Column(name="slug", type="string", length=255, nullable=false)
+     */
+    private $slug;
+
+    /**
      * @var Categorias
      *
      * @ORM\ManyToOne(targetEntity="Categorias")
@@ -198,6 +205,26 @@ class Barcos
     }
 
     /**
+     * Set slug
+     *
+     * @param string $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
      * Set categoria
      *
      * @param Cruceo\PortalBundle\Entity\Categorias $categoria
@@ -275,6 +302,11 @@ class Barcos
         return 'photos/'.Util::sanitizeString(strtolower($name), array(), array(' ' => '-')).'-'.$this->getId();
     }
 
+    public function getThumbsWebDir()
+    {
+        return $this->getUploadDir().DIRECTORY_SEPARATOR.'thumbs';
+    }
+
     /**
      * @ORM\PreRemove()
      */
@@ -304,5 +336,16 @@ class Barcos
     public function setEquipamientos($equipamientos)
     {
         $this->equipamientos = $equipamientos;
+    }
+
+    /**
+     * Create slug automatically
+     *
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function createSlug()
+    {
+        $this->setSlug(Util::generateSlug($this->getNombre()));
     }
 }

@@ -1,0 +1,3 @@
+city_detail:
+    pattern: /{slug}.html
+    defaults: { _controller: "CruceoPortalBundle:City:detail" }

@@ -1,0 +1,20 @@
+{% extends "CruceoPortalBundle::layout.html.twig" %}
+
+{% block content %}
+
+<h1>{{ entity.getNombre }} <img src="" alt="{{ entity.getPais }}" title="{{ entity.getPais }}" /></h1>
+
+{% if entity.getLugaresTuristicos|length > 0 %}
+<div id="tourist-places-city">
+    {% for place in entity.getLugaresTuristicos %}
+    <div class="tourist-place">
+        <p class="icon-place-{{ place.getTiposLugares.getNombre }}">{{ place.getNombre }}</p>
+    </div>
+    <div id="description-tourist-place">
+        <p>{{ place.getDescripcion }}</p>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% endblock %}

@@ -3,6 +3,10 @@ namespace Cruceo\PortalBundle\Lib;
 
 class Util {
 
+    static private $widthThumb = 75;
+
+    static private $extensions = array('png', 'gif', 'jpg');
+
     private static $table = array(
         '(' => '', ')' => '', '!' => '', '$' => '', '?' => '', ':' => '', ',' => '', '&' => '', '+' => '', '-' => '', '/' => '', '.' => '', 'Š' => 'S',
         'Œ' => 'O', 'Ž' => 'Z', 'š' => 's', 'œ' => 'o', 'ž' => 'z', 'Ÿ' => 'Y', '¥' => 'Y', 'µ' => 'u', 'À' => 'A', 'Á' => 'A', 'Â' => 'A', 'Ã' => 'A',
@@ -18,7 +22,7 @@ class Util {
      *
      * @param text $str
      */
-    public static function sanitizeString($str, array $allowed = array(), array $change = array())
+    static public function sanitizeString($str, array $allowed = array(), array $change = array())
     {
         $table = self::$table;
 
@@ -37,7 +41,7 @@ class Util {
         return str_replace(array_keys($table), array_values($table), $str);
     }
 
-    public static function deleteDir($path)
+    static public function deleteDir($path)
     {
         $iterator = new \RecursiveDirectoryIterator($path);
         $files = new \RecursiveIteratorIterator($iterator, \RecursiveIteratorIterator::CHILD_FIRST);
@@ -51,6 +55,54 @@ class Util {
         }
 
         rmdir($path);
+    }
+
+    static public function generateSlug($str)
+    {
+        $str = iconv('UTF-8', 'ASCII//TRANSLIT', $str);
+        $str = preg_replace("/[^a-zA-Z0-9\/_| -]/", '', $str);
+        $str = strtolower(trim($str, '-'));
+        $str = preg_replace("/[\/_| -]+/", '-', $str);
+
+        return $str;
+    }
+
+    static public function createThumbs($path, \Doctrine\ORM\PersistentCollection $photos = null)
+    {
+        $pathThumbs = $path.DIRECTORY_SEPARATOR.'thumbs';
+
+        if (is_dir($pathThumbs)) {
+            return;
+        }
+
+        if (count($photos))
+        {
+            @mkdir($pathThumbs);
+
+            foreach ($photos as $photo) {
+                $image = $path.DIRECTORY_SEPARATOR.$photo->getRuta();
+                $info  = pathinfo($image);
+
+                if (in_array($info['extension'], self::$extensions)) {
+                    $function  = 'imagecreatefrom'.($info['extension'] == 'jpg' ? 'jpeg' : $info['extension']);
+
+                    $imgGD = $function($image);
+
+                    $width   = imagesx($imgGD);
+                    $height  = imagesy($imgGD);
+                    $nHeight = floor($height * (self::$widthThumb / $width));
+                    $thumb   = imagecreatetruecolor(self::$widthThumb, $nHeight);
+
+                    imagecopyresized($thumb, $imgGD, 0, 0, 0, 0, self::$widthThumb, $nHeight, $width, $height);
+
+                    $function = 'image'.($info['extension'] == 'jpg' ? 'jpeg' : $info['extension']);
+
+                    $function($thumb, $pathThumbs.DIRECTORY_SEPARATOR.$photo->getRuta());
+
+                    imagedestroy($thumb);
+                }
+            }
+        }
     }
 
 }

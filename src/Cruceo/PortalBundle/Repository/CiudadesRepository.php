@@ -25,7 +25,21 @@ class CiudadesRepository extends EntityRepository
             ->from('CruceoPortalBundle:Ciudades', 'c')
             ->where($qb->expr()->in('c.id', $cities));
 
-        return $qb->getQuery()
-            ->getResult($hydrate);
+        return $qb->getQuery()->getResult($hydrate);
+    }
+
+    public function getOneBySlug($slug)
+    {
+        $q = $this->getEntityManager()
+            ->createQueryBuilder()
+            ->select('c, l, t')
+            ->from($this->getEntityName(), 'c')
+            ->innerJoin('c.lugaresTuristicos', 'l')
+            ->innerJoin('l.tiposLugares', 't')
+            ->where('c.slug = ?1')
+            ->setParameters(array(1 => $slug))
+            ->getQuery();
+
+        return $q->getOneOrNullResult();
     }
 }

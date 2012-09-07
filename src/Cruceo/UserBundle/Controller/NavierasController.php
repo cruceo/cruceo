@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Cruceo\PortalBundle\Entity\Navieras;
 use Cruceo\UserBundle\Form\NavierasType;
+use Cruceo\PortalBundle\Lib\Util;
 
 /**
  * Navieras controller.
@@ -70,7 +71,7 @@ class NavierasController extends Controller
 
         $entity = $em->getRepository('CruceoPortalBundle:Navieras')->find($id);
 
-        if (!$entity) {
+        if (! $entity) {
             throw $this->createNotFoundException('Unable to find Navieras entity.');
         }
 

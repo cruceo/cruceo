@@ -3,12 +3,14 @@
 namespace Cruceo\PortalBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Cruceo\PortalBundle\Lib\Util;
 
 /**
  * Cruceo\PortalBundle\Entity\Ciudades
  *
  * @ORM\Table(name="ciudades")
  * @ORM\Entity(repositoryClass="Cruceo\PortalBundle\Repository\CiudadesRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Ciudades
 {
@@ -36,6 +38,13 @@ class Ciudades
     private $pais;
 
     /**
+     * @var string $slug
+     *
+     * @ORM\Column(name="slug", type="string", length=255, nullable=false)
+     */
+    private $slug;
+
+    /**
      * @var lugaresTuristicos
      *
      * @ORM\OneToMany(targetEntity="LugaresTuristicos", mappedBy="ciudades", cascade={"persist", "remove"})
@@ -53,7 +62,7 @@ class Ciudades
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -73,7 +82,7 @@ class Ciudades
     /**
      * Get nombre
      *
-     * @return string 
+     * @return string
      */
     public function getNombre()
     {
@@ -93,11 +102,31 @@ class Ciudades
     /**
      * Get pais
      *
-     * @return string 
+     * @return string
      */
     public function getPais()
     {
         return $this->pais;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 
     /**
@@ -122,6 +151,17 @@ class Ciudades
         foreach ($this->lugaresTuristicos as $lugar) {
             $lugar->setCiudades($this);
         }
+    }
+
+    /**
+     * Create slug automatically
+     *
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function createSlug()
+    {
+        $this->setSlug(Util::generateSlug($this->getNombre()));
     }
 
     /**

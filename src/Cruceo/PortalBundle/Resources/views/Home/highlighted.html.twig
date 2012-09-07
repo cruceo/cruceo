@@ -1,0 +1,28 @@
+<div id="highligthed">
+{% for highligthed in highlighteds %}
+    <div id="title-highligthed">
+        <a href="{{ path('cruise_detail', {'slug': highligthed.getSlug} )}}">{{ highligthed.getNombre }}</a>
+    </div>
+    <!-- eliminar -->
+    <ul class="cities-highligthed">
+    {% for cityCruise in highligthed.getCiudades %}
+        <li>{{ cityCruise.getCiudad.getNombre }}</li>
+    {% endfor %}
+    </ul>
+    <!-- FIN eliminar -->
+
+    {% for offer in highligthed.getPrecios if offer.getDestacado %}
+        <div class="offer-highligthed">
+            {{ offer.getAgencia.getNombre }}<br />
+            {{ offer.getPrecio }} &euro;
+        </div>
+    {% endfor %}
+
+    <ul class="offers-normal-highligthed">
+    {% for offer in highligthed.getPrecios if offer.getDestacado is null %}
+        <li>{{ offer.getAgencia.getNombre }}.....{{ offer.getPrecio }} &euro;</li>
+    {% endfor %}
+    </ul>
+
+{% endfor %}
+</div>

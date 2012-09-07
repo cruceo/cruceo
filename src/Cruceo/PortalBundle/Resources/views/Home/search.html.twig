@@ -1,0 +1,29 @@
+<div id="searchhome">
+    <ul>
+        <li>
+            <input type="text" id="searchtext" name="searchtext" value="" placeholder="texto a buscar" />
+        </li>
+        <li>
+            <label for="start">Día de inicio</label>
+            <input type="text" id="start" name="start" value="" />
+        </li>
+        <li>
+            <label for="duration">Duración</label>
+            <select name="duration" id="duration">
+                <option value=""></option>
+                {% for x in 1..30%}
+                <option value="{{ x }}">{{ x }}</option>
+                {% endfor %}
+            </select>
+        </li>
+        <li>
+            <label for="zone">Zona</label>
+            <select name="zone" id="zone">
+                <option value="">Seleccione zona...</option>
+                {% for zone in zones%}
+                <option value="{{ zone.id }}">{{ zone.nombre }}</option>
+                {% endfor %}
+            </select>
+        </li>
+    </ul>
+</div>

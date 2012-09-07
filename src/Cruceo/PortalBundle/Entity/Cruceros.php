@@ -96,6 +96,13 @@ class Cruceros
     private $noIncluidoPrecio;
 
     /**
+     * @var string $slug
+     *
+     * @ORM\Column(name="slug", type="string", length=255, nullable=false)
+     */
+    private $slug;
+
+    /**
      * @var Navieras
      *
      * @ORM\ManyToOne(targetEntity="Navieras")
@@ -368,6 +375,26 @@ class Cruceros
     }
 
     /**
+     * Set slug
+     *
+     * @param string $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
      * Set naviera
      *
      * @param Cruceo\PortalBundle\Entity\Navieras $naviera
@@ -499,6 +526,10 @@ class Cruceros
     }*/
 
     /*************************************
+     *  EVENTS
+     *************************************/
+
+    /*************************************
      * Functions for uploads img_itinario
      *************************************/
     /**
@@ -549,5 +580,19 @@ class Cruceros
         $name = null === $name ? $this->getNombre() : $name;
 
         return 'cruises/'.Util::sanitizeString(strtolower($name), array(), array(' ' => '-')).'-'.$this->getId();
+    }
+
+    /*************************************
+     * Function slug
+     *************************************/
+    /**
+     * Create slug automatically
+     *
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function createSlug()
+    {
+        $this->setSlug(Util::generateSlug($this->getNombre()));
     }
 }

@@ -1,3 +1,23 @@
 homepage:
-  pattern:  /
-  defaults: { _controller: CruceoPortalBundle:Default:index }
+    pattern:  /
+    defaults: { _controller: CruceoPortalBundle:Home:index }
+
+CruceoPortalBundle_cruise:
+    resource: "@CruceoPortalBundle/Resources/config/routing/cruise.yml"
+    prefix:   /cruises
+
+CruceoPortalBundle_shipping:
+    resource: "@CruceoPortalBundle/Resources/config/routing/shipping.yml"
+    prefix:   /shipping-companies
+
+CruceoPortalBundle_ship:
+    resource: "@CruceoPortalBundle/Resources/config/routing/ship.yml"
+    prefix:   /ships
+
+CruceoPortalBundle_city:
+    resource: "@CruceoPortalBundle/Resources/config/routing/city.yml"
+    prefix:   /cities
+
+highlighted:
+    pattern: /destacados
+    defaults: { _controller: CruceoPortalBundle:Home:highlighted }
