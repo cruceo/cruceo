@@ -58,7 +58,9 @@ class CrucerosRepository extends EntityRepository
 
     public function searchHome($str, $start = null, $duration = null, $zone = null)
     {
-        $q = $this->getQueryBuilderForSearch($str, $start, $duration, $duration)->getQuery();
+        $q = $this->getQueryBuilderForSearch($str, $start, $duration, $duration, $zone)
+            ->select('c, p, n, a, cc, cd')
+            ->getQuery();
 
         return $q->getResult();
     }
@@ -88,6 +90,10 @@ class CrucerosRepository extends EntityRepository
         if (! empty($shipping)) {
             $q->andWhere('n.id = :shipping')->setParameter('shipping', $shipping);
         }
+
+        $q->select('c, p, n, a, cc, cd, t, b, ct, e');
+
+        return $q->getQuery()->getResult();
     }
 
     private function getQueryBuilderForSearch($str, $start, $duration, $zone)
