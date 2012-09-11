@@ -3,13 +3,6 @@
     <div class="title-highligthed">
         <a href="{{ path('cruise_detail', {'slug': highligthed.getSlug} )}}">{{ highligthed.getNombre }}</a>
     </div>
-    <!-- eliminar -->
-    <ul class="cities-highligthed">
-    {% for cityCruise in highligthed.getCiudades %}
-        <li>{{ cityCruise.getCiudad.getNombre }}</li>
-    {% endfor %}
-    </ul>
-    <!-- FIN eliminar -->
 
     {% for offer in highligthed.getPrecios if offer.getDestacado %}
         <div class="offer-highligthed">
