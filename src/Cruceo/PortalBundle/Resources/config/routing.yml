@@ -2,6 +2,10 @@ homepage:
     pattern:  /
     defaults: { _controller: CruceoPortalBundle:Home:index }
 
+home_search:
+    pattern:  /search.html
+    defaults: { _controller: CruceoPortalBundle:Home:homeSearch }
+
 CruceoPortalBundle_cruise:
     resource: "@CruceoPortalBundle/Resources/config/routing/cruise.yml"
     prefix:   /cruises

@@ -1,6 +1,6 @@
 <div id="highligthed">
 {% for highligthed in highlighteds %}
-    <div id="title-highligthed">
+    <div class="title-highligthed">
         <a href="{{ path('cruise_detail', {'slug': highligthed.getSlug} )}}">{{ highligthed.getNombre }}</a>
     </div>
     <!-- eliminar -->

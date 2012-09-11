@@ -6,9 +6,10 @@
 
 {% if entity.getLugaresTuristicos|length > 0 %}
 <div id="tourist-places-city">
+    <h2>Lugares Turísticos</h2>
     {% for place in entity.getLugaresTuristicos %}
     <div class="tourist-place">
-        <p class="icon-place-{{ place.getTiposLugares.getNombre }}">{{ place.getNombre }}</p>
+        <h3 class="icon-place-{{ place.getTiposLugares.getNombre }}">{{ place.getNombre }}</h3>
     </div>
     <div id="description-tourist-place">
         <p>{{ place.getDescripcion }}</p>

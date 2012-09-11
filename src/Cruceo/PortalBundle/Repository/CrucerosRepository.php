@@ -55,4 +55,72 @@ class CrucerosRepository extends EntityRepository
 
         return $q->getOneOrNullResult();
     }
+
+    public function searchHome($str, $start = null, $duration = null, $zone = null)
+    {
+        $q = $this->getQueryBuilderForSearch($str, $start, $duration, $duration)->getQuery();
+
+        return $q->getResult();
+    }
+
+    public function advancedSearch($str, $start = null, $duration = null, $zone = null,
+                                   $category = null, $cabin = null, $equipment = null, $shipping = null)
+    {
+        $q = $this->getQueryBuilderForSearch($str, $start, $duration, $duration, $zone);
+
+        $q->innerJoin('p.tipologia', 't')
+            ->innerJoin('c.barco', 'b')
+            ->innerJoin('b.categoria', 'ct')
+            ->innerJoin('b.equipamientos', 'e');
+
+        if (! empty($category)) {
+            $q->andWhere('ct.id = :category')->setParameter('category', $category);
+        }
+
+        if (! empty($cabin)) {
+            $q->andWhere('t.id = :cabin')->setParameter('cabin', $cabin);
+        }
+
+        if (! empty($equipment)) {
+            $q->andWhere($q->expr()->in('e.id', $equipment));
+        }
+
+        if (! empty($shipping)) {
+            $q->andWhere('n.id = :shipping')->setParameter('shipping', $shipping);
+        }
+    }
+
+    private function getQueryBuilderForSearch($str, $start, $duration, $zone)
+    {
+        $q = $this->getEntityManager()->createQueryBuilder()
+            ->from($this->getEntityName(), 'c')
+            ->innerJoin('c.precios', 'p')
+            ->innerJoin('c.naviera', 'n')
+            ->innerJoin('p.agencia', 'a')
+            ->innerJoin('c.ciudadesCruceros', 'cc')
+            ->innerJoin('cc.ciudad', 'cd')
+            ->orderBy('p.destacado, p.precio');
+
+        $strModule = $q->expr()->orX();
+        $strModule->add($q->expr()->like('c.nombre', ':str'));
+        $strModule->add($q->expr()->like('cd.nombre', ':str'));
+        $strModule->add($q->expr()->like('n.nombre', ':str'));
+
+        $q->where($strModule)
+            ->setParameter('str', '%'.$str.'%');
+
+        if (! empty($start)) {
+            $q->andWhere('p.fecha = :start')->setParameter('start', $start);
+        }
+
+        if (! empty($duration)) {
+            $q->andWhere('c.duracion = :duration')->setParameter('duration', $duration);
+        }
+
+        if (! empty($zone)) {
+            $q->andWhere('c.zona = :zone')->setParameter('zone', $zone);
+        }
+
+        return $q;
+    }
 }

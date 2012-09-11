@@ -1,29 +1,38 @@
 <div id="searchhome">
-    <ul>
-        <li>
-            <input type="text" id="searchtext" name="searchtext" value="" placeholder="texto a buscar" />
-        </li>
-        <li>
-            <label for="start">Día de inicio</label>
-            <input type="text" id="start" name="start" value="" />
-        </li>
-        <li>
-            <label for="duration">Duración</label>
-            <select name="duration" id="duration">
-                <option value=""></option>
-                {% for x in 1..30%}
-                <option value="{{ x }}">{{ x }}</option>
-                {% endfor %}
-            </select>
-        </li>
-        <li>
-            <label for="zone">Zona</label>
-            <select name="zone" id="zone">
-                <option value="">Seleccione zona...</option>
-                {% for zone in zones%}
-                <option value="{{ zone.id }}">{{ zone.nombre }}</option>
-                {% endfor %}
-            </select>
-        </li>
-    </ul>
+    <form id="searchfromhome" name="searchfromhome" action="{{ path('home_search') }}" method="get">
+        <ul>
+            <li>
+                <input type="text" id="searchtext" name="text" value="{{ app.session.get('str') }}" placeholder="mediterraneo" />
+            </li>
+            <li>
+                <label for="start">Día de inicio</label>
+                <input type="text" id="start" name="start" value="{{ app.session.get('start') }}" />
+            </li>
+            <li>
+                <label for="duration">Duración</label>
+                <select name="duration" id="duration">
+                    <option value=""></option>
+                    {% for x in 1..30%}
+                    <option value="{{ x }}"{% if x == app.session.get('duration') %} selected="selected" {% endif %}>
+                        {{ x }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </li>
+            <li>
+                <label for="zone">Zona</label>
+                <select name="zone" id="zone">
+                    <option value="">Seleccione zona...</option>
+                    {% for zone in zones%}
+                    <option value="{{ zone.id }}"{% if zone == app.session.get('zone') %} selected="selected" {% endif %}>
+                        {{ zone.nombre }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </li>
+            <li>
+                <button type="submit" name="search" id="search">Buscar</button>
+            </li>
+        </ul>
+    </form>
 </div>

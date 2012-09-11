@@ -1,0 +1,65 @@
+{% extends "CruceoPortalBundle::layout.html.twig" %}
+
+{% block content %}
+
+<div id="result-data">
+    {% for result in results %}
+    <div class="result">
+        <a href="{{ path('cruise_detail', {'slug': result.getSlug} )}}">{{ result.getNombre }}</a>
+    </div>
+
+    {% for offer in result.getPrecios if offer.getDestacado %}
+    <div class="offer-result">
+        {{ offer.getAgencia.getNombre }}<br />
+        {{ offer.getPrecio }} &euro;
+    </div>
+    {% endfor %}
+
+    <ul class="offers-normal-result">
+        {% for offer in result.getPrecios if offer.getDestacado is null %}
+        <li>{{ offer.getAgencia.getNombre }}.....{{ offer.getPrecio }} &euro;</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <div id="no-result">
+        <p>No hay resultados con los criterios seleccionados</p>
+    </div>
+    {% endfor %}
+</div>
+
+<div id="filters">
+    <div id="filter-category-ships">
+        <p>Categorías Barcos</p>
+        <ul>
+            {% for category in categories %}
+            <li attr-data="{{ category.getId }}">{{ category.getNombre }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div id="filter-cabin">
+        <p>Camarotes</p>
+        <ul>
+            {% for cabin in cabins %}
+            <li attr-data="{{ cabin.getId }}">{{ cabin.getNombre }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div id="filter-equipaments">
+        <p>Equipamientos</p>
+        <ul>
+            {% for equipment in equipments %}
+            <li attr-data="{{ equipment.getId }}">{{ equipment.getNombre }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div id="filter-shipping-companies">
+        <p>Navieras</p>
+        <ul>
+            {% for company in companies %}
+            <li attr-data="{{ company.getId }}">{{ company.getNombre }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+{% endblock %}

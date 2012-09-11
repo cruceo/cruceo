@@ -1,0 +1,3 @@
+search_home:
+    pattern: /search.html
+    defaults: { _controller: "CruceoPortalBundle:Search:homeSearch" }
