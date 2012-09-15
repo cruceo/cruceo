@@ -29,11 +29,10 @@ class Zonas
     private $nombre;
 
 
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -53,7 +52,7 @@ class Zonas
     /**
      * Get nombre
      *
-     * @return string 
+     * @return string
      */
     public function getNombre()
     {

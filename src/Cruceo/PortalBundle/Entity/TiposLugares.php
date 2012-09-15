@@ -29,11 +29,10 @@ class TiposLugares
     private $nombre;
 
 
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -53,7 +52,7 @@ class TiposLugares
     /**
      * Get nombre
      *
-     * @return string 
+     * @return string
      */
     public function getNombre()
     {

@@ -36,20 +36,20 @@ class CiudadesController extends Controller
      */
     public function newAction()
     {
-        $entity = new Ciudades();
-        $form   = $this->createForm(new CiudadesType(), $entity);
+        $entity  = new Ciudades();
+        $form    = $this->createForm(new CiudadesType(), $entity);
         $request = $this->getRequest();
 
         if ('POST' === $request->getMethod()) {
-        	$form->bindRequest($request);
+            $form->bindRequest($request);
 
-        	if ($form->isValid()) {
-        		$em = $this->getDoctrine()->getEntityManager();
-        		$em->persist($entity);
-        		$em->flush();
+            if ($form->isValid()) {
+                $em = $this->getDoctrine()->getEntityManager();
+                $em->persist($entity);
+                $em->flush();
 
-        		return $this->redirect($this->generateUrl('admin_ciudades'));
-        	}
+                return $this->redirect($this->generateUrl('admin_ciudades'));
+            }
         }
 
         return array(
@@ -83,9 +83,9 @@ class CiudadesController extends Controller
                 $originalPlaces[] = $place;
             }
 
-        	$editForm->bindRequest($request);
+            $editForm->bindRequest($request);
 
-        	if ($editForm->isValid()) {
+            if ($editForm->isValid()) {
                 foreach ($entity->getLugaresTuristicos() as $place) {
                     foreach ($originalPlaces as $key => $toDel) {
                         if ($toDel->getId() === $place->getId()) {
@@ -98,11 +98,11 @@ class CiudadesController extends Controller
                     $em->remove($place);
                 }
 
-        		$em->persist($entity);
-        		$em->flush();
+                $em->persist($entity);
+                $em->flush();
 
-        		return $this->redirect($this->generateUrl('admin_ciudades'));
-        	}
+                return $this->redirect($this->generateUrl('admin_ciudades'));
+            }
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -120,13 +120,13 @@ class CiudadesController extends Controller
      */
     public function deleteAction($id)
     {
-        $form = $this->createDeleteForm($id);
+        $form    = $this->createDeleteForm($id);
         $request = $this->getRequest();
 
         $form->bindRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getEntityManager();
+            $em     = $this->getDoctrine()->getEntityManager();
             $entity = $em->getRepository('CruceoPortalBundle:Ciudades')->find($id);
 
             if (!$entity) {
@@ -144,7 +144,6 @@ class CiudadesController extends Controller
     {
         return $this->createFormBuilder(array('id' => $id))
             ->add('id', 'hidden')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

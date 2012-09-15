@@ -39,15 +39,15 @@ class TipologiasController extends Controller
         $request = $this->getRequest();
 
         if ('POST' === $request->getMethod()) {
-        	$form->bindRequest($request);
+            $form->bindRequest($request);
 
-        	if ($form->isValid()) {
-        		$em = $this->getDoctrine()->getEntityManager();
-        		$em->persist($entity);
-        		$em->flush();
+            if ($form->isValid()) {
+                $em = $this->getDoctrine()->getEntityManager();
+                $em->persist($entity);
+                $em->flush();
 
-        		return $this->redirect($this->generateUrl('admin_tipologias'));
-        	}
+                return $this->redirect($this->generateUrl('admin_tipologias'));
+            }
         }
 
         return array(
@@ -75,14 +75,14 @@ class TipologiasController extends Controller
         $request  = $this->getRequest();
 
         if ('POST' === $request->getMethod()) {
-        	$editForm->bindRequest($request);
+            $editForm->bindRequest($request);
 
-        	if ($editForm->isValid()) {
-        		$em->persist($entity);
-        		$em->flush();
+            if ($editForm->isValid()) {
+                $em->persist($entity);
+                $em->flush();
 
-        		return $this->redirect($this->generateUrl('admin_tipologias'));
-        	}
+                return $this->redirect($this->generateUrl('admin_tipologias'));
+            }
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -100,13 +100,13 @@ class TipologiasController extends Controller
      */
     public function deleteAction($id)
     {
-        $form = $this->createDeleteForm($id);
+        $form    = $this->createDeleteForm($id);
         $request = $this->getRequest();
 
         $form->bindRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getEntityManager();
+            $em     = $this->getDoctrine()->getEntityManager();
             $entity = $em->getRepository('CruceoPortalBundle:Tipologias')->find($id);
 
             if (!$entity) {
@@ -124,7 +124,6 @@ class TipologiasController extends Controller
     {
         return $this->createFormBuilder(array('id' => $id))
             ->add('id', 'hidden')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

@@ -56,11 +56,10 @@ class LugaresTuristicos
     private $ciudades;
 
 
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -80,7 +79,7 @@ class LugaresTuristicos
     /**
      * Get nombre
      *
-     * @return string 
+     * @return string
      */
     public function getNombre()
     {
@@ -100,7 +99,7 @@ class LugaresTuristicos
     /**
      * Get descripcion
      *
-     * @return text 
+     * @return text
      */
     public function getDescripcion()
     {
@@ -120,7 +119,7 @@ class LugaresTuristicos
     /**
      * Get tiposLugares
      *
-     * @return Cruceo\PortalBundle\Entity\TiposLugares 
+     * @return Cruceo\PortalBundle\Entity\TiposLugares
      */
     public function getTiposLugares()
     {
@@ -140,7 +139,7 @@ class LugaresTuristicos
     /**
      * Get ciudades
      *
-     * @return Cruceo\PortalBundle\Entity\Ciudades 
+     * @return Cruceo\PortalBundle\Entity\Ciudades
      */
     public function getCiudades()
     {

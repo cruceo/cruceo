@@ -36,20 +36,20 @@ class ZonasController extends Controller
      */
     public function newAction()
     {
-        $entity = new Zonas();
-        $form   = $this->createForm(new ZonasType(), $entity);
+        $entity  = new Zonas();
+        $form    = $this->createForm(new ZonasType(), $entity);
         $request = $this->getRequest();
 
         if ('POST' === $request->getMethod()) {
-        	$form->bindRequest($request);
+            $form->bindRequest($request);
 
-        	if ($form->isValid()) {
-        		$em = $this->getDoctrine()->getEntityManager();
-        		$em->persist($entity);
-        		$em->flush();
+            if ($form->isValid()) {
+                $em = $this->getDoctrine()->getEntityManager();
+                $em->persist($entity);
+                $em->flush();
 
-        		return $this->redirect($this->generateUrl('admin_zonas'));
-        	}
+                return $this->redirect($this->generateUrl('admin_zonas'));
+            }
         }
 
         return array(
@@ -75,17 +75,17 @@ class ZonasController extends Controller
 
         $editForm = $this->createForm(new ZonasType(), $entity);
 
-        $request  = $this->getRequest();
+        $request = $this->getRequest();
 
         if ('POST' === $request->getMethod()) {
-        	$editForm->bindRequest($request);
+            $editForm->bindRequest($request);
 
-        	if ($editForm->isValid()) {
-        		$em->persist($entity);
-        		$em->flush();
+            if ($editForm->isValid()) {
+                $em->persist($entity);
+                $em->flush();
 
-        		return $this->redirect($this->generateUrl('admin_zonas'));
-        	}
+                return $this->redirect($this->generateUrl('admin_zonas'));
+            }
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -103,13 +103,13 @@ class ZonasController extends Controller
      */
     public function deleteAction($id)
     {
-        $form = $this->createDeleteForm($id);
+        $form    = $this->createDeleteForm($id);
         $request = $this->getRequest();
 
         $form->bindRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getEntityManager();
+            $em     = $this->getDoctrine()->getEntityManager();
             $entity = $em->getRepository('CruceoPortalBundle:Zonas')->find($id);
 
             if (!$entity) {
@@ -127,7 +127,6 @@ class ZonasController extends Controller
     {
         return $this->createFormBuilder(array('id' => $id))
             ->add('id', 'hidden')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

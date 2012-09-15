@@ -29,7 +29,6 @@ class Agencias
     private $nombre;
 
 
-
     /**
      * Get id
      *

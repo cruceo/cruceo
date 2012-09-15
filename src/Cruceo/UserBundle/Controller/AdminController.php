@@ -15,7 +15,8 @@ class AdminController extends Controller
      *
      * @Template()
      */
-    public function indexAction() {
+    public function indexAction()
+    {
         $user = $this->get('security.context')->getToken()->getUser()->getUserName();
 
         return array('user' => $user);
@@ -26,7 +27,8 @@ class AdminController extends Controller
      *
      * @Template()
      */
-    public function userAction() {
+    public function userAction()
+    {
         $request = $this->getRequest();
 
         if ($request->getMethod() === 'POST') {

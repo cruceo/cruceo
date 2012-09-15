@@ -43,15 +43,15 @@ class NavierasController extends Controller
         $request = $this->getRequest();
 
         if ('POST' === $request->getMethod()) {
-	        $form->bindRequest($request);
+            $form->bindRequest($request);
 
-	        if ($form->isValid()) {
-	        	$em = $this->getDoctrine()->getEntityManager();
-	        	$em->persist($entity);
-	        	$em->flush();
+            if ($form->isValid()) {
+                $em = $this->getDoctrine()->getEntityManager();
+                $em->persist($entity);
+                $em->flush();
 
-	        	return $this->redirect($this->generateUrl('admin_navieras'));
-	        }
+                return $this->redirect($this->generateUrl('admin_navieras'));
+            }
         }
 
         return array(
@@ -71,30 +71,30 @@ class NavierasController extends Controller
 
         $entity = $em->getRepository('CruceoPortalBundle:Navieras')->find($id);
 
-        if (! $entity) {
+        if (!$entity) {
             throw $this->createNotFoundException('Unable to find Navieras entity.');
         }
 
         $editForm = $this->createForm(new NavierasType(), $entity);
 
-        $request  = $this->getRequest();
+        $request = $this->getRequest();
 
         if ('POST' === $request->getMethod()) {
-        	$editForm->bindRequest($request);
+            $editForm->bindRequest($request);
 
-        	if ($editForm->isValid()) {
-        		$em->persist($entity);
-        		$em->flush();
+            if ($editForm->isValid()) {
+                $em->persist($entity);
+                $em->flush();
 
-        		return $this->redirect($this->generateUrl('admin_navieras'));
-        	}
+                return $this->redirect($this->generateUrl('admin_navieras'));
+            }
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
             'entity'      => $entity,
-            'form'  	  => $editForm->createView(),
+            'form'        => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -105,13 +105,13 @@ class NavierasController extends Controller
      */
     public function deleteAction($id)
     {
-        $form = $this->createDeleteForm($id);
+        $form    = $this->createDeleteForm($id);
         $request = $this->getRequest();
 
         $form->bindRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getEntityManager();
+            $em     = $this->getDoctrine()->getEntityManager();
             $entity = $em->getRepository('CruceoPortalBundle:Navieras')->find($id);
 
             if (!$entity) {
@@ -129,7 +129,6 @@ class NavierasController extends Controller
     {
         return $this->createFormBuilder(array('id' => $id))
             ->add('id', 'hidden')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

@@ -36,20 +36,20 @@ class CategoriasController extends Controller
      */
     public function newAction()
     {
-        $entity = new Categorias();
-        $form   = $this->createForm(new CategoriasType(), $entity);
+        $entity  = new Categorias();
+        $form    = $this->createForm(new CategoriasType(), $entity);
         $request = $this->getRequest();
 
         if ('POST' === $request->getMethod()) {
-        	$form->bindRequest($request);
+            $form->bindRequest($request);
 
-        	if ($form->isValid()) {
-        		$em = $this->getDoctrine()->getEntityManager();
-        		$em->persist($entity);
-        		$em->flush();
+            if ($form->isValid()) {
+                $em = $this->getDoctrine()->getEntityManager();
+                $em->persist($entity);
+                $em->flush();
 
-        		return $this->redirect($this->generateUrl('admin_categorias'));
-        	}
+                return $this->redirect($this->generateUrl('admin_categorias'));
+            }
         }
 
         return array(
@@ -77,21 +77,21 @@ class CategoriasController extends Controller
         $request  = $this->getRequest();
 
         if ('POST' === $request->getMethod()) {
-        	$editForm->bindRequest($request);
+            $editForm->bindRequest($request);
 
-        	if ($editForm->isValid()) {
-        		$em->persist($entity);
-        		$em->flush();
+            if ($editForm->isValid()) {
+                $em->persist($entity);
+                $em->flush();
 
-        		return $this->redirect($this->generateUrl('admin_categorias'));
-        	}
+                return $this->redirect($this->generateUrl('admin_categorias'));
+            }
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
             'entity'      => $entity,
-            'form'		  => $editForm->createView(),
+            'form'        => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -102,13 +102,13 @@ class CategoriasController extends Controller
      */
     public function deleteAction($id)
     {
-        $form = $this->createDeleteForm($id);
+        $form    = $this->createDeleteForm($id);
         $request = $this->getRequest();
 
         $form->bindRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getEntityManager();
+            $em     = $this->getDoctrine()->getEntityManager();
             $entity = $em->getRepository('CruceoPortalBundle:Categorias')->find($id);
 
             if (!$entity) {
@@ -126,7 +126,6 @@ class CategoriasController extends Controller
     {
         return $this->createFormBuilder(array('id' => $id))
             ->add('id', 'hidden')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

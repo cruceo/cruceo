@@ -36,8 +36,8 @@ class AgenciasController extends Controller
      */
     public function newAction()
     {
-        $entity = new Agencias();
-        $form   = $this->createForm(new AgenciasType(), $entity);
+        $entity  = new Agencias();
+        $form    = $this->createForm(new AgenciasType(), $entity);
         $request = $this->getRequest();
 
         if ('POST' === $request->getMethod()) {
@@ -101,13 +101,13 @@ class AgenciasController extends Controller
      */
     public function deleteAction($id)
     {
-        $form = $this->createDeleteForm($id);
+        $form    = $this->createDeleteForm($id);
         $request = $this->getRequest();
 
         $form->bindRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getEntityManager();
+            $em     = $this->getDoctrine()->getEntityManager();
             $entity = $em->getRepository('CruceoPortalBundle:Agencias')->find($id);
 
             if (!$entity) {
@@ -125,7 +125,6 @@ class AgenciasController extends Controller
     {
         return $this->createFormBuilder(array('id' => $id))
             ->add('id', 'hidden')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

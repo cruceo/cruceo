@@ -29,11 +29,10 @@ class Equipamientos
     private $nombre;
 
 
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -53,7 +52,7 @@ class Equipamientos
     /**
      * Get nombre
      *
-     * @return string 
+     * @return string
      */
     public function getNombre()
     {

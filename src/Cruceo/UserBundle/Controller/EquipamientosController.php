@@ -36,20 +36,20 @@ class EquipamientosController extends Controller
      */
     public function newAction()
     {
-        $entity = new Equipamientos();
-        $form   = $this->createForm(new EquipamientosType(), $entity);
+        $entity  = new Equipamientos();
+        $form    = $this->createForm(new EquipamientosType(), $entity);
         $request = $this->getRequest();
 
         if ('POST' === $request->getMethod()) {
-        	$form->bindRequest($request);
+            $form->bindRequest($request);
 
-        	if ($form->isValid()) {
-        		$em = $this->getDoctrine()->getEntityManager();
-        		$em->persist($entity);
-        		$em->flush();
+            if ($form->isValid()) {
+                $em = $this->getDoctrine()->getEntityManager();
+                $em->persist($entity);
+                $em->flush();
 
-        		return $this->redirect($this->generateUrl('admin_equipamientos'));
-        	}
+                return $this->redirect($this->generateUrl('admin_equipamientos'));
+            }
         }
 
         return array(
@@ -77,22 +77,22 @@ class EquipamientosController extends Controller
         $request  = $this->getRequest();
 
         if ('POST' === $request->getMethod()) {
-        	$editForm->bindRequest($request);
+            $editForm->bindRequest($request);
 
-        	if ($editForm->isValid()) {
-        		$em->persist($entity);
-        		$em->flush();
+            if ($editForm->isValid()) {
+                $em->persist($entity);
+                $em->flush();
 
-        		return $this->redirect($this->generateUrl('admin_equipamientos'));
-        	}
+                return $this->redirect($this->generateUrl('admin_equipamientos'));
+            }
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
-            'form'		  => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'entity'        => $entity,
+            'form'          => $editForm->createView(),
+            'delete_form'   => $deleteForm->createView(),
         );
     }
 
@@ -102,13 +102,13 @@ class EquipamientosController extends Controller
      */
     public function deleteAction($id)
     {
-        $form = $this->createDeleteForm($id);
+        $form    = $this->createDeleteForm($id);
         $request = $this->getRequest();
 
         $form->bindRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getEntityManager();
+            $em     = $this->getDoctrine()->getEntityManager();
             $entity = $em->getRepository('CruceoPortalBundle:Equipamientos')->find($id);
 
             if (!$entity) {
@@ -126,7 +126,6 @@ class EquipamientosController extends Controller
     {
         return $this->createFormBuilder(array('id' => $id))
             ->add('id', 'hidden')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

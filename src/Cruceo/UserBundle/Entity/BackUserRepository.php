@@ -10,25 +10,29 @@ use Doctrine\ORM\NoResultException;
 
 class BackUserRepository extends EntityRepository implements UserProviderInterface
 {
-    public function loadUserByUsername($username) {
+    public function loadUserByUsername($username)
+    {
         $q = $this
             ->createQueryBuilder('u')
             ->where('u.username = :username OR u.email = :email')
             ->setParameter('username', $username)
             ->setParameter('email', $username)
-            ->getQuery()
-        ;
+            ->getQuery();
 
         try {
             $user = $q->getSingleResult();
         } catch (NoResultException $e) {
-            throw new UsernameNotFoundException(sprintf('Unable to find an active admin CruceoUserBundle:User object identified by "%s".', $username), null, 0, $e);
+            throw new UsernameNotFoundException(sprintf(
+                'Unable to find an active admin CruceoUserBundle:User object identified by "%s".',
+                $username
+            ), null, 0, $e);
         }
 
         return $user;
     }
 
-    public function refreshUser(UserInterface $user) {
+    public function refreshUser(UserInterface $user)
+    {
         $class = get_class($user);
 
         if (!$this->supportsClass($class)) {
@@ -38,7 +42,8 @@ class BackUserRepository extends EntityRepository implements UserProviderInterfa
         return $this->loadUserByUsername($user->getUsername());
     }
 
-    public function supportsClass($class) {
+    public function supportsClass($class)
+    {
         return $this->getEntityName() === $class || is_subclass_of($class, $this->getEntityName());
     }
 }

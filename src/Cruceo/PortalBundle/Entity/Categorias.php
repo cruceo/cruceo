@@ -29,7 +29,6 @@ class Categorias
     private $nombre;
 
 
-
     /**
      * Get id
      *

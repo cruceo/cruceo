@@ -53,7 +53,6 @@ class Fotos
     private $barco;
 
 
-
     /**
      * Get id
      *
@@ -146,7 +145,7 @@ class Fotos
 
     /*************************************
      * Functions for uploads ruta
-    *************************************/
+     *************************************/
     /**
      * @ORM\PrePersist()
      * @ORM\PreUpdate()

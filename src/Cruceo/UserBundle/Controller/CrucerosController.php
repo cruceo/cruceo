@@ -53,7 +53,7 @@ class CrucerosController extends Controller
 
         return array(
             'entity' => $entity,
-            'form' => $form->createView()
+            'form'   => $form->createView()
         );
     }
 
@@ -72,11 +72,11 @@ class CrucerosController extends Controller
             throw $this->createNotFoundException('Unable to find Cruceros entity.');
         }
 
-        $editForm = $this->createForm(new CrucerosType(), $entity);
+        $editForm   = $this->createForm(new CrucerosType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-			'entity'      => $entity,
+            'entity'      => $entity,
             'form'        => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
@@ -101,7 +101,7 @@ class CrucerosController extends Controller
         $originalCities = array();
 
         foreach ($entity->getPrecios() as $precio) {
-        	$originalPrices[] = $precio;
+            $originalPrices[] = $precio;
         }
 
         foreach ($entity->getCiudades() as $ciudad) {
@@ -147,9 +147,9 @@ class CrucerosController extends Controller
         }
 
         return array(
-			'entity'      => $entity,
-            'form'   	  => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'entity'       => $entity,
+            'form'         => $editForm->createView(),
+            'delete_form'  => $deleteForm->createView(),
         );
     }
 
@@ -159,13 +159,13 @@ class CrucerosController extends Controller
      */
     public function deleteAction($id)
     {
-        $form = $this->createDeleteForm($id);
+        $form    = $this->createDeleteForm($id);
         $request = $this->getRequest();
 
         $form->bindRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getEntityManager();
+            $em     = $this->getDoctrine()->getEntityManager();
             $entity = $em->getRepository('CruceoPortalBundle:Cruceros')->find($id);
 
             if (!$entity) {
@@ -183,8 +183,7 @@ class CrucerosController extends Controller
     {
         return $this->createFormBuilder(array('id' => $id))
             ->add('id', 'hidden')
-            ->getForm()
-        ;
+            ->getForm();
     }
 
     /**

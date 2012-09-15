@@ -89,7 +89,7 @@ class BarcosController extends Controller
             throw $this->createNotFoundException('Unable to find Barcos entity.');
         }
 
-        $editForm = $this->createForm(new BarcosType(), $entity);
+        $editForm   = $this->createForm(new BarcosType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
@@ -159,13 +159,13 @@ class BarcosController extends Controller
      */
     public function deleteAction($id)
     {
-        $form = $this->createDeleteForm($id);
+        $form    = $this->createDeleteForm($id);
         $request = $this->getRequest();
 
         $form->bindRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getEntityManager();
+            $em     = $this->getDoctrine()->getEntityManager();
             $entity = $em->getRepository('CruceoPortalBundle:Barcos')->find($id);
 
             if (!$entity) {
@@ -183,8 +183,7 @@ class BarcosController extends Controller
     {
         return $this->createFormBuilder(array('id' => $id))
             ->add('id', 'hidden')
-            ->getForm()
-        ;
+            ->getForm();
     }
 
     /**
@@ -194,7 +193,8 @@ class BarcosController extends Controller
      * @throws NotFoundHttpException
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function deletePhotoAction($img) {
+    public function deletePhotoAction($img)
+    {
         $request = $this->getRequest();
 
         if ($request->isXmlHttpRequest()) {

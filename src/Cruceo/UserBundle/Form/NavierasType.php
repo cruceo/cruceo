@@ -11,8 +11,7 @@ class NavierasType extends AbstractType
     {
         $builder
             ->add('nombre')
-            ->add('descripcion')
-        ;
+            ->add('descripcion');
     }
 
     public function getName()

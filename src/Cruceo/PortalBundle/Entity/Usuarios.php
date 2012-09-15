@@ -48,7 +48,7 @@ class Usuarios
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -68,7 +68,7 @@ class Usuarios
     /**
      * Get nick
      *
-     * @return string 
+     * @return string
      */
     public function getNick()
     {
@@ -88,7 +88,7 @@ class Usuarios
     /**
      * Get pass
      *
-     * @return string 
+     * @return string
      */
     public function getPass()
     {
@@ -108,7 +108,7 @@ class Usuarios
     /**
      * Get nombre
      *
-     * @return string 
+     * @return string
      */
     public function getNombre()
     {
@@ -128,7 +128,7 @@ class Usuarios
     /**
      * Get apellido1
      *
-     * @return string 
+     * @return string
      */
     public function getApellido1()
     {
@@ -148,7 +148,7 @@ class Usuarios
     /**
      * Get apellido2
      *
-     * @return string 
+     * @return string
      */
     public function getApellido2()
     {
@@ -168,7 +168,7 @@ class Usuarios
     /**
      * Get email
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {

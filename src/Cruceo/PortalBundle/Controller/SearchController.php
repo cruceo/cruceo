@@ -16,9 +16,7 @@ class SearchController extends Controller
         $request = $this->getRequest();
 
         if ($request->isXmlHttpRequest() && 'POST' == $request->getMethod()) {
-            $this->getDoctrine()->getRepository('CruceoPortalBundle:Cruceros')->advancedSearch(
-
-            );
+            $this->getDoctrine()->getRepository('CruceoPortalBundle:Cruceros')->advancedSearch();
         } else {
             throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
         }

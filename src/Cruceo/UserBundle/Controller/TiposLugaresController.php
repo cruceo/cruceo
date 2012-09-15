@@ -36,20 +36,20 @@ class TiposLugaresController extends Controller
      */
     public function newAction()
     {
-        $entity = new TiposLugares();
-        $form   = $this->createForm(new TiposLugaresType(), $entity);
+        $entity  = new TiposLugares();
+        $form    = $this->createForm(new TiposLugaresType(), $entity);
         $request = $this->getRequest();
 
         if ('POST' === $request->getMethod()) {
-        	$form->bindRequest($request);
+            $form->bindRequest($request);
 
-        	if ($form->isValid()) {
-        		$em = $this->getDoctrine()->getEntityManager();
-        		$em->persist($entity);
-        		$em->flush();
+            if ($form->isValid()) {
+                $em = $this->getDoctrine()->getEntityManager();
+                $em->persist($entity);
+                $em->flush();
 
-        		return $this->redirect($this->generateUrl('admin_tipos_lugares'));
-        	}
+                return $this->redirect($this->generateUrl('admin_tipos_lugares'));
+            }
         }
 
         return array(
@@ -77,22 +77,22 @@ class TiposLugaresController extends Controller
         $request  = $this->getRequest();
 
         if ('POST' === $request->getMethod()) {
-        	$editForm->bindRequest($request);
+            $editForm->bindRequest($request);
 
-        	if ($editForm->isValid()) {
-        		$em->persist($entity);
-        		$em->flush();
+            if ($editForm->isValid()) {
+                $em->persist($entity);
+                $em->flush();
 
-        		return $this->redirect($this->generateUrl('admin_tipos_lugares'));
-        	}
+                return $this->redirect($this->generateUrl('admin_tipos_lugares'));
+            }
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
-            'form'		  => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'entity'        => $entity,
+            'form'          => $editForm->createView(),
+            'delete_form'   => $deleteForm->createView(),
         );
     }
 
@@ -102,13 +102,13 @@ class TiposLugaresController extends Controller
      */
     public function deleteAction($id)
     {
-        $form = $this->createDeleteForm($id);
+        $form    = $this->createDeleteForm($id);
         $request = $this->getRequest();
 
         $form->bindRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getEntityManager();
+            $em     = $this->getDoctrine()->getEntityManager();
             $entity = $em->getRepository('CruceoPortalBundle:TiposLugares')->find($id);
 
             if (!$entity) {
@@ -126,7 +126,6 @@ class TiposLugaresController extends Controller
     {
         return $this->createFormBuilder(array('id' => $id))
             ->add('id', 'hidden')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

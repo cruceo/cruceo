@@ -42,11 +42,10 @@ class EquipamientosBarcos
     private $equipamientos;
 
 
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -66,7 +65,7 @@ class EquipamientosBarcos
     /**
      * Get barcos
      *
-     * @return Cruceo\PortalBundle\Entity\Barcos 
+     * @return Cruceo\PortalBundle\Entity\Barcos
      */
     public function getBarcos()
     {
@@ -86,7 +85,7 @@ class EquipamientosBarcos
     /**
      * Get equipamientos
      *
-     * @return Cruceo\PortalBundle\Entity\Equipamientos 
+     * @return Cruceo\PortalBundle\Entity\Equipamientos
      */
     public function getEquipamientos()
     {

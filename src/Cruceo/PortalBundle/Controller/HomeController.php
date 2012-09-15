@@ -13,6 +13,7 @@ class HomeController extends Controller
     public function indexAction()
     {
         $name = 'GOGOGOGO';
+
         return array('name' => $name);
     }
 

@@ -87,7 +87,6 @@ class Precios
     private $tipologia;
 
 
-
     /**
      * Get id
      *

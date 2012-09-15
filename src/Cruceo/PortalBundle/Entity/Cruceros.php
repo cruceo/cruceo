@@ -481,8 +481,8 @@ class Cruceros
     public function __construct()
     {
         $this->ciudadesCruceros = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->ciudades = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->precios = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->ciudades         = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->precios          = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function getCiudades()
@@ -492,8 +492,7 @@ class Cruceros
 
     public function setCiudades($ciudadesCruceros)
     {
-        foreach($ciudadesCruceros as $ciudadCrucero)
-        {
+        foreach ($ciudadesCruceros as $ciudadCrucero) {
             $ciudadCrucero->setCrucero($this);
 
             $this->addCiudadCrucero($ciudadCrucero);

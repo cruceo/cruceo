@@ -10,8 +10,7 @@ class ZonasType extends AbstractType
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder
-            ->add('nombre')
-        ;
+            ->add('nombre');
     }
 
     public function getName()
