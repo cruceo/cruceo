@@ -13,10 +13,10 @@ security:
         login:
             pattern: ^/admin/login$
             security: false
-            
-        newuser:
-            pattern:  ^/newuser
-            security: false
+
+        #newuser:
+        #    pattern:  ^/newuser
+        #    security: false
 
         admin_area:
             pattern:    ^/admin

@@ -1,65 +1,38 @@
-{% extends "CruceoPortalBundle::layout.html.twig" %}
-
-{% block content %}
-
-<div id="result-data">
-    {% for result in results %}
-    <div class="result">
-        <a href="{{ path('cruise_detail', {'slug': result.getSlug} )}}">{{ result.getNombre }}</a>
-    </div>
-
-    {% for offer in result.getPrecios if offer.getDestacado %}
-    <div class="offer-result">
-        {{ offer.getAgencia.getNombre }}<br />
-        {{ offer.getPrecio }} &euro;
-    </div>
-    {% endfor %}
-
-    <ul class="offers-normal-result">
-        {% for offer in result.getPrecios if offer.getDestacado is null %}
-        <li>{{ offer.getAgencia.getNombre }}.....{{ offer.getPrecio }} &euro;</li>
-        {% endfor %}
-    </ul>
-    {% else %}
-    <div id="no-result">
-        <p>No hay resultados con los criterios seleccionados</p>
-    </div>
-    {% endfor %}
+<div id="searchhome">
+    <form id="searchfromhome" name="searchfromhome" action="{{ path('home_search') }}" method="get">
+        <ul>
+            <li>
+                <input type="text" id="searchtext" name="text" value="{{ app.session.flash('str') }}" placeholder="mediterraneo" />
+            </li>
+            <li>
+                <label for="start">Día de inicio</label>
+                <input type="text" id="start" name="start" value="{{ app.session.flash('start') }}" />
+            </li>
+            <li>
+                <label for="duration">Duración</label>
+                <select name="duration" id="duration">
+                    <option value=""></option>
+                    {% for x in 1..30%}
+                        <option value="{{ x }}"{% if x == app.session.flash('duration') %} selected="selected" {% endif %}>
+                            {{ x }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </li>
+            <li>
+                <label for="zone">Zona</label>
+                <select name="zone" id="zone">
+                    <option value="">Seleccione zona...</option>
+                    {% for zone in zones%}
+                        <option value="{{ zone.id }}"{% if zone == app.session.flash('zone') %} selected="selected" {% endif %}>
+                            {{ zone.nombre }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </li>
+            <li>
+                <button type="submit" name="search" id="search">Buscar</button>
+            </li>
+        </ul>
+    </form>
 </div>
-
-<div id="filters">
-    <div id="filter-category-ships">
-        <p>Categorías Barcos</p>
-        <ul>
-            {% for category in categories %}
-            <li attr-data="{{ category.getId }}">{{ category.getNombre }}</li>
-            {% endfor %}
-        </ul>
-    </div>
-    <div id="filter-cabin">
-        <p>Camarotes</p>
-        <ul>
-            {% for cabin in cabins %}
-            <li attr-data="{{ cabin.getId }}">{{ cabin.getNombre }}</li>
-            {% endfor %}
-        </ul>
-    </div>
-    <div id="filter-equipaments">
-        <p>Equipamientos</p>
-        <ul>
-            {% for equipment in equipments %}
-            <li attr-data="{{ equipment.getId }}">{{ equipment.getNombre }}</li>
-            {% endfor %}
-        </ul>
-    </div>
-    <div id="filter-shipping-companies">
-        <p>Navieras</p>
-        <ul>
-            {% for company in companies %}
-            <li attr-data="{{ company.getId }}">{{ company.getNombre }}</li>
-            {% endfor %}
-        </ul>
-    </div>
-</div>
-
-{% endblock %}

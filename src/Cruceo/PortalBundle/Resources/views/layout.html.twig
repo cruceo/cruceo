@@ -5,17 +5,17 @@
     <title>{% block title %}CRUCEO{% endblock %}</title>
     {% block css %}{% endblock %}
     {% block js %}
-    <script type="text/javascript" src="{{ asset('bundles/cruceoportal/js/jquery.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/cruceouser/js/less.js') }}"></script>
+    <script src="{{ asset('bundles/cruceoportal/js/jquery.js') }}"></script>
+    <script src="{{ asset('bundles/cruceouser/js/less.js') }}"></script>
     {% endblock %}
 </head>
 <body>
     <!-- Header -->
-    {% include "CruceoPortalBundle:partials:header.html.twig" %}
+    {% include "CruceoPortalBundle:Partials:header.html.twig" %}
     <!-- End Header -->
 
     <!-- Search -->
-    {% render "CruceoPortalBundle:Home:search" %}
+    {% render "CruceoPortalBundle:Home:homeSearch" %}
     <!-- End Search -->
 
     <!-- Content -->
@@ -23,7 +23,7 @@
     <!-- End Content -->
 
     <!-- Footer -->
-    {% include "CruceoPortalBundle:partials:footer.html.twig" %}
+    {% include "CruceoPortalBundle:Partials:footer.html.twig" %}
     <!-- End Footer -->
 
 </body>

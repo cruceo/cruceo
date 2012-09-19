@@ -1,21 +1,5 @@
 <div id="highligthed">
 {% for highligthed in highlighteds %}
-    <div class="title-highligthed">
-        <a href="{{ path('cruise_detail', {'slug': highligthed.getSlug} )}}">{{ highligthed.getNombre }}</a>
-    </div>
-
-    {% for offer in highligthed.getPrecios if offer.getDestacado %}
-        <div class="offer-highligthed">
-            {{ offer.getAgencia.getNombre }}<br />
-            {{ offer.getPrecio }} &euro;
-        </div>
-    {% endfor %}
-
-    <ul class="offers-normal-highligthed">
-    {% for offer in highligthed.getPrecios if offer.getDestacado is null %}
-        <li>{{ offer.getAgencia.getNombre }}.....{{ offer.getPrecio }} &euro;</li>
-    {% endfor %}
-    </ul>
-
+    {% include "CruceoPortalBundle:Partials:offer.html.twig" with {'offer': highligthed} %}
 {% endfor %}
 </div>

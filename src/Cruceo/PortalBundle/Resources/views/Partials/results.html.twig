@@ -1,0 +1,5 @@
+{% for result in results %}
+    {% include "CruceoPortalBundle:Partials:offer.html.twig" with {'offer': result} %}
+{% else %}
+    {% include "CruceoPortalBundle:Partials:notFoundOffer.html.twig" %}
+{% endfor %}

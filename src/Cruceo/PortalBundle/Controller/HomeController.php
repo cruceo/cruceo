@@ -12,15 +12,13 @@ class HomeController extends Controller
      */
     public function indexAction()
     {
-        $name = 'GOGOGOGO';
-
-        return array('name' => $name);
+        return array();
     }
 
     /**
      * @Template()
      */
-    public function searchAction()
+    public function homeSearchAction()
     {
         $zones = $this->getDoctrine()->getRepository('CruceoPortalBundle:Zonas')->findAll();
 
@@ -44,7 +42,7 @@ class HomeController extends Controller
     /**
      * @Template()
      */
-    public function homeSearchAction()
+    public function searchAction()
     {
         $str      = $this->getRequest()->query->get('text');
         $start    = $this->getRequest()->query->get('start');
@@ -63,19 +61,26 @@ class HomeController extends Controller
         $categories = $this->getDoctrine()->getRepository('CruceoPortalBundle:Categorias')->findAll();
         $equipments = $this->getDoctrine()->getRepository('CruceoPortalBundle:Equipamientos')->findAll();
 
-
         $session = $this->get('session');
-        $session->set('str', $str);
-        $session->set('start', $start);
-        $session->set('duration', $duration);
-        $session->set('zone', $zone);
+        $session->setFlash('str', $str);
+        $session->setFlash('start', $start);
+        $session->setFlash('duration', $duration);
+        $session->setFlash('zone', $zone);
+
+        $data = array(
+            'str'      => $str,
+            'start'    => $start,
+            'duration' => $duration,
+            'zone'     => $zone
+        );
 
         return array(
             'results'    => $results,
             'companies'  => $companies,
             'cabins'     => $cabins,
             'categories' => $categories,
-            'equipments' => $equipments
+            'equipments' => $equipments,
+            'data'       => $data
         );
     }
 
