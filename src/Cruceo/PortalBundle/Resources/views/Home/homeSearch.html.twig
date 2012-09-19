@@ -1,14 +1,11 @@
-<div id="searchhome">
-    <form id="searchfromhome" name="searchfromhome" action="{{ path('home_search') }}" method="get">
-        <ul>
-            <li>
+<div id="searchhome" class="searchhome">
+    <div class="navbar-inner" >
+    <div  class="container">
+    <form id="searchfromhome" name="searchfromhome" action="{{ path('home_search') }}" method="get" class="form-inline">
+    <fieldset>
                 <input type="text" id="searchtext" name="text" value="{{ app.session.flash('str') }}" placeholder="mediterraneo" />
-            </li>
-            <li>
                 <label for="start">Día de inicio</label>
                 <input type="text" id="start" name="start" value="{{ app.session.flash('start') }}" />
-            </li>
-            <li>
                 <label for="duration">Duración</label>
                 <select name="duration" id="duration">
                     <option value=""></option>
@@ -18,8 +15,6 @@
                         </option>
                     {% endfor %}
                 </select>
-            </li>
-            <li>
                 <label for="zone">Zona</label>
                 <select name="zone" id="zone">
                     <option value="">Seleccione zona...</option>
@@ -29,10 +24,9 @@
                         </option>
                     {% endfor %}
                 </select>
-            </li>
-            <li>
                 <button type="submit" name="search" id="search">Buscar</button>
-            </li>
-        </ul>
+        </fieldset>
     </form>
+    </div>
+    </div>
 </div>
