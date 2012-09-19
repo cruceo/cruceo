@@ -1,0 +1,124 @@
+/* Lista de modificadores comunes para ir añadiendo   */
+
+.linea {
+    display: inline;
+}
+
+.fl{
+float:left;
+display:inline;
+}
+.fr{
+float:right;
+display:inline;
+}
+.bl{
+display:block !important;
+}
+.ib{
+display:inline-block !important;
+zoom:1;
+}
+.ocul{
+display:none;
+}
+.inv{
+visibility:hidden;
+}
+.t-cent{
+text-align:center;
+}
+.t-izq{
+text-align:left;
+}
+.t-der{
+text-align:right;
+}
+.enl {
+cursor:pointer;
+}
+.rnd5{
+-moz-border-radius:5px;
+-khtml-border-radius:5px;
+-webkit-border-radius:5px;
+border-radius:5px;
+}
+
+.mb{
+margin-bottom:1.5em;
+}
+.mt {
+	margin-top:0.6em;
+}
+.mr {
+    margin-right: 1.5em;
+}
+
+.ml {
+    margin-left: 1.5em;
+}
+
+.hmarg {
+    margin:auto 1.5em;
+}
+
+.vmarg {
+    margin-top:5px;
+    margin-bottom:5px;
+}
+
+.cl {
+clear:left;
+}
+.cr {
+clear:right;
+}
+.clr {
+clear:both;
+}
+.clf {
+clear:both;
+height:0;
+font-size:1px;
+line-height:0px;
+}
+
+.cf:after{
+clear:both;
+display:block;
+height:0;
+content:" ";
+font-size:0;
+visibility:hidden;
+}
+.cf{
+zoom:1;
+}
+
+.lsn { list-style: none;}
+.lsn li { display: inline-block;}
+
+/*Estilos personalizados para cruceo*/
+
+.navbar.header { background:#FFF; margin: 0;}
+.navbar.header .container {  width: 1170px;}
+
+.navbar .brand {
+	padding: 0;
+}
+
+.searchhome .navbar-inner {
+ background-color: #45AEEA;
+    background-image: -moz-linear-gradient(center top , #54B4EB, #2FA4E7);
+    background-repeat: repeat-x;
+    border: 1px solid #1684C2;
+    border-radius: 0;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
+    min-height: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+	color: #fff;
+}
+#searchfromhome { margin: 7px 0;}
+	
+	
