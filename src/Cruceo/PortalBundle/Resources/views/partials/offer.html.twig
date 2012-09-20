@@ -1,0 +1,20 @@
+<div class="offers well">
+    <div class="highligthed-title">
+        <a href="{{ path('cruise_detail', {'slug': offer.getSlug} )}}">{{ offer.getNombre }}</a>
+    </div>
+
+    {% for highligthed in offer.getPrecios if highligthed.getDestacado %}
+        <div class="highlighted-offer">
+            
+             <a class="thumbnail" href="#"><img src="{{ asset('bundles/cruceoportal/img/barcos/barco2.jpg') }}" alt="Barcopesquero1" title="Barcopesquero1" /></a>
+            {{ highligthed.getAgencia.getNombre }}<br />
+            {{ highligthed.getPrecio }} &euro;
+        </div>
+    {% endfor %}
+
+    <ul class="normal-offer thumbnails">
+        {% for normal in offer.getPrecios if normal.getDestacado is null %}
+            <li>{{ normal.getAgencia.getNombre }}.....{{ normal.getPrecio }} &euro;</li>
+        {% endfor %}
+    </ul>
+</div>

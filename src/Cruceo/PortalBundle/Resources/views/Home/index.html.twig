@@ -1,21 +1,330 @@
 {% extends "CruceoPortalBundle::layout.html.twig" %}
 
 {% block content %}
-<div class="container">
-<div class="row-fluid">
-        <div class="span3">
-        <!-- Columna izquierda -->
+<div class="contenidos">
+    <div class="container">
+        <div class="row-fluid">
+            <div class="span3">
+                <!-- filters -->
+               
+                                <div class="col4 floatl">
+                    <div class="filters marginbot20" id="layout_filtros_busqueda">
+                        <div class="top"><h2>Mejora tus resultados</h2></div>
+                        <div class="mid"><form class="form w194" id="formulario_filtros_busqueda" action="" method="get"><fieldset class="fieldsetFilters marginbot10">
+                                    <legend><span>Precio entre</span></legend>
+                                    <div class="w170 marginleft10 marginbot5 ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" id="slider-range"><div class="ui-slider-range ui-widget-header" style="left: 0%; width: 100%;"></div><a href="#" class="ui-slider-handle ui-state-default ui-corner-all" style="left: 0%;"></a><a href="#" class="ui-slider-handle ui-state-default ui-corner-all" style="left: 100%;"></a></div>
+                                    <span id="amount_min" class="bold floatl fontSmall5">87€</span><span id="amount_max" class="bold floatr fontSmall5">2.908€</span></fieldset> 
+                                <fieldset class="fieldsetFilters marginbot10">
+                                    <legend><span>Navieras</span></legend><ul>
+                                        <li>
+                                            <label for="f_nav_0">
+                                                <input type="checkbox" onclick="if(this.checked){limpiaNavierasMarcadas();datos.acumularFiltro('nav',this.value,false);} else this.checked=true;" value="-1" checked="checked" name="nav" id="f_nav_0">
+                                                <span class="inline normal">Todas las navieras</span></label></li> 
+                                        <li>
+                                            <label for="f_nav_100">
+                                                <input type="checkbox" onclick="$('f_nav_0').checked=false;datos.acumularFiltro('nav',this.value,this.checked);" value="100" name="nav" id="f_nav_100">
+                                                <span class="inline normal">Azamara Cruises</span><span id="con_f_nav_100" class="normal"></span><span id="con_f_nav_100" class="normal"></span></label></li>
+                                        <li>
+                                            <label for="f_nav_4">
+                                                <input type="checkbox" onclick="$('f_nav_0').checked=false;datos.acumularFiltro('nav',this.value,this.checked);" value="4" name="nav" id="f_nav_4">
+                                                <span class="inline normal">Celebrity Cruises</span><span id="con_f_nav_4" class="normal"></span><span id="con_f_nav_4" class="normal"></span></label></li>
+                                        <li>
+                                            <label for="f_nav_15">
+                                                <input type="checkbox" onclick="$('f_nav_0').checked=false;datos.acumularFiltro('nav',this.value,this.checked);" value="15" name="nav" id="f_nav_15">
+                                                <span class="inline normal">Costa Cruceros</span><span id="con_f_nav_15" class="normal"></span><span id="con_f_nav_15" class="normal"></span></label></li>
+                                        <li>
+                                            <label for="f_nav_12">
+                                                <input type="checkbox" onclick="$('f_nav_0').checked=false;datos.acumularFiltro('nav',this.value,this.checked);" value="12" name="nav" id="f_nav_12">
+                                                <span class="inline normal">Holland America</span><span id="con_f_nav_12" class="normal"></span><span id="con_f_nav_12" class="normal"></span></label></li>
+                                        <li>
+                                            <label for="f_nav_30">
+                                                <input type="checkbox" onclick="$('f_nav_0').checked=false;datos.acumularFiltro('nav',this.value,this.checked);" value="30" name="nav" id="f_nav_30">
+                                                <span class="inline normal">Iberocruceros</span><span id="con_f_nav_30" class="normal"></span><span id="con_f_nav_30" class="normal"></span></label></li>
+                                        <li>
+                                            <label for="f_nav_7">
+                                                <input type="checkbox" onclick="$('f_nav_0').checked=false;datos.acumularFiltro('nav',this.value,this.checked);" value="7" name="nav" id="f_nav_7">
+                                                <span class="inline normal">MSC</span><span id="con_f_nav_7" class="normal"></span><span id="con_f_nav_7" class="normal"></span></label></li>
+                                        <li>
+                                            <label for="f_nav_27">
+                                                <input type="checkbox" onclick="$('f_nav_0').checked=false;datos.acumularFiltro('nav',this.value,this.checked);" value="27" name="nav" id="f_nav_27">
+                                                <span class="inline normal">Norwegian Cruise Line</span><span id="con_f_nav_27" class="normal"></span><span id="con_f_nav_27" class="normal"></span></label></li>
+                                        <li>
+                                            <label for="f_nav_24">
+                                                <input type="checkbox" onclick="$('f_nav_0').checked=false;datos.acumularFiltro('nav',this.value,this.checked);" value="24" name="nav" id="f_nav_24">
+                                                <span class="inline normal">Pullmantur</span><span id="con_f_nav_24" class="normal"></span><span id="con_f_nav_24" class="normal"></span></label></li>
+                                        <li>
+                                            <label for="f_nav_5">
+                                                <input type="checkbox" onclick="$('f_nav_0').checked=false;datos.acumularFiltro('nav',this.value,this.checked);" value="5" name="nav" id="f_nav_5">
+                                                <span class="inline normal">Royal Caribbean</span><span id="con_f_nav_5" class="normal"></span><span id="con_f_nav_5" class="normal"></span></label></li>
+                                    </ul></fieldset>
+
+                                <fieldset class="fieldsetFilters marginbot10">
+                                    <legend><span>Puertos</span></legend><ul>
+                                        <li>
+                                            <label for="f_pue_0">
+                                                <input type="checkbox" onclick="if(this.checked){limpiaPuertosMarcadas();datos.acumularFiltro('pue',this.value,false);} else this.checked=true;" value="-1" checked="checked" name="pue" id="f_pue_0">
+                                                <span class="inline normal">Todos los puertos</span></label></li>
+                                        <li class="">
+                                            <label for="f_pue_300">
+                                                <input type="checkbox" onclick="$('f_pue_0').checked=false;datos.acumularFiltro('pue',this.value,this.checked);" value="300" name="pue" id="f_pue_300">
+                                                <span class="inline normal">A Coruña</span><span id="con_f_pue_300" class="normal"></span><span id="con_f_pue_300" class="normal"></span></label></li>
+                                        <li class="">
+                                            <label for="f_pue_75">
+                                                <input type="checkbox" onclick="$('f_pue_0').checked=false;datos.acumularFiltro('pue',this.value,this.checked);" value="75" name="pue" id="f_pue_75">
+                                                <span class="inline normal">Barcelona</span><span id="con_f_pue_75" class="normal"></span><span id="con_f_pue_75" class="normal"></span></label></li>
+                                        <li class="">
+                                            <label for="f_pue_1341">
+                                                <input type="checkbox" onclick="$('f_pue_0').checked=false;datos.acumularFiltro('pue',this.value,this.checked);" value="1341" name="pue" id="f_pue_1341">
+                                                <span class="inline normal">Bergen</span><span id="con_f_pue_1341" class="normal"></span><span id="con_f_pue_1341" class="normal"></span></label></li>
+                                        <li class="">
+                                            <label for="f_pue_320">
+                                                <input type="checkbox" onclick="$('f_pue_0').checked=false;datos.acumularFiltro('pue',this.value,this.checked);" value="320" name="pue" id="f_pue_320">
+                                                <span class="inline normal">Bilbao</span><span id="con_f_pue_320" class="normal"></span><span id="con_f_pue_320" class="normal"></span></label></li>
+                                        <li class="mas_p hidden">
+                                            <label for="f_pue_11924">
+                                                <input type="checkbox" onclick="$('f_pue_0').checked=false;datos.acumularFiltro('pue',this.value,this.checked);" value="11924" name="pue" id="f_pue_11924">
+                                                <span class="inline normal">Civitavecchia</span><span id="con_f_pue_11924" class="normal"></span><span id="con_f_pue_11924" class="normal"></span></label></li>
+                                        <li class="mas_p hidden">
+                                            <label for="f_pue_1088">
+                                                <input type="checkbox" onclick="$('f_pue_0').checked=false;datos.acumularFiltro('pue',this.value,this.checked);" value="1088" name="pue" id="f_pue_1088">
+                                                <span class="inline normal">Copenhague</span><span id="con_f_pue_1088" class="normal"></span><span id="con_f_pue_1088" class="normal"></span></label></li>
+                                        <li class="mas_p hidden">
+                                            <label for="f_pue_5302">
+                                                <input type="checkbox" onclick="$('f_pue_0').checked=false;datos.acumularFiltro('pue',this.value,this.checked);" value="5302" name="pue" id="f_pue_5302">
+                                                <span class="inline normal">Dover</span><span id="con_f_pue_5302" class="normal"></span><span id="con_f_pue_5302" class="normal"></span></label></li>
+                                        <li class="mas_p hidden">
+                                            <label for="f_pue_1225">
+                                                <input type="checkbox" onclick="$('f_pue_0').checked=false;datos.acumularFiltro('pue',this.value,this.checked);" value="1225" name="pue" id="f_pue_1225">
+                                                <span class="inline normal">Dublín</span><span id="con_f_pue_1225" class="normal"></span><span id="con_f_pue_1225" class="normal"></span></label></li>
+                                        <li class="mas_p hidden">
+                                            <label for="f_pue_1453">
+                                                <input type="checkbox" onclick="$('f_pue_0').checked=false;datos.acumularFiltro('pue',this.value,this.checked);" value="1453" name="pue" id="f_pue_1453">
+                                                <span class="inline normal">Estocolmo</span><span id="con_f_pue_1453" class="normal"></span><span id="con_f_pue_1453" class="normal"></span></label></li>
+                                        <li class="mas_p hidden">
+                                            <label for="f_pue_1264">
+                                                <input type="checkbox" onclick="$('f_pue_0').checked=false;datos.acumularFiltro('pue',this.value,this.checked);" value="1264" name="pue" id="f_pue_1264">
+                                                <span class="inline normal">Génova</span><span id="con_f_pue_1264" class="normal"></span><span id="con_f_pue_1264" class="normal"></span></label></li>
+                                        <li class="mas_p hidden">
+                                            <label for="f_pue_932">
+                                                <input type="checkbox" onclick="$('f_pue_0').checked=false;datos.acumularFiltro('pue',this.value,this.checked);" value="932" name="pue" id="f_pue_932">
+                                                <span class="inline normal">Hamburgo</span><span id="con_f_pue_932" class="normal"></span><span id="con_f_pue_932" class="normal"></span></label></li>
+                                        <li class="mas_p hidden">
+                                            <label for="f_pue_26416">
+                                                <input type="checkbox" onclick="$('f_pue_0').checked=false;datos.acumularFiltro('pue',this.value,this.checked);" value="26416" name="pue" id="f_pue_26416">
+                                                <span class="inline normal">Harwich</span><span id="con_f_pue_26416" class="normal"></span><span id="con_f_pue_26416" class="normal"></span></label></li>
+                                        <li class="mas_p hidden">
+                                            <label for="f_pue_9508">
+                                                <input type="checkbox" onclick="$('f_pue_0').checked=false;datos.acumularFiltro('pue',this.value,this.checked);" value="9508" name="pue" id="f_pue_9508">
+                                                <span class="inline normal">Ijmuiden</span><span id="con_f_pue_9508" class="normal"></span><span id="con_f_pue_9508" class="normal"></span></label></li>
+                                        <li class="mas_p hidden">
+                                            <label for="f_pue_4523">
+                                                <input type="checkbox" onclick="$('f_pue_0').checked=false;datos.acumularFiltro('pue',this.value,this.checked);" value="4523" name="pue" id="f_pue_4523">
+                                                <span class="inline normal">Kiel</span><span id="con_f_pue_4523" class="normal"></span><span id="con_f_pue_4523" class="normal"></span></label></li>
+                                        <li class="mas_p hidden">
+                                            <label for="f_pue_9013">
+                                                <input type="checkbox" onclick="$('f_pue_0').checked=false;datos.acumularFiltro('pue',this.value,this.checked);" value="9013" name="pue" id="f_pue_9013">
+                                                <span class="inline normal">Le Havre</span><span id="con_f_pue_9013" class="normal"></span><span id="con_f_pue_9013" class="normal"></span></label></li>
+                                        <li class="mas_p hidden">
+                                            <label for="f_pue_7537">
+                                                <input type="checkbox" onclick="$('f_pue_0').checked=false;datos.acumularFiltro('pue',this.value,this.checked);" value="7537" name="pue" id="f_pue_7537">
+                                                <span class="inline normal">Leith</span><span id="con_f_pue_7537" class="normal"></span><span id="con_f_pue_7537" class="normal"></span></label></li>
+                                        <li class="mas_p hidden">
+                                            <label for="f_pue_2525">
+                                                <input type="checkbox" onclick="$('f_pue_0').checked=false;datos.acumularFiltro('pue',this.value,this.checked);" value="2525" name="pue" id="f_pue_2525">
+                                                <span class="inline normal">Lisboa</span><span id="con_f_pue_2525" class="normal"></span><span id="con_f_pue_2525" class="normal"></span></label></li>
+                                        <li class="mas_p hidden">
+                                            <label for="f_pue_129">
+                                                <input type="checkbox" onclick="$('f_pue_0').checked=false;datos.acumularFiltro('pue',this.value,this.checked);" value="129" name="pue" id="f_pue_129">
+                                                <span class="inline normal">Málaga</span><span id="con_f_pue_129" class="normal"></span><span id="con_f_pue_129" class="normal"></span></label></li>
+                                        <li class="mas_p hidden">
+                                            <label for="f_pue_2538">
+                                                <input type="checkbox" onclick="$('f_pue_0').checked=false;datos.acumularFiltro('pue',this.value,this.checked);" value="2538" name="pue" id="f_pue_2538">
+                                                <span class="inline normal">Oporto</span><span id="con_f_pue_2538" class="normal"></span><span id="con_f_pue_2538" class="normal"></span></label></li>
+                                        <li class="mas_p hidden">
+                                            <label for="f_pue_5066">
+                                                <input type="checkbox" onclick="$('f_pue_0').checked=false;datos.acumularFiltro('pue',this.value,this.checked);" value="5066" name="pue" id="f_pue_5066">
+                                                <span class="inline normal">Rio de Janeiro</span><span id="con_f_pue_5066" class="normal"></span><span id="con_f_pue_5066" class="normal"></span></label></li>
+                                        <li class="mas_p hidden">
+                                            <label for="f_pue_1212">
+                                                <input type="checkbox" onclick="$('f_pue_0').checked=false;datos.acumularFiltro('pue',this.value,this.checked);" value="1212" name="pue" id="f_pue_1212">
+                                                <span class="inline normal">Rotterdam</span><span id="con_f_pue_1212" class="normal"></span><span id="con_f_pue_1212" class="normal"></span></label></li>
+                                        <li class="mas_p hidden">
+                                            <label for="f_pue_280">
+                                                <input type="checkbox" onclick="$('f_pue_0').checked=false;datos.acumularFiltro('pue',this.value,this.checked);" value="280" name="pue" id="f_pue_280">
+                                                <span class="inline normal">Santa Cruz de Tenerife</span><span id="con_f_pue_280" class="normal"></span><span id="con_f_pue_280" class="normal"></span></label></li>
+                                        <li class="mas_p hidden">
+                                            <label for="f_pue_7367">
+                                                <input type="checkbox" onclick="$('f_pue_0').checked=false;datos.acumularFiltro('pue',this.value,this.checked);" value="7367" name="pue" id="f_pue_7367">
+                                                <span class="inline normal">Santos</span><span id="con_f_pue_7367" class="normal"></span><span id="con_f_pue_7367" class="normal"></span></label></li>
+                                        <li class="mas_p hidden">
+                                            <label for="f_pue_10755">
+                                                <input type="checkbox" onclick="$('f_pue_0').checked=false;datos.acumularFiltro('pue',this.value,this.checked);" value="10755" name="pue" id="f_pue_10755">
+                                                <span class="inline normal">Savona</span><span id="con_f_pue_10755" class="normal"></span><span id="con_f_pue_10755" class="normal"></span></label></li>
+                                        <li class="mas_p hidden">
+                                            <label for="f_pue_9825">
+                                                <input type="checkbox" onclick="$('f_pue_0').checked=false;datos.acumularFiltro('pue',this.value,this.checked);" value="9825" name="pue" id="f_pue_9825">
+                                                <span class="inline normal">Southampton</span><span id="con_f_pue_9825" class="normal"></span><span id="con_f_pue_9825" class="normal"></span></label></li>
+                                        <li class="mas_p hidden">
+                                            <label for="f_pue_128">
+                                                <input type="checkbox" onclick="$('f_pue_0').checked=false;datos.acumularFiltro('pue',this.value,this.checked);" value="128" name="pue" id="f_pue_128">
+                                                <span class="inline normal">Valencia</span><span id="con_f_pue_128" class="normal"></span><span id="con_f_pue_128" class="normal"></span></label></li>
+                                        <li class="mas_p hidden">
+                                            <label for="f_pue_1206">
+                                                <input type="checkbox" onclick="$('f_pue_0').checked=false;datos.acumularFiltro('pue',this.value,this.checked);" value="1206" name="pue" id="f_pue_1206">
+                                                <span class="inline normal">Ámsterdam</span><span id="con_f_pue_1206" class="normal"></span><span id="con_f_pue_1206" class="normal"></span></label></li>
+                                        <li class="fontSmall6 padtop5 padleft3">
+                                            <a class="show_p mas_p pointer">[+] Mostrar más</a>
+                                            <a class="show_p mas_p hidden pointer">[-] Mostrar menos</a></li>
+                                    </ul></fieldset>
+                                <fieldset class="fieldsetFilters marginbot10">
+                                    <legend><span>Barcos</span></legend><ul>
+                                        <li>
+                                            <label for="f_bar_0">
+                                                <input type="checkbox" onclick="if(this.checked){limpiaBarcosMarcadas();datos.acumularFiltro('bar',this.value,false);} else this.checked=true;" value="-1" checked="checked" name="bar" id="f_bar_0">
+                                                <span class="inline normal">Todos los barcos</span></label></li>
+                                        <li class="">
+                                            <label for="f_bar_24">
+                                                <input type="checkbox" onclick="$('f_bar_0').checked=false;datos.acumularFiltro('bar',this.value,this.checked);" value="24" name="bar" id="f_bar_24">
+                                                <span class="inline normal">Adventure of the Seas</span><span id="con_f_bar_24" class="normal"></span><span id="con_f_bar_24" class="normal"></span></label></li>
+                                        <li class="">
+                                            <label for="f_bar_306">
+                                                <input type="checkbox" onclick="$('f_bar_0').checked=false;datos.acumularFiltro('bar',this.value,this.checked);" value="306" name="bar" id="f_bar_306">
+                                                <span class="inline normal">Azamara Quest</span><span id="con_f_bar_306" class="normal"></span><span id="con_f_bar_306" class="normal"></span></label></li>
+                                        <li class="">
+                                            <label for="f_bar_131">
+                                                <input type="checkbox" onclick="$('f_bar_0').checked=false;datos.acumularFiltro('bar',this.value,this.checked);" value="131" name="bar" id="f_bar_131">
+                                                <span class="inline normal">Brilliance of the Seas</span><span id="con_f_bar_131" class="normal"></span><span id="con_f_bar_131" class="normal"></span></label></li>
+                                        <li class="">
+                                            <label for="f_bar_132">
+                                                <input type="checkbox" onclick="$('f_bar_0').checked=false;datos.acumularFiltro('bar',this.value,this.checked);" value="132" name="bar" id="f_bar_132">
+                                                <span class="inline normal">Celebrity Constellation</span><span id="con_f_bar_132" class="normal"></span><span id="con_f_bar_132" class="normal"></span></label></li>
+                                        <li class="mas_b hidden">
+                                            <label for="f_bar_316">
+                                                <input type="checkbox" onclick="$('f_bar_0').checked=false;datos.acumularFiltro('bar',this.value,this.checked);" value="316" name="bar" id="f_bar_316">
+                                                <span class="inline normal">Celebrity Eclipse</span><span id="con_f_bar_316" class="normal"></span><span id="con_f_bar_316" class="normal"></span></label></li>
+                                        <li class="mas_b hidden">
+                                            <label for="f_bar_38">
+                                                <input type="checkbox" onclick="$('f_bar_0').checked=false;datos.acumularFiltro('bar',this.value,this.checked);" value="38" name="bar" id="f_bar_38">
+                                                <span class="inline normal">Celebrity Infinity</span><span id="con_f_bar_38" class="normal"></span><span id="con_f_bar_38" class="normal"></span></label></li>
+                                        <li class="mas_b hidden">
+                                            <label for="f_bar_568">
+                                                <input type="checkbox" onclick="$('f_bar_0').checked=false;datos.acumularFiltro('bar',this.value,this.checked);" value="568" name="bar" id="f_bar_568">
+                                                <span class="inline normal">Celebrity Reflection</span><span id="con_f_bar_568" class="normal"></span><span id="con_f_bar_568" class="normal"></span></label></li>
+                                        <li class="mas_b hidden">
+                                            <label for="f_bar_567">
+                                                <input type="checkbox" onclick="$('f_bar_0').checked=false;datos.acumularFiltro('bar',this.value,this.checked);" value="567" name="bar" id="f_bar_567">
+                                                <span class="inline normal">Costa Fascinosa</span><span id="con_f_bar_567" class="normal"></span><span id="con_f_bar_567" class="normal"></span></label></li>
+                                        <li class="mas_b hidden">
+                                            <label for="f_bar_181">
+                                                <input type="checkbox" onclick="$('f_bar_0').checked=false;datos.acumularFiltro('bar',this.value,this.checked);" value="181" name="bar" id="f_bar_181">
+                                                <span class="inline normal">Costa Fortuna</span><span id="con_f_bar_181" class="normal"></span><span id="con_f_bar_181" class="normal"></span></label></li>
+                                        <li class="mas_b hidden">
+                                            <label for="f_bar_285">
+                                                <input type="checkbox" onclick="$('f_bar_0').checked=false;datos.acumularFiltro('bar',this.value,this.checked);" value="285" name="bar" id="f_bar_285">
+                                                <span class="inline normal">Costa Luminosa</span><span id="con_f_bar_285" class="normal"></span><span id="con_f_bar_285" class="normal"></span></label></li>
+                                        <li class="mas_b hidden">
+                                            <label for="f_bar_553">
+                                                <input type="checkbox" onclick="$('f_bar_0').checked=false;datos.acumularFiltro('bar',this.value,this.checked);" value="553" name="bar" id="f_bar_553">
+                                                <span class="inline normal">Costa Neoromantica</span><span id="con_f_bar_553" class="normal"></span><span id="con_f_bar_553" class="normal"></span></label></li>
+                                        <li class="mas_b hidden">
+                                            <label for="f_bar_286">
+                                                <input type="checkbox" onclick="$('f_bar_0').checked=false;datos.acumularFiltro('bar',this.value,this.checked);" value="286" name="bar" id="f_bar_286">
+                                                <span class="inline normal">Costa Pacifica</span><span id="con_f_bar_286" class="normal"></span><span id="con_f_bar_286" class="normal"></span></label></li>
+                                        <li class="mas_b hidden">
+                                            <label for="f_bar_253">
+                                                <input type="checkbox" onclick="$('f_bar_0').checked=false;datos.acumularFiltro('bar',this.value,this.checked);" value="253" name="bar" id="f_bar_253">
+                                                <span class="inline normal">Costa Serena</span><span id="con_f_bar_253" class="normal"></span><span id="con_f_bar_253" class="normal"></span></label></li>
+                                        <li class="mas_b hidden">
+                                            <label for="f_bar_279">
+                                                <input type="checkbox" onclick="$('f_bar_0').checked=false;datos.acumularFiltro('bar',this.value,this.checked);" value="279" name="bar" id="f_bar_279">
+                                                <span class="inline normal">Empress</span><span id="con_f_bar_279" class="normal"></span><span id="con_f_bar_279" class="normal"></span></label></li>
+                                        <li class="mas_b hidden">
+                                            <label for="f_bar_272">
+                                                <input type="checkbox" onclick="$('f_bar_0').checked=false;datos.acumularFiltro('bar',this.value,this.checked);" value="272" name="bar" id="f_bar_272">
+                                                <span class="inline normal">Eurodam</span><span id="con_f_bar_272" class="normal"></span><span id="con_f_bar_272" class="normal"></span></label></li>
+                                        <li class="mas_b hidden">
+                                            <label for="f_bar_571">
+                                                <input type="checkbox" onclick="$('f_bar_0').checked=false;datos.acumularFiltro('bar',this.value,this.checked);" value="571" name="bar" id="f_bar_571">
+                                                <span class="inline normal">Grand Holiday</span><span id="con_f_bar_571" class="normal"></span><span id="con_f_bar_571" class="normal"></span></label></li>
+                                        <li class="mas_b hidden">
+                                            <label for="f_bar_569">
+                                                <input type="checkbox" onclick="$('f_bar_0').checked=false;datos.acumularFiltro('bar',this.value,this.checked);" value="569" name="bar" id="f_bar_569">
+                                                <span class="inline normal">Grand Mistral</span><span id="con_f_bar_569" class="normal"></span><span id="con_f_bar_569" class="normal"></span></label></li>
+                                        <li class="mas_b hidden">
+                                            <label for="f_bar_277">
+                                                <input type="checkbox" onclick="$('f_bar_0').checked=false;datos.acumularFiltro('bar',this.value,this.checked);" value="277" name="bar" id="f_bar_277">
+                                                <span class="inline normal">Independence of the Seas</span><span id="con_f_bar_277" class="normal"></span><span id="con_f_bar_277" class="normal"></span></label></li>
+                                        <li class="mas_b hidden">
+                                            <label for="f_bar_578">
+                                                <input type="checkbox" onclick="$('f_bar_0').checked=false;datos.acumularFiltro('bar',this.value,this.checked);" value="578" name="bar" id="f_bar_578">
+                                                <span class="inline normal">MSC Fantasia</span><span id="con_f_bar_578" class="normal"></span><span id="con_f_bar_578" class="normal"></span></label></li>
+                                        <li class="mas_b hidden">
+                                            <label for="f_bar_574">
+                                                <input type="checkbox" onclick="$('f_bar_0').checked=false;datos.acumularFiltro('bar',this.value,this.checked);" value="574" name="bar" id="f_bar_574">
+                                                <span class="inline normal">MSC Lirica</span><span id="con_f_bar_574" class="normal"></span><span id="con_f_bar_574" class="normal"></span></label></li>
+                                        <li class="mas_b hidden">
+                                            <label for="f_bar_577">
+                                                <input type="checkbox" onclick="$('f_bar_0').checked=false;datos.acumularFiltro('bar',this.value,this.checked);" value="577" name="bar" id="f_bar_577">
+                                                <span class="inline normal">MSC Magnifica</span><span id="con_f_bar_577" class="normal"></span><span id="con_f_bar_577" class="normal"></span></label></li>
+                                        <li class="mas_b hidden">
+                                            <label for="f_bar_573">
+                                                <input type="checkbox" onclick="$('f_bar_0').checked=false;datos.acumularFiltro('bar',this.value,this.checked);" value="573" name="bar" id="f_bar_573">
+                                                <span class="inline normal">MSC Opera</span><span id="con_f_bar_573" class="normal"></span><span id="con_f_bar_573" class="normal"></span></label></li>
+                                        <li class="mas_b hidden">
+                                            <label for="f_bar_581">
+                                                <input type="checkbox" onclick="$('f_bar_0').checked=false;datos.acumularFiltro('bar',this.value,this.checked);" value="581" name="bar" id="f_bar_581">
+                                                <span class="inline normal">MSC Orchestra</span><span id="con_f_bar_581" class="normal"></span><span id="con_f_bar_581" class="normal"></span></label></li>
+                                        <li class="mas_b hidden">
+                                            <label for="f_bar_575">
+                                                <input type="checkbox" onclick="$('f_bar_0').checked=false;datos.acumularFiltro('bar',this.value,this.checked);" value="575" name="bar" id="f_bar_575">
+                                                <span class="inline normal">MSC Sinfonia</span><span id="con_f_bar_575" class="normal"></span><span id="con_f_bar_575" class="normal"></span></label></li>
+                                        <li class="mas_b hidden">
+                                            <label for="f_bar_213">
+                                                <input type="checkbox" onclick="$('f_bar_0').checked=false;datos.acumularFiltro('bar',this.value,this.checked);" value="213" name="bar" id="f_bar_213">
+                                                <span class="inline normal">Norwegian Spirit</span><span id="con_f_bar_213" class="normal"></span><span id="con_f_bar_213" class="normal"></span></label></li>
+                                        <li class="mas_b hidden">
+                                            <label for="f_bar_245">
+                                                <input type="checkbox" onclick="$('f_bar_0').checked=false;datos.acumularFiltro('bar',this.value,this.checked);" value="245" name="bar" id="f_bar_245">
+                                                <span class="inline normal">Prinsendam</span><span id="con_f_bar_245" class="normal"></span><span id="con_f_bar_245" class="normal"></span></label></li>
+                                        <li class="mas_b hidden">
+                                            <label for="f_bar_74">
+                                                <input type="checkbox" onclick="$('f_bar_0').checked=false;datos.acumularFiltro('bar',this.value,this.checked);" value="74" name="bar" id="f_bar_74">
+                                                <span class="inline normal">Rotterdam</span><span id="con_f_bar_74" class="normal"></span><span id="con_f_bar_74" class="normal"></span></label></li>
+                                        <li class="mas_b hidden">
+                                            <label for="f_bar_70">
+                                                <input type="checkbox" onclick="$('f_bar_0').checked=false;datos.acumularFiltro('bar',this.value,this.checked);" value="70" name="bar" id="f_bar_70">
+                                                <span class="inline normal">Ryndam</span><span id="con_f_bar_70" class="normal"></span><span id="con_f_bar_70" class="normal"></span></label></li>
+                                        <li class="mas_b hidden">
+                                            <label for="f_bar_31">
+                                                <input type="checkbox" onclick="$('f_bar_0').checked=false;datos.acumularFiltro('bar',this.value,this.checked);" value="31" name="bar" id="f_bar_31">
+                                                <span class="inline normal">Vision of the Seas</span><span id="con_f_bar_31" class="normal"></span><span id="con_f_bar_31" class="normal"></span></label></li>
+                                        <li class="fontSmall6 padtop5 padleft3">
+                                            <a class="show_b mas_b pointer">[+] Mostrar más</a>
+                                            <a class="show_b mas_b hidden pointer">[-] Mostrar menos</a></li>
+                                    </ul></fieldset>
+                            </form></div>
+                        <div class="bot"></div></div>
+                    </div>
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+            <div class="span6">
+                <!-- highlighted -->
+                {% render "CruceoPortalBundle:Home:highlighted" %}
+                <!-- END highlighted -->
+            </div>
+            <div class="span3">
+                <!-- shipping-companies -->
+              {% render "CruceoPortalBundle:Shipping:list" %}
+                <!-- END shipping-companies -->
+            </div>
         </div>
-        <div class="span6">
-        <!-- highlighted -->
-        {% render "CruceoPortalBundle:Home:highlighted" %}
-        <!-- END highlighted -->
-        </div>
-        <div class="span3">
-      <!-- shipping-companies -->
-      {% render "CruceoPortalBundle:Shipping:list" %}
-      <!-- END shipping-companies -->
-        </div>
-</div>
+    </div>
 </div>
 {% endblock %}
