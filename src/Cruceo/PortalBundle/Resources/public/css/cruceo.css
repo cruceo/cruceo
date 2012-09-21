@@ -108,7 +108,7 @@ zoom:1;
 }
 
 .searchhome .navbar-inner {
- background-color: #45AEEA;
+    background-color: #45AEEA;
     background-image: -moz-linear-gradient(center top , #54B4EB, #2FA4E7);
     background-repeat: repeat-x;
     border: 1px solid #1684C2;
@@ -120,5 +120,37 @@ zoom:1;
 	color: #fff;
 }
 #searchfromhome { margin: 7px 0;}
-	
-	
+
+div#shipping-companies-list {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+div#shipping-companies-list h3 {
+    background-color: #45AEEA;
+    background-image: -moz-linear-gradient(center top , #54B4EB, #2FA4E7);
+    background-repeat: repeat-x;
+    text-align: center;
+    border-radius: 5px 5px 0 0;
+    margin: 0;
+    color: #ffffff;
+    border-bottom: 1px solid #1684C2;
+    font-size: 17px;
+    line-height: 28px;
+}
+
+div#shipping-companies-list ul.shipping-companies {
+    list-style-image: url(/bundles/cruceoportal/img/anchor.png);
+    padding-left: 10px ;
+    margin: 7px 12px 10px;
+}
+
+div#shipping-companies-list ul.shipping-companies li {
+    border-bottom: 1px solid #ccc;
+    padding: 3px 0;
+}
+div#shipping-companies-list ul.shipping-companies li:last-child {
+    border-bottom: none;
+}
+
