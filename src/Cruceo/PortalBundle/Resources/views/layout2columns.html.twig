@@ -1,0 +1,11 @@
+{% extends "CruceoPortalBundle::layout.html.twig" %}
+
+{% block columns %}
+    <div class="span9">
+        {% block main %}{% endblock %}
+    </div>
+
+    <div class="span3">
+        {% block second %}{% endblock %}
+    </div>
+{% endblock %}

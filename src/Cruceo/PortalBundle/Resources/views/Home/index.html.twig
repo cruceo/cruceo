@@ -1,26 +1,13 @@
-{% extends "CruceoPortalBundle::layout.html.twig" %}
+{% extends "CruceoPortalBundle::layout3columns.html.twig" %}
 
-{% block content %}
-<div class="contenidos">
-    <div class="container shadow">
-        <div class="row-fluid">
-            <div class="span3">
-                <!-- most wanted -->
-                {% render "CruceoPortalBundle:Home:mostWanted" %}
-                <!-- END most wanted -->
-                <!-- filters -->
-            </div>
-            <div class="span6">
-                <!-- highlighted -->
-                {% render "CruceoPortalBundle:Home:highlighted" %}
-                <!-- END highlighted -->
-            </div>
-            <div class="span3">
-                <!-- shipping-companies -->
-              {% render "CruceoPortalBundle:Shipping:list" %}
-                <!-- END shipping-companies -->
-            </div>
-        </div>
-    </div>
-</div>
+{% block left %}
+    {% render "CruceoPortalBundle:Home:mostWanted" %}
+{% endblock %}
+
+{% block center %}
+    {% render "CruceoPortalBundle:Home:highlighted" %}
+{% endblock %}
+
+{% block right %}
+    {% render "CruceoPortalBundle:Shipping:list" %}
 {% endblock %}

@@ -40,9 +40,13 @@
     {% render "CruceoPortalBundle:Home:homeSearch" %}
     <!-- End Search -->
 
-    <!-- Content -->
-    {% block content %}{% endblock %}
-    <!-- End Content -->
+    <div class="contenidos">
+        <div class="container shadow">
+            <div class="row-fluid">
+                {% block columns %}{% endblock %}
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     {% include "CruceoPortalBundle:Partials:footer.html.twig" %}
