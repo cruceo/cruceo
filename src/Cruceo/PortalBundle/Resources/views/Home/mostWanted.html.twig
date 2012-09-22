@@ -4,7 +4,10 @@
 
     <ul class="most-wanted">
         {% for mostwanted in mostwanteds %}
-            <li><a href="{{ path('home_search', { 'text': mostwanted.search }) }}">{{ mostwanted.search }}</a></li>
+            <li>
+                <img src="/cities/{{ mostwanted.search }}/highligth.png" alt="{{ mostwanted.search }}" title="{{ mostwanted.search }}" />
+                <a href="{{ path('home_search', { 'text': mostwanted.search }) }}">{{ mostwanted.search }}</a>
+            </li>
         {% endfor %}
     </ul>
 
