@@ -9,13 +9,18 @@
                 <div class="agencia"><span>{{ highligthed.getAgencia.getNombre }}</span> &nbsp; <span>{{ highligthed.getPrecio }} &euro;</span></div>
             </div>
     {% endfor %}
-            <div class="span7">   
+            <div class="span6">   
                 <ul class="normal-offer thumbnails">
         {% for normal in offer.getPrecios if normal.getDestacado is null %}
                         <li>{{ normal.getAgencia.getNombre }}<span class="precio">{{ normal.getPrecio }} &euro;</span></li>
         {% endfor %}
                 </ul>
             </div>
-            <div class="agencia span2"><span>nombre agencia</span> &nbsp; <span class="precio pagencia"> 45 &euro;</span></div>
+            <div class="destac span3 well">
+                <p>nombre agencia</p>
+                <p class="precio pagencia"> 45 &euro;</p>
+                <p><a class="btn btn-small btn-info" href="#">Ver oferta</a></p>
+            
+            </div>
             </div>
  </div>

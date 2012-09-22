@@ -1,10 +1,13 @@
 {% extends "CruceoPortalBundle::layout.html.twig" %}
 
 {% block content %}
-<h1>{{ entity.getNombre }}</h1>
-
-<div id="offers-cruise">
-    <h2>Precios</h2>
+<div class="contenidos">
+    <div class="container shadow">
+        <div class="row-fluid">
+            <div class="span3">
+            
+            <div id="offers-cruise">
+    <h4>Precios</h4>
     {% for offer in entity.getPrecios if offer.getDestacado %}
     <div class="offer-highligthed-cruise">
         {{ offer.getAgencia.getNombre }}<br />
@@ -18,30 +21,37 @@
         {% endfor %}
     </ul>
 </div>
+            
+            </div>
+                <div class="span6">
+
+<h1>{{ entity.getNombre }}</h1>
+
+
 
 <div id="zone-cruise">
-    <h2>Zona: <span>{{ entity.getZona.getNombre }}</span></h2>
+    <h4>Zona: <span>{{ entity.getZona.getNombre }}</span></h4>
 </div>
 
 <div id="ship-cruise">
-    <h2>Barco: <a href="{{ path('ship_detail', {'slug': entity.getBarco.getSlug} ) }}">{{ entity.getBarco.getNombre }}</a></h2>
+    <h4>Barco: <a href="{{ path('ship_detail', {'slug': entity.getBarco.getSlug} ) }}">{{ entity.getBarco.getNombre }}</a></h4>
 </div>
 
 <div id="shipping-company-cruise">
-    <h2>Naviera: <a href="{{ path('shipping_detail', {'slug': entity.getNaviera.getSlug} ) }}">{{ entity.getNaviera.getNombre }}</a></h2>
+    <h4>Naviera: <a href="{{ path('shipping_detail', {'slug': entity.getNaviera.getSlug} ) }}">{{ entity.getNaviera.getNombre }}</a></h4>
 </div>
 
 <div id="duration-cruise">
-    <h2>Duración: <span>{{ entity.getDuracion }} días</span></h2>
+    <h4>Duración: <span>{{ entity.getDuracion }} días</span></h4>
 </div>
 
 <div id="route-cruise">
-    <h2>Itinerario</h2>
+    <h4>Itinerario</h4>
     <div id="route-image-cruise">
         <img src="/{{ entity.getUploadDir ~ '/' ~ entity.getImgItinerario }}" alt="Itinerario {{ entity.getNombre }}" title="Itinerario {{ entity.getNombre }}" />
     </div>
     <div id="route-cruise">
-        <table>
+        <table class="table">
             <thead>
                 <tr>
                     <th>Ciudad</th>
@@ -67,25 +77,30 @@
 </div>
 
 <div id="details-cruise">
-    <h2>Detalles</h2>
+    <h4>Detalles</h4>
     <p>{{ entity.getDetalles }}</p>
 </div>
 
 <div id="price-include-cruise">
-    <h2>Incluido en el precio</h2>
+    <h4>Incluido en el precio</h4>
     <p>{{ entity.getIncluidoPrecio }}</p>
 </div>
 
 <div id="price-not-include-cruise">
-    <h2>No incluido en el precio</h2>
+    <h4>No incluido en el precio</h4>
     <p>{{ entity.getNoIncluidoPrecio }}</p>
 </div>
 
 {% if entity.getPromocion %}
 <div id="promotion-cruise">
-    <h2>Promoción</h2>
+    <h4>Promoción</h4>
     <p>{{ entity.getPromocion }}</p>
 </div>
 {% endif %}
-
+</div>
+                <div class="span3">
+                columna derecha
+                </div>
+        </div>
+        </div>
 {% endblock %}
