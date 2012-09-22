@@ -1,21 +1,19 @@
-{% extends "CruceoPortalBundle::layout.html.twig" %}
+{% extends "CruceoPortalBundle::layout2columns.html.twig" %}
 
-{% block content %}
+{% block main %}
+    <h1>{{ entity.getNombre }} <img src="" alt="{{ entity.getPais }}" title="{{ entity.getPais }}" /></h1>
 
-<h1>{{ entity.getNombre }} <img src="" alt="{{ entity.getPais }}" title="{{ entity.getPais }}" /></h1>
-
-{% if entity.getLugaresTuristicos|length > 0 %}
-<div id="tourist-places-city">
-    <h2>Lugares Turísticos</h2>
-    {% for place in entity.getLugaresTuristicos %}
-    <div class="tourist-place">
-        <h3 class="icon-place-{{ place.getTiposLugares.getNombre }}">{{ place.getNombre }}</h3>
-    </div>
-    <div id="description-tourist-place">
-        <p>{{ place.getDescripcion }}</p>
-    </div>
-    {% endfor %}
-</div>
-{% endif %}
-
+    {% if entity.getLugaresTuristicos|length > 0 %}
+        <div id="tourist-places-city">
+            <h2>Lugares Turísticos</h2>
+            {% for place in entity.getLugaresTuristicos %}
+            <div class="tourist-place">
+                <h3 class="icon-place-{{ place.getTiposLugares.getNombre }}">{{ place.getNombre }}</h3>
+            </div>
+            <div id="description-tourist-place">
+                <p>{{ place.getDescripcion }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    {% endif %}
 {% endblock %}

@@ -1,16 +1,17 @@
-{% extends "CruceoPortalBundle::layout.html.twig" %}
+{% extends "CruceoPortalBundle::layout3columns.html.twig" %}
 
 {% block js %}
     {{ parent() }}
     <script src="{{ asset('bundles/cruceoportal/js/search.js') }}"></script>
 {% endblock %}
 
-{% block content %}
-
+{% block center %}
     <div id="result-data">
         {% include "CruceoPortalBundle:Partials:results.html.twig" with {'results': results} %}
     </div>
+{% endblock %}
 
+{% block left %}
     <div id="filters">
         <div id="filter-category-ships">
             <p>Categorías Barcos</p>
@@ -57,5 +58,4 @@
             <input type="hidden" name="f-shipping" id="f-shipping" value=""/>
         </form>
     </div>
-
 {% endblock %}

@@ -1,22 +1,20 @@
-{% extends "CruceoPortalBundle::layout.html.twig" %}
+{% extends "CruceoPortalBundle::layout2columns.html.twig" %}
 
-{% block content %}
+{% block main %}
+    <img src="{{ entity.getSlug }}" alt="{{ entity.getNombre }}" title="{{ entity.getNombre }}" />
+    <h1>{{ entity.getNombre }}</h1>
 
-<img src="{{ entity.getSlug }}" alt="{{ entity.getNombre }}" title="{{ entity.getNombre }}" />
-<h1>{{ entity.getNombre }}</h1>
+    <div id="shipping-company-description">{{ entity.getDescripcion }}</div>
 
-<div id="shipping-company-description">{{ entity.getDescripcion }}</div>
-
-{% if entity.getCruceros|length %}
-<div id="ships">
-    <ul>
-    {% for crucero in entity.getCruceros %}
-        <li>
-            <a href="{{ path('ship_detail', {'slug': crucero.getBarco.getSlug} )}}">{{ crucero.getBarco.getNombre }}</a>
-        </li>
-    {% endfor %}
-    </ul>
-</div>
-{% endif %}
-
+    {% if entity.getCruceros|length %}
+    <div id="ships">
+        <ul>
+        {% for crucero in entity.getCruceros %}
+            <li>
+                <a href="{{ path('ship_detail', {'slug': crucero.getBarco.getSlug} )}}">{{ crucero.getBarco.getNombre }}</a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
 {% endblock %}
