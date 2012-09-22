@@ -242,15 +242,15 @@ background-image: -ms-linear-gradient(center top , #FFFFFF 0%, #E7EEF4 100%);
    
 }
 
-/* mas buscados */
+/* Widgets mas buscados, */
 
-div#most-wanted-list {
+.widget {
     border: 1px solid #E3E3E3;
     border-radius: 5px;
     margin-left: 12px;
 }
 
-div#most-wanted-list h3 {
+.widget  h3 {
     background-color: #45AEEA;
     background-image: linear-gradient(center top , #54B4EB, #2FA4E7);
     background-image: -moz-linear-gradient(center top , #54B4EB, #2FA4E7);
@@ -264,23 +264,23 @@ div#most-wanted-list h3 {
     line-height: 28px;
 }
 
-div#most-wanted-list ul.most-wanted {
+.widget ul {
     list-style: none;
     margin: 0 3px;
 }
 
-div#most-wanted-list ul.most-wanted li {
+.widget ul li {
     border-bottom: 1px solid #ccc;
     padding: 5px;
 }
-div#most-wanted-list ul.most-wanted li img {
+.widget ul li img {
     border-radius: 4px;
     box-shadow: 1px 1px 2px #666;
     margin-right: 5px;
     width: 32px;
     height: 32px;
 }
-div#most-wanted-list ul.most-wanted li:last-child {
+.widget ul li:last-child {
     border-bottom: none;
 }
 
