@@ -1,57 +1,51 @@
-{% extends "CruceoPortalBundle::layout2columns.html.twig" %}
+{% extends "CruceoPortalBundle::layout3columns.html.twig" %}
 
-{% block main %}
-    <div class="contenidos">
-        <div class="container shadow">
-            <div class="row-fluid">
-                <div class="span3">
-
-                <div id="offers-cruise">
-        <h4>Precios</h4>
+{% block left %}
+<div id="offers-cruise" class="widget altern listicon arrow">
+        <h3>Precios</h3>
         {% for offer in entity.getPrecios if offer.getDestacado %}
-        <div class="offer-highligthed-cruise">
-            {{ offer.getAgencia.getNombre }}<br />
-            {{ offer.getPrecio }} &euro;
+        <div class="offer-highligthed-cruise cab light mg">
+            {{ offer.getAgencia.getNombre }}<span class="precio fr">{{ offer.getPrecio }} &euro;</span>
         </div>
         {% endfor %}
 
         <ul class="offers-normal-cruise">
             {% for offer in entity.getPrecios if offer.getDestacado is null %}
-            <li>{{ offer.getAgencia.getNombre }}.....{{ offer.getPrecio }} &euro;</li>
+                <li>{{ offer.getAgencia.getNombre }}<span class="precio fr">{{ offer.getPrecio }} &euro;</span></li>
             {% endfor %}
         </ul>
     </div>
+{% endblock %}
 
-                </div>
-                    <div class="span6">
+{% block center %}
+<div class="detalle_crucero">
+    <div class="cab vpad">
+        <h4>{{ entity.getNombre }}</h4>
+    </div>
 
-    <h1>{{ entity.getNombre }}</h1>
-
-
-
-    <div id="zone-cruise">
+    <div id="zone-cruise" class="crucitem zona">
         <h4>Zona: <span>{{ entity.getZona.getNombre }}</span></h4>
     </div>
 
-    <div id="ship-cruise">
+    <div id="ship-cruise" class="crucitem barco">
         <h4>Barco: <a href="{{ path('ship_detail', {'slug': entity.getBarco.getSlug} ) }}">{{ entity.getBarco.getNombre }}</a></h4>
     </div>
 
-    <div id="shipping-company-cruise">
+    <div id="shipping-company-cruise" class="crucitem naviera">
         <h4>Naviera: <a href="{{ path('shipping_detail', {'slug': entity.getNaviera.getSlug} ) }}">{{ entity.getNaviera.getNombre }}</a></h4>
     </div>
 
-    <div id="duration-cruise">
+    <div id="duration-cruise" class="crucitem duracion">
         <h4>Duración: <span>{{ entity.getDuracion }} días</span></h4>
     </div>
 
-    <div id="route-cruise">
+    <div id="route-cruise" class="crucitem itinerario">
         <h4>Itinerario</h4>
         <div id="route-image-cruise">
             <img src="/{{ entity.getUploadDir ~ '/' ~ entity.getImgItinerario }}" alt="Itinerario {{ entity.getNombre }}" title="Itinerario {{ entity.getNombre }}" />
         </div>
         <div id="route-cruise">
-            <table class="table">
+            <table class="table table-bordered table table-striped vmarg">
                 <thead>
                     <tr>
                         <th>Ciudad</th>
@@ -76,32 +70,32 @@
         </div>
     </div>
 
-    <div id="details-cruise">
+    <div id="details-cruise" class="crucitem detalles">
         <h4>Detalles</h4>
         <p>{{ entity.getDetalles }}</p>
     </div>
 
-    <div id="price-include-cruise">
+    <div id="price-include-cruise" class="crucitem incluido">
         <h4>Incluido en el precio</h4>
         <p>{{ entity.getIncluidoPrecio }}</p>
     </div>
 
-    <div id="price-not-include-cruise">
+    <div id="price-not-include-cruise" class="crucitem no-incluid">
         <h4>No incluido en el precio</h4>
         <p>{{ entity.getNoIncluidoPrecio }}</p>
     </div>
 
     {% if entity.getPromocion %}
-    <div id="promotion-cruise">
-        <h4>Promoción</h4>
-        <p>{{ entity.getPromocion }}</p>
-    </div>
+        <div id="promotion-cruise" class="crucitem promocion">
+            <h4>Promoción</h4>
+            <p>{{ entity.getPromocion }}</p>
+        </div>
     {% endif %}
-    </div>
+</div>
+{% endblock %}
 
-        <div class="span3">
-                    columna derecha
-                    </div>
-            </div>
-            </div>
+{% block right %}
+    <div class="widget">
+        Columna derecha
+    </div>
 {% endblock %}

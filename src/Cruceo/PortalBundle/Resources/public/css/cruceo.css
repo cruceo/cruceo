@@ -43,29 +43,33 @@
     -webkit-border-radius:5px;
     border-radius:5px;
 }
-
+.mg {margin: 0.5em;}
 .mb{
-    margin-bottom:1.5em;
+    margin-bottom:0.5em;
 }
 .mt {
-    margin-top:0.6em;
+    margin-top:0.5em;
 }
 .mr {
-    margin-right: 1.5em;
+    margin-right: 0.5em;
 }
 
 .ml {
-    margin-left: 1.5em;
+    margin-left: 0.5em;
 }
 
 .hmarg {
-    margin:auto 1.5em;
+    margin:auto 0.5em;
 }
 
 .vmarg {
-    margin-top:5px;
-    margin-bottom:5px;
+    margin-top:0.5em;
+    margin-bottom:0.5em;
 }
+.vpad { padding-top: 0.5em;
+        padding-bottom: 0.5em;}
+.hpad { padding-left: 0.5em;
+        padding-right: 0.5em;}
 
 .cl {
     clear:left;
@@ -109,6 +113,7 @@ img {
     -ms-interpolation-mode: bicubic;
 }
 .centh { margin: 0 auto;}
+.table-striped tbody tr:nth-child(2n+1) td, .table-striped tbody tr:nth-child(2n+1) th { background-color: #eee; }
 
 /*Estilos personalizados para cruceo*/
 
@@ -159,20 +164,20 @@ a:hover {
 
 /* Busquedas y barra de navegación */
 
-.navbar.header {
+.navbar.header {   
     background-color: #E7EEF4;
-    background-image:  linear-gradient(center top , #FFFFFF 0%, #E7EEF4 100%);
-background-image: -o-linear-gradient(center top , #FFFFFF 0%, #E7EEF4 100%);
-background-image: -moz-linear-gradient(center top , #FFFFFF 0%, #E7EEF4 100%);
-background-image: -webkit-linear-gradient(center top , #FFFFFF 0%, #E7EEF4 100%);
-background-image: -ms-linear-gradient(center top , #FFFFFF 0%, #E7EEF4 100%);
-           margin: 0;}
+    background-image:  linear-gradient(center top , #FFFFFF 0%, #E7EEF4 100%);  
+    background-image: -o-linear-gradient(center top , #FFFFFF 0%, #E7EEF4 100%);
+    background-image: -moz-linear-gradient(center top , #FFFFFF 0%, #E7EEF4 100%);
+    background-image: -webkit-linear-gradient(center top , #FFFFFF 0%, #E7EEF4 100%);
+    background-image: -ms-linear-gradient(center top , #FFFFFF 0%, #E7EEF4 100%);
+    margin: 0;}
 .navbar.header h1 { color: #005580;
                     float: left;
                     margin: 38px 0 0 45px;}
 .navbar.header .container {  width: 1170px;}
 .navbar .brand {
-    padding: 0;
+    padding: 0; 
 }
 
 .searchhome .navbar-inner {
@@ -203,10 +208,8 @@ background-image: -ms-linear-gradient(center top , #FFFFFF 0%, #E7EEF4 100%);
 
 }
 
-
-
-
 /*   Ofertas    */
+.well, .widget, .crucitem { background-color: #fcfcfc; border: 1px solid #E3E3E3;}
 .cab {
     background-color: #45AEEA;
     background-image: linear-gradient(center top , #54B4EB, #2FA4E7);
@@ -217,32 +220,60 @@ background-image: -ms-linear-gradient(center top , #FFFFFF 0%, #E7EEF4 100%);
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
     color: #fff;
     margin-bottom: 6px;
-
 }
+.cab.light {background-image: linear-gradient(center top , #FFFFFF 0%, #E7EEF4 100%);
+            background-image: -moz-linear-gradient(center top , #FFFFFF 0%, #E7EEF4 100%);
+            border-color: #E3E3E3; 
+            color: #555;}
 .cab h3, .cab h4, .cab a { color: #fff; text-align: center; margin: 3px 0;}
 #highligthed .well { padding: 6px;
-               margin-bottom: 8px;
-               padding: 6px;}
+                     margin-bottom: 8px;
+                     padding: 6px;
+}
 .offers .highligthed-title {   }
-.normal-offer.thumbnails > li {margin: 7px 8px 2px 7px; width: 49%;
+.normal-offer.thumbnails > li {margin: 7px 8px 2px 7px; width: 49%; 
                                font-size: 12px;
                                margin: 0 18px 5px 0;
                                width: 46%;}
 .normal-offer.thumbnails > li:nth-child(2n) { margin-right: 0;}
-.precio {color: #e9322d; font: bold 1.2em Arial,Helvetica,sans-serif; }
+.precio {color: #D95700; font: bold 1.2em Arial,Helvetica,sans-serif; }
 .normal-offer .precio { float: right;}
 .offers .destac {text-align: center; background-color: #fff; border: 1px solid #E5EBED}
 .offers .destac p { margin: 0 0 3px;}
 
 
 /* Cruceros */
+.offer-highligthed-cruise { font-size: 1.2em; padding: 5px;}
 .crucitem {
     border-radius: 11px 11px 11px 11px;
-    padding: 4px 20px 10px 53px;
+    padding: 4px 14px 2px 3.5em;
+    margin-bottom: 8px;
+    background: url('../img/crucero/zona.png') no-repeat  0.5em 0.5em #f9f9f9;
+}
+.crucitem h4 { 
+    color: #45AEEA;
+    margin: 8px 0;
+    font-size: 1.2em;
+}
+.crucitem h4 a, .crucitem h4 span { color: #555; font-size: 0.8em;}
+.crucitem.zona { background-image: url('../img/crucero/zona.png')}
+.crucitem.duracion { background-image: url('../img/crucero/duration.png')}
+.crucitem.barco { background-image: url('../img/crucero/barco.png')}
+.crucitem.naviera { background-image: url('../img/crucero/naviera.png')}
+.crucitem.detalles { background-image: url('../img/crucero/detalles.png')}
+.crucitem.incluido { background-image: url('../img/crucero/incluid.png')}
+.crucitem.no-incluid { background-image: url('../img/crucero/no_incluid.png')}
+.crucitem.promocion { background-image: url('../img/crucero/promocion.png')}
+.crucitem.itinerario { background-image: url('../img/crucero/itinerario.png')}
 
+.crucitem table thead tr { background: #EF7911;}
+.crucitem .table-bordered thead tr, .crucitem .table-bordered thead th {
+    border: 0 none;
+    border-radius: 0;
+    color: #fff;
 }
 
-/* Widgets mas buscados, */
+/* Widgets, mas buscados, navieras */
 
 .widget {
     border: 1px solid #E3E3E3;
@@ -270,7 +301,8 @@ background-image: -ms-linear-gradient(center top , #FFFFFF 0%, #E7EEF4 100%);
 }
 
 .widget ul li {
-    border-bottom: 1px solid #ccc;
+    line-height: 1.8em;
+    margin: 0 5px 6px;
     padding: 5px;
 }
 .widget ul li img {
@@ -285,46 +317,36 @@ background-image: -ms-linear-gradient(center top , #FFFFFF 0%, #E7EEF4 100%);
 }
 
 
+.widget.der {
+    margin-right: 12px;
+    margin-left: 0;
+}
+
+.widget.altern h3 {
+    background-color: #EF7911;
+    background-image: -moz-linear-gradient(center top , #EFA71E, #EF7911);
+}
+.widget.listicon li { text-indent: 18px;}
+.widget.listicon.arrow ul li {
+    background:  url("../img/stc/arrow.png") no-repeat left center;
+}
+
+.widget.listicon.ancla ul li {
+    background: url("../img/anchor.png") no-repeat left center;
+}
+
+
 /* Footer */
 footer {
     background: #333;
     padding: 20px 0;
-    color: #D3D3D3;
+    color: #D3D3D3;   
 }
-footer
+footer 
 footer address {
     color: #fff;
 }
 
-div#shipping-companies-list {
-    border: 1px solid #E3E3E3;
-    border-radius: 5px;
-    margin-right: 12px;
-}
 
-div#shipping-companies-list h3 {
-    background-color: #EF7911;
-    background-image: -moz-linear-gradient(center top , #EFA71E, #EF7911);
-    background-repeat: repeat-x;
-    text-align: center;
-    border-radius: 5px 5px 0 0;
-    margin: 0;
-    color: #ffffff;
-    border-bottom: 1px solid #EF7911;
-    font-size: 17px;
-    line-height: 28px;
-}
 
-div#shipping-companies-list ul.shipping-companies {
-     list-style-image: url(../img/anchor.png);
-     padding-left: 10px ;
-     margin: 7px 12px 10px;
- }
 
-div#shipping-companies-list ul.shipping-companies li {
-    border-bottom: 1px solid #ccc;
-    padding: 3px 0;
-}
-div#shipping-companies-list ul.shipping-companies li:last-child {
-     border-bottom: none;
-}
