@@ -18,6 +18,13 @@
 
     <script src="{{ asset('bundles/cruceoportal/js/modernizr.min.js') }}"></script>
 
+    {% block js %}
+        <script src="{{ asset('bundles/cruceoportal/js/jquery.js') }}"></script>
+        <script src="{{ asset('bundles/cruceoportal/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('bundles/cruceoportal/js/plugins.js') }}"></script>
+        <script src="{{ asset('bundles/cruceoportal/js/main.js') }}"></script>
+    {% endblock %}
+
 </head>
 <body>
 
@@ -40,13 +47,6 @@
     <!-- Footer -->
     {% include "CruceoPortalBundle:Partials:footer.html.twig" %}
     <!-- End Footer -->
-
-    {% block js %}
-        <script src="{{ asset('bundles/cruceoportal/js/jquery.js') }}"></script>
-        <script src="{{ asset('bundles/cruceoportal/js/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('bundles/cruceoportal/js/plugins.js') }}"></script>
-        <script src="{{ asset('bundles/cruceoportal/js/main.js') }}"></script>
-    {% endblock %}
 
     <script>
         var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];

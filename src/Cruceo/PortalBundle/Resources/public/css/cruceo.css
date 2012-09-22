@@ -158,13 +158,13 @@ a:hover {
 
 /* Busquedas y barra de navegación */
 
-.navbar.header {   background: url('../img/stc/cruceo_bg.png') repeat left top; margin: 0;}
+.navbar.header { margin: 0;}
 .navbar.header h1 { color: #005580;
                     float: left;
                     margin: 38px 0 0 45px;}
 .navbar.header .container {  width: 1170px;}
 .navbar .brand {
-    padding: 0; 
+    padding: 0;
 }
 
 .searchhome .navbar-inner {
@@ -187,20 +187,20 @@ a:hover {
 
 
 div#shipping-companies-list {
-    border: 1px solid #ccc;
+    border: 1px solid #E3E3E3;
     border-radius: 5px;
-    margin-top: 10px;
+    margin-right: 12px;
 }
 
 div#shipping-companies-list h3 {
-    background-color: #45AEEA;
-    background-image: -moz-linear-gradient(center top , #54B4EB, #2FA4E7);
+    background-color: #EF7911;
+    background-image: -moz-linear-gradient(center top , #EFA71E, #EF7911);
     background-repeat: repeat-x;
     text-align: center;
     border-radius: 5px 5px 0 0;
     margin: 0;
     color: #ffffff;
-    border-bottom: 1px solid #1684C2;
+    border-bottom: 1px solid #EF7911;
     font-size: 17px;
     line-height: 28px;
 }
@@ -220,9 +220,7 @@ div#shipping-companies-list ul.shipping-companies li:last-child {
 }
 /* Contenidos, ofertas, etc */
 
-.contenidos {
-    background: url('../img/stc/cruceo_bg.png') repeat top left;
-}
+.contenidos { }
 .contenidos .container {  background: rgba(255, 255, 255, 0.3);
                           padding-top: 15px;
 
@@ -246,7 +244,7 @@ div#shipping-companies-list ul.shipping-companies li:last-child {
                margin-bottom: 8px;
                padding: 6px;}
 .offers .highligthed-title {   }
-.normal-offer.thumbnails > li {margin: 7px 8px 2px 7px; width: 49%; 
+.normal-offer.thumbnails > li {margin: 7px 8px 2px 7px; width: 49%;
                                font-size: 12px;
                                margin: 0 18px 5px 0;
                                width: 47%;}
@@ -257,9 +255,42 @@ div#shipping-companies-list ul.shipping-companies li:last-child {
 footer {
     background: #333;
     padding: 20px 0;
-    color: #D3D3D3;   
+    color: #D3D3D3;
 }
 footer address {
     color: #fff;
 }
 
+div#most-wanted-list {
+    border: 1px solid #E3E3E3;
+    border-radius: 5px;
+    margin-left: 12px;
+}
+
+div#most-wanted-list h3 {
+    background-color: #45AEEA;
+    background-image: linear-gradient(center top , #54B4EB, #2FA4E7);
+    background-image: -moz-linear-gradient(center top , #54B4EB, #2FA4E7);
+    background-repeat: repeat-x;
+    text-align: center;
+    border-radius: 5px 5px 0 0;
+    margin: 0;
+    color: #ffffff;
+    border-bottom: 1px solid #1684C2;
+    font-size: 17px;
+    line-height: 28px;
+}
+
+div#most-wanted-list ul.most-wanted {
+    list-style-image: url(../img/find.png);
+    padding-left: 10px ;
+    margin: 7px 12px 10px;
+}
+
+div#most-wanted-list ul.most-wanted li {
+    border-bottom: 1px solid #ccc;
+    padding: 3px 0;
+}
+div#most-wanted-list ul.most-wanted li:last-child {
+    border-bottom: none;
+}

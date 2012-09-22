@@ -93,9 +93,9 @@ class HomeController extends Controller
      */
     public function mostWantedAction()
     {
-        $results = $this->getDoctrine()->getRepository('CruceoPortalBundle:Searched')->get;
+        $mostwanteds = $this->getDoctrine()->getRepository('CruceoPortalBundle:Searched')->getMostWanted();
 
-
+        return array('mostwanteds' => $mostwanteds);
     }
 
     private function generateMostWanted($str)

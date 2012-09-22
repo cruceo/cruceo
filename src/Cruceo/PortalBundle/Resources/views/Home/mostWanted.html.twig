@@ -1,0 +1,11 @@
+<div id="most-wanted-list">
+
+    <h3>Los + Buscados</h3>
+
+    <ul class="most-wanted">
+        {% for mostwanted in mostwanteds %}
+            <li><a href="{{ path('home_search', { 'text': mostwanted.search }) }}">{{ mostwanted.search }}</a></li>
+        {% endfor %}
+    </ul>
+
+</div>
