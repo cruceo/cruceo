@@ -56,6 +56,10 @@ class HomeController extends Controller
             $zone
         );
 
+        if (count($results)) {
+            $this->generateMostWanted($str);
+        }
+
         $companies  = $this->getDoctrine()->getRepository('CruceoPortalBundle:Navieras')->findAll();
         $cabins     = $this->getDoctrine()->getRepository('CruceoPortalBundle:Tipologias')->findAll();
         $categories = $this->getDoctrine()->getRepository('CruceoPortalBundle:Categorias')->findAll();
@@ -85,11 +89,22 @@ class HomeController extends Controller
     }
 
     /**
-     * @todo: crear mecanismo de guardado de busquedas (backend)
-     *
      * @Template()
      */
-    public function mostSearchedAction()
+    public function mostWantedAction()
     {
+        $mostwanteds = $this->getDoctrine()->getRepository('CruceoPortalBundle:Searched')->getMostWanted();
+
+        return array('mostwanteds' => $mostwanteds);
+    }
+
+    private function generateMostWanted($str)
+    {
+        $entity = new \Cruceo\PortalBundle\Entity\Searched();
+        $entity->setSearch($str);
+
+        $em = $this->getDoctrine()->getEntityManager();
+        $em->persist($entity);
+        $em->flush();
     }
 }

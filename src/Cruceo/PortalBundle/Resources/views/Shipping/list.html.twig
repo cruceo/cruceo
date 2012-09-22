@@ -1,5 +1,10 @@
-<ul class="shipping-companies">
-    {% for company in companies %}
-    <li><a href="{{ path('shipping_detail', { 'slug': company.getSlug }) }}">{{ company.getNombre }}</a></li>
-    {% endfor %}
-</ul>
+<div id="shipping-companies-list">
+
+    <h3>Navieras</h3>
+
+    <ul class="shipping-companies">
+        {% for company in companies %}
+        <li><a href="{{ path('shipping_detail', { 'slug': company.getSlug }) }}">{{ company.getNombre }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
