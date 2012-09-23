@@ -367,6 +367,7 @@ a:hover {
 .widget.altern h3 {
     background-color: #EF7911;
     background-image: -moz-linear-gradient(center top , #EFA71E, #EF7911);
+    border-bottom: 1px solid #EF7911;
 }
 .widget.listicon li { text-indent: 18px;}
 .widget.listicon.arrow ul li {

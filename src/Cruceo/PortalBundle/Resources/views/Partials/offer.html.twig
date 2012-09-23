@@ -7,7 +7,7 @@
 
             {% set path = '/'~offer.getBarco.getUploadDir~'/'~offer.getBarco.getFotos[random((offer.getBarco.getFotos|length) - 1)].getRuta %}
 
-            <a class="thumbnail" href="#">
+            <a class="thumbnail" href="{{ path('cruise_detail', {'slug': offer.getSlug} )}}">
                 <img src="{{ path }}" alt="{{ offer.getNombre }}" title="{{ offer.getNombre }}" />
             </a>
 
