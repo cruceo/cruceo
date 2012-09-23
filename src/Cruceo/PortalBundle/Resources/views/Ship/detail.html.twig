@@ -1,136 +1,157 @@
 {% extends "CruceoPortalBundle::layout2columns.html.twig" %}
 
+{% block css %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/cruceoportal/css/ships.css') }}" />
+{% endblock %}
+
 {% block js %}
-{{ parent() }}
-<script type="text/javascript" src="{{ asset('/bundles/cruceoportal/js/jquery.history.js') }}"></script>
-<script type="text/javascript" src="{{ asset('/bundles/cruceoportal/js/jquery.opacityrollover.js') }}"></script>
-<script type="text/javascript" src="{{ asset('/bundles/cruceoportal/js/jquery.galleriffic.js') }}"></script>
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('/bundles/cruceoportal/js/jquery.history.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/bundles/cruceoportal/js/jquery.opacityrollover.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/bundles/cruceoportal/js/jquery.galleriffic.js') }}"></script>
 {% endblock %}
 
 {% block main %}
-    <h1>{{ entity.getNombre }}</h1>
-
-    <div id="features-ship">
-        <h2>Características</h2>
-
-        <div id="class-ship">{{ entity.getCategoria.getNombre }}</div>
-
-        <ul>
-            <li>
-                <div id="speed">Velocidad</div>
-                <div id="speed-value">{{ entity.getVelocidad }} nudos</div>
-            </li>
-
-            <li>
-                <div id="beam">Manga</div>
-                <div id="beam-value">{{ entity.getManga }} m.</div>
-            </li>
-
-            <li>
-                <div id="length">Eslora</div>
-                <div id="length-value">{{ entity.getEslora }} m.</div>
-            </li>
-        </ul>
-    </div>
-
-    <div id="ship-description">
-        <h2>Descripción</h2>
-        <p>{{ entity.getDescripcion|nl2br }}</p>
-    </div>
-
-    <div id="equipments-ship">
-        <h2>Equipamiento</h2>
-        <ul>
-            {% for equipment in entity.getEquipamientos %}
-            <li>
-                <img src="{{ equipment.getNombre }}" alt="{{ equipment.getNombre }}" />
-                <span>{{ equipment.getNombre }}</span>
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
-
-    {% if entity.getFotos|length %}
-    <div id="gallery" class="content">
-        <h2>Galería de Fotos</h2>
-        <div id="controls" class="controls"></div>
-        <div class="slideshow-container">
-            <div id="loading" class="loader"></div>
-            <div id="slideshow" class="slideshow"></div>
+    <div id="ship">
+        <div class="cab">
+            <h1>{{ entity.getNombre }}</h1>
         </div>
-        <div id="caption" class="caption-container"></div>
-    </div>
 
-    <div id="thumbs" class="navigation">
-        <ul class="thumbs noscript">
-        {% for photo in entity.getFotos %}
-            <li>
-                <a class="thumb" href="/{{ entity.getUploadDir ~ '/' ~ photo.getRuta }}" title="{{ photo.getTitulo }}">
-                    <img src="/{{ entity.getThumbsWebDir ~ '/' ~ photo.getRuta }}" alt="{{ photo.getTitulo }}" />
-                </a>
-                <div class="caption">
-                    <div class="image-title">{{ photo.getTitulo }}</div>
+        <div id="features-ship" class="itemship">
+            <h2>Características</h2>
+
+            <div id="class-ship">{{ entity.getCategoria.getNombre }}</div>
+
+            <ul>
+                <li>
+                    <span id="speed" class="feature-ship-label">Velocidad</span>
+                    <span id="speed-value" class="feature-ship-value">{{ entity.getVelocidad }} nudos</span>
+                </li>
+
+                <li>
+                    <span id="beam" class="feature-ship-label">Manga</span>
+                    <span id="beam-value" class="feature-ship-value">{{ entity.getManga }} m.</span>
+                </li>
+
+                <li>
+                    <span id="length" class="feature-ship-label">Eslora</span>
+                    <span id="length-value" class="feature-ship-value">{{ entity.getEslora }} m.</span>
+                </li>
+            </ul>
+        </div>
+
+        <div id="equipments-ship" class="itemship">
+            <h2>Equipamiento</h2>
+            <ul>
+                {% for equipment in entity.getEquipamientos %}
+                <li>
+                    <img src="{{ equipment.getNombre }}" alt="{{ equipment.getNombre }}" />
+                    <span>{{ equipment.getNombre }}</span>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div id="ship-description" class="itemship">
+            <h2>Descripción</h2>
+            <p>{{ entity.getDescripcion|nl2br }}</p>
+        </div>
+
+        {% if entity.getFotos|length %}
+            <div class="itemship">
+
+                <h2>Galería de Fotos</h2>
+
+                <div id="ship-gallery">
+
+                    <div id="thumbs" class="navigation">
+                        <ul class="thumbs noscript">
+                            {% for photo in entity.getFotos %}
+                                <li>
+                                    <a class="thumb" href="/{{ entity.getUploadDir ~ '/' ~ photo.getRuta }}" title="{{ photo.getTitulo }}">
+                                        <img src="/{{ entity.getThumbsWebDir ~ '/' ~ photo.getRuta }}" alt="{{ photo.getTitulo }}" />
+                                    </a>
+                                    <div class="caption">
+                                        <div class="image-title">{{ photo.getTitulo }}</div>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <div id="gallery" class="contents">
+                        <div id="controls" class="controls"></div>
+                        <div class="slideshow-container">
+                            <div id="loading" class="loader"></div>
+                            <div id="slideshow" class="slideshow"></div>
+                        </div>
+                        <div id="caption" class="caption-container"></div>
+                    </div>
+
+                    <div class="clr"></div>
+
                 </div>
-            </li>
-        {% endfor %}
-        </ul>
+
+            </div>
+
+            <script type="text/javascript">
+                jQuery(document).ready(function($) {
+                    // We only want these styles applied when javascript is enabled
+                    $('div.navigation').css({'width' : '300px', 'float' : 'left'});
+                    $('div.contents').css('display', 'block');
+
+                    // Initially set opacity on thumbs and add
+                    // additional styling for hover effect on thumbs
+                    var onMouseOutOpacity = 0.67;
+                    $('#thumbs ul.thumbs li').opacityrollover({
+                        mouseOutOpacity:   onMouseOutOpacity,
+                        mouseOverOpacity:  1.0,
+                        fadeSpeed:         'fast',
+                        exemptionSelector: '.selected'
+                    });
+
+                    // Initialize Advanced Galleriffic Gallery
+                    var gallery = $('#thumbs').galleriffic({
+                        delay:                     2500,
+                        numThumbs:                 15,
+                        preloadAhead:              10,
+                        enableTopPager:            true,
+                        enableBottomPager:         true,
+                        maxPagesToShow:            7,
+                        imageContainerSel:         '#slideshow',
+                        controlsContainerSel:      '#controls',
+                        captionContainerSel:       '#caption',
+                        loadingContainerSel:       '#loading',
+                        renderSSControls:          true,
+                        renderNavControls:         true,
+                        playLinkText:              'Reproducir Galería',
+                        pauseLinkText:             'Pause',
+                        prevLinkText:              '&lsaquo; Anterior',
+                        nextLinkText:              'Próxima &rsaquo;',
+                        nextPageLinkText:          'Prox. &rsaquo;',
+                        prevPageLinkText:          '&lsaquo; Prev.',
+                        enableHistory:             false,
+                        autoStart:                 false,
+                        syncTransitions:           true,
+                        defaultTransitionDuration: 900,
+                        onSlideChange:             function(prevIndex, nextIndex) {
+                            // 'this' refers to the gallery, which is an extension of $('#thumbs')
+                            this.find('ul.thumbs').children()
+                                    .eq(prevIndex).fadeTo('fast', onMouseOutOpacity).end()
+                                    .eq(nextIndex).fadeTo('fast', 1.0);
+                        },
+                        onPageTransitionOut:       function(callback) {
+                            this.fadeTo('fast', 0.0, callback);
+                        },
+                        onPageTransitionIn:        function() {
+                            this.fadeTo('fast', 1.0);
+                        }
+                    });
+                });
+            </script>
+        {% endif %}
+
     </div>
-
-    <script type="text/javascript">
-        jQuery(document).ready(function($) {
-            // We only want these styles applied when javascript is enabled
-            $('div.navigation').css({'width' : '300px', 'float' : 'left'});
-            $('div.content').css('display', 'block');
-
-            // Initially set opacity on thumbs and add
-            // additional styling for hover effect on thumbs
-            var onMouseOutOpacity = 0.67;
-            $('#thumbs ul.thumbs li').opacityrollover({
-                mouseOutOpacity:   onMouseOutOpacity,
-                mouseOverOpacity:  1.0,
-                fadeSpeed:         'fast',
-                exemptionSelector: '.selected'
-            });
-
-            // Initialize Advanced Galleriffic Gallery
-            var gallery = $('#thumbs').galleriffic({
-                delay:                     2500,
-                numThumbs:                 15,
-                preloadAhead:              10,
-                enableTopPager:            true,
-                enableBottomPager:         true,
-                maxPagesToShow:            7,
-                imageContainerSel:         '#slideshow',
-                controlsContainerSel:      '#controls',
-                captionContainerSel:       '#caption',
-                loadingContainerSel:       '#loading',
-                renderSSControls:          true,
-                renderNavControls:         true,
-                playLinkText:              'Play Slideshow',
-                pauseLinkText:             'Pause Slideshow',
-                prevLinkText:              '&lsaquo; Previous Photo',
-                nextLinkText:              'Next Photo &rsaquo;',
-                nextPageLinkText:          'Next &rsaquo;',
-                prevPageLinkText:          '&lsaquo; Prev',
-                enableHistory:             false,
-                autoStart:                 false,
-                syncTransitions:           true,
-                defaultTransitionDuration: 900,
-                onSlideChange:             function(prevIndex, nextIndex) {
-                    // 'this' refers to the gallery, which is an extension of $('#thumbs')
-                    this.find('ul.thumbs').children()
-                            .eq(prevIndex).fadeTo('fast', onMouseOutOpacity).end()
-                            .eq(nextIndex).fadeTo('fast', 1.0);
-                },
-                onPageTransitionOut:       function(callback) {
-                    this.fadeTo('fast', 0.0, callback);
-                },
-                onPageTransitionIn:        function() {
-                    this.fadeTo('fast', 1.0);
-                }
-            });
-        });
-    </script>
-    {% endif %}
 
 {% endblock %}

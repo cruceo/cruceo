@@ -1,0 +1,53 @@
+@import "galleriffic.css";
+
+div#ship {
+    margin: 10px;
+}
+div#ship div.cab h1 {
+    text-align: center;
+    font-size: 20px;
+    line-height: 20px;
+}
+div#ship div.itemship {
+    border: 1px solid #E3E3E3;
+    border-radius: 6px;
+    background: #ffffff;
+    margin-top: 8px;
+}
+div#ship div.itemship h2 {
+    margin: 0;
+    background-color: #909090;
+    background-image: -moz-linear-gradient(center top , #e5e5e5, #909090);
+    border-bottom: 1px solid #909090;
+    border-radius: 6px 0 6px 0;
+    font-size: 17px;
+    line-height: 26px;
+    padding-left: 10px;
+    width: 75%;
+    color: #fff;
+    box-shadow: 1px 1px 2px #434343;
+    text-shadow: 1px 1px #555;
+}
+div#ship div#ship-description p {
+    text-align: justify;
+    padding: 10px;
+}
+div#ship div#features-ship div#class-ship {
+    padding: 10px;
+    font-weight: bold;
+}
+div#ship ul {
+    list-style-type: none;
+    margin: 10px;
+}
+.feature-ship-label {
+    color: #45AEEA;
+    font-size: 1.2em;
+    margin-right: 10px;
+    display: inline-block;
+    width: 100px;
+}
+.feature-ship-value {
+    color: #555555;
+    font-size: 0.8em;
+}
