@@ -46,8 +46,11 @@
             <ul>
                 {% for equipment in entity.getEquipamientos %}
                 <li>
-                    <img src="{{ equipment.getNombre }}" alt="{{ equipment.getNombre }}" />
-                    <span>{{ equipment.getNombre }}</span>
+                    {% if loop.index is even %}
+                    <img src="/bundles/cruceoportal/icons/swimming.png" alt="{{ equipment.getNombre }}" title="{{ equipment.getNombre }}" />
+                    {% else %}
+                    <img src="/bundles/cruceoportal/icons/jewelry.png" alt="{{ equipment.getNombre }}" title="{{ equipment.getNombre }}" />
+                    {% endif %}
                 </li>
                 {% endfor %}
             </ul>
