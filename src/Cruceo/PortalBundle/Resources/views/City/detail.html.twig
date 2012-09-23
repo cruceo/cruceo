@@ -1,17 +1,20 @@
 {% extends "CruceoPortalBundle::layout2columns.html.twig" %}
 
 {% block main %}
-    <h1>{{ entity.getNombre }} <img src="" alt="{{ entity.getPais }}" title="{{ entity.getPais }}" /></h1>
 
-    {% if entity.getLugaresTuristicos|length > 0 %}
+<div class="detalle_ciudad mfcl well nobg">
+    <div class="cab vpad">
+        <h4>{{ entity.getNombre }} <img class="img-circle" src="/cities/barcelona/highligth.png" alt="{{ entity.getPais }}" title="{{ entity.getPais }}" /></h4>
+    </div>
+     {% if entity.getLugaresTuristicos|length > 0 %}
         <div id="tourist-places-city">
-            <h2>Lugares Turísticos</h2>
+            <p class="lead t-cent">Lugares Turísticos</p>
             {% for place in entity.getLugaresTuristicos %}
-            <div class="tourist-place">
-                <h3 class="icon-place-{{ place.getTiposLugares.getNombre }}">{{ place.getNombre }}</h3>
+            <div class="tourist-place crucitem {{ place.getTiposLugares.getNombre }}">
+                <h4>{{ place.getNombre }}</h4>
             </div>
             <div id="description-tourist-place">
-                <p>{{ place.getDescripcion }}</p>
+                <p class="items_city">{{ place.getDescripcion }}</p>
             </div>
             {% endfor %}
         </div>
