@@ -1,4 +1,4 @@
-/* Lista de modificadores comunes para ir añadiendo   */
+/* Lista de modificadores comunes   */
 
 .linea {
     display: inline;
@@ -43,6 +43,7 @@
     -webkit-border-radius:5px;
     border-radius:5px;
 }
+.nobg {background: 0 none !important;}
 .mg {margin: 0.5em;}
 .mb{
     margin-bottom:0.5em;
@@ -101,7 +102,7 @@
     background-color: transparent;
     border: 0;
 }
-
+.center { margin: 0 auto; }
 img {
     /* Responsive images */
 
@@ -112,7 +113,7 @@ img {
     border: 0;
     -ms-interpolation-mode: bicubic;
 }
-.centh { margin: 0 auto;}
+
 .table-striped tbody tr:nth-child(2n+1) td, .table-striped tbody tr:nth-child(2n+1) th { background-color: #eee; }
 
 .w10{width: 10px;}
@@ -174,6 +175,7 @@ a {
     text-decoration: none;
     outline: 0 none;
 }
+a:visited, a:active, a:focus { outline: 0 none; border: 0 none;}
 a:hover {
     color: #157ab5;
     text-decoration: underline;
@@ -203,6 +205,10 @@ a:hover {
     -webkit-box-shadow: 0 2px 6px #111;
     box-shadow: 0 2px 6px #111;
 }
+.mfcl { margin-left: 12px;}
+.mlcr {  margin-right: 12px;}
+.imgl { float: left; margin: 0 15px 15px 0; }
+.imgr { float: right; margin: 0 0 15px 15px;}
 
 /* Busquedas y barra de navegación */
 
@@ -216,7 +222,9 @@ a:hover {
     margin: 0;}
 .navbar.header h1 { color: #005580;
                     float: left;
-                    margin: 38px 0 0 45px;}
+                    margin: 37px 0 0 153px;
+                    font:  italic bold 36px  "Myriad Pro", "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
 .navbar.header .container {  width: 1170px;}
 .navbar .brand {
     padding: 0;
@@ -252,6 +260,10 @@ a:hover {
 
 /*   Ofertas    */
 .well, .widget, .crucitem { background-color: #fcfcfc; border: 1px solid #E3E3E3;}
+.contenidos .well { padding: 6px;
+                     margin-bottom: 8px;
+                     padding: 6px;
+}
 .cab {
     background-color: #45AEEA;
     background-image: linear-gradient(center top , #54B4EB, #2FA4E7);
@@ -262,13 +274,14 @@ a:hover {
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
     color: #fff;
     margin-bottom: 6px;
+    position: relative;
 }
 .cab.light {background-image: linear-gradient(center top , #FFFFFF 0%, #E7EEF4 100%);
             background-image: -moz-linear-gradient(center top , #FFFFFF 0%, #E7EEF4 100%);
             border-color: #E3E3E3;
             color: #555;}
 .cab h3, .cab h4, .cab a { color: #fff; text-align: center; margin: 3px 0;}
-#highligthed .well { padding: 6px;
+.contenidos .well { padding: 6px;
                      margin-bottom: 8px;
                      padding: 6px;
 }
@@ -321,6 +334,7 @@ a:hover {
     border: 1px solid #E3E3E3;
     border-radius: 5px;
     margin-left: 12px;
+    margin-bottom: 15px;
 }
 
 .widget  h3 {
@@ -346,6 +360,7 @@ a:hover {
     line-height: 1.8em;
     margin: 0 5px 6px;
     padding: 5px;
+     border-bottom: 1px solid #ccc;
 }
 .widget ul li img {
     border-radius: 4px;
@@ -379,15 +394,40 @@ a:hover {
 }
 
 
+/* Filtros de busqueda   */
+.widget .accordion { margin-bottom: 0;}
+.widget .accordion-heading { background: #FCFCFC;}
+.widget .accordion-group { margin-bottom: 0px; }
+.widget .accordion-inner { padding: 4px 10px;}
+.widget .accordion-toggle { font:  italic bold 16px/19px "Myriad Pro","Trebuchet MS",Arial,Helvetica,sans-serif; padding: 10px 8px 8px }
+.widget [class^="icon-"], .widget [class*=" icon-"] { margin-right: 2px;}
+
+/* Navieras */
+
+.detalle_naviera .imgl { margin-left: 0;}
+.detalle_naviera .caption { color: #2FA4E7;}
+
+/* Ciudades */
+.detalle_ciudad .cab img.img-circle {
+    border: 2px solid #FFFFFF;
+    left: 23px;
+    position: absolute;
+    top: -20px;
+    width: 100px;
+    }
+
+.detalle_ciudad .crucitem h4 {
+border-bottom: 1px solid #45AEEA;
+    display: inline-block;
+    padding: 0 15px 5px 0;
+}
+
+
 /* Footer */
 footer {
     background: #333;
     padding: 20px 0;
     color: #D3D3D3;
-}
-footer
-footer address {
-    color: #fff;
 }
 
 textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], select {
@@ -422,4 +462,9 @@ button#search:hover {
     background-color: #1e9539;
     background-position: 0 -15px;
     text-decoration: none;
+}
+.footer_com ul { width: 95%; margin: 0 auto; }
+.footer_com ul li { display: inline-block;}
+footer address {
+    color: #fff;
 }

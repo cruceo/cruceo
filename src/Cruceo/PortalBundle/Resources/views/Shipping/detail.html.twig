@@ -1,13 +1,32 @@
 {% extends "CruceoPortalBundle::layout2columns.html.twig" %}
 
 {% block main %}
-    <img src="{{ entity.getSlug }}" alt="{{ entity.getNombre }}" title="{{ entity.getNombre }}" />
-    <h1>{{ entity.getNombre }}</h1>
 
-    <div id="shipping-company-description">{{ entity.getDescripcion }}</div>
+<div class="detalle_naviera mfcl well">
+    <div class="cab vpad">
+        <h4>{{ entity.getNombre }}</h4>
+    </div>
+    <div id="shipping-company-description">
+        <p>
+         <li class="span3 imgl">
+                <div class="thumbnail">
+                 <a href="#"> <img src="{{ asset('bundles/cruceoportal/img/navieras/msc-cruceros-logo.jpg') }}" alt="Barcopesquero1" title="Barcopesquero1" /></a>
+                  <div class="caption">
+                    <p>Cras justo odio, dapibus ac facilisis in.</p>
+                  </div>
+                </div>
+              </li>
+       <!--     <img class="img-polaroid" src="{{ entity.getSlug }}" alt="{{ entity.getNombre }}" title="{{ entity.getNombre }}" />  -->
+
+{{ entity.getDescripcion }}</p></div>   
+            </div>
+       {% endblock %} 
+
+        {% block second %}
 
     {% if entity.getCruceros|length %}
-    <div id="ships">
+    <div id="ships" class="widget der listicon arrow">
+        <h3>Barcos de ésta naviera</h3>
         <ul>
         {% for crucero in entity.getCruceros %}
             <li>
@@ -16,5 +35,7 @@
         {% endfor %}
         </ul>
     </div>
+
     {% endif %}
+
 {% endblock %}
