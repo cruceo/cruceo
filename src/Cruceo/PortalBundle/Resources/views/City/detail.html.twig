@@ -12,8 +12,6 @@
             {% for place in entity.getLugaresTuristicos %}
             <div class="tourist-place crucitem {{ place.getTiposLugares.getNombre }}">
                 <h4>{{ place.getNombre }}</h4>
-            </div>
-            <div id="description-tourist-place">
                 <p class="items_city">{{ place.getDescripcion }}</p>
             </div>
             {% endfor %}

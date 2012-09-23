@@ -370,9 +370,14 @@ a:hover {
     left: 23px;
     position: absolute;
     top: -20px;
-    width: 75px;
+    width: 100px;
     }
- .detalle_ciudad p.items_city {margin-left: 50px;}
+
+.detalle_ciudad .crucitem h4 {
+border-bottom: 1px solid #45AEEA;
+    display: inline-block;
+    padding: 0 15px 5px 0;
+}
 
 
 /* Footer */
@@ -386,7 +391,3 @@ footer {
 footer address {
     color: #fff;
 }
-
-
-
-
