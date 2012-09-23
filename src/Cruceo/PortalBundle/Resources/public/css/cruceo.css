@@ -1,4 +1,4 @@
-/* Lista de modificadores comunes para ir añadiendo   */
+/* Lista de modificadores comunes   */
 
 .linea {
     display: inline;
@@ -43,6 +43,7 @@
     -webkit-border-radius:5px;
     border-radius:5px;
 }
+.nobg {background: 0 none !important;}
 .mg {margin: 0.5em;}
 .mb{
     margin-bottom:0.5em;
@@ -101,7 +102,7 @@
     background-color: transparent;
     border: 0;
 }
-
+.center { margin: 0 auto; }
 img {
     /* Responsive images */
 
@@ -112,7 +113,7 @@ img {
     border: 0;
     -ms-interpolation-mode: bicubic;
 }
-.centh { margin: 0 auto;}
+
 .table-striped tbody tr:nth-child(2n+1) td, .table-striped tbody tr:nth-child(2n+1) th { background-color: #eee; }
 
 /*Estilos personalizados para cruceo*/
@@ -132,6 +133,7 @@ a {
     text-decoration: none;
     outline: 0 none;
 }
+a:visited, a:active, a:focus { outline: 0 none; border: 0 none;}
 a:hover {
     color: #157ab5;
     text-decoration: underline;
@@ -174,7 +176,9 @@ a:hover {
     margin: 0;}
 .navbar.header h1 { color: #005580;
                     float: left;
-                    margin: 38px 0 0 45px;}
+                    margin: 37px 0 0 153px;
+                    font:  italic bold 36px  "Myriad Pro", "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
 .navbar.header .container {  width: 1170px;}
 .navbar .brand {
     padding: 0; 
@@ -210,6 +214,10 @@ a:hover {
 
 /*   Ofertas    */
 .well, .widget, .crucitem { background-color: #fcfcfc; border: 1px solid #E3E3E3;}
+.contenidos .well { padding: 6px;
+                     margin-bottom: 8px;
+                     padding: 6px;
+}
 .cab {
     background-color: #45AEEA;
     background-image: linear-gradient(center top , #54B4EB, #2FA4E7);
@@ -226,7 +234,7 @@ a:hover {
             border-color: #E3E3E3; 
             color: #555;}
 .cab h3, .cab h4, .cab a { color: #fff; text-align: center; margin: 3px 0;}
-#highligthed .well { padding: 6px;
+.contenidos .well { padding: 6px;
                      margin-bottom: 8px;
                      padding: 6px;
 }
@@ -279,6 +287,7 @@ a:hover {
     border: 1px solid #E3E3E3;
     border-radius: 5px;
     margin-left: 12px;
+    margin-bottom: 15px;
 }
 
 .widget  h3 {
@@ -304,6 +313,7 @@ a:hover {
     line-height: 1.8em;
     margin: 0 5px 6px;
     padding: 5px;
+     border-bottom: 1px solid #ccc;
 }
 .widget ul li img {
     border-radius: 4px;
@@ -336,13 +346,23 @@ a:hover {
 }
 
 
+/* Filtros de busqueda   */
+.widget .accordion { margin-bottom: 0;}
+.widget .accordion-heading { background: #FCFCFC;}
+.widget .accordion-group { margin-bottom: 0px; }
+.widget .accordion-inner { padding: 4px 10px;}
+.widget .accordion-toggle { font:  italic bold 16px/19px "Myriad Pro","Trebuchet MS",Arial,Helvetica,sans-serif; padding: 10px 8px 8px }
+.widget [class^="icon-"], .widget [class*=" icon-"] { margin-right: 2px;}
+
+
 /* Footer */
 footer {
     background: #333;
     padding: 20px 0;
     color: #D3D3D3;   
 }
-footer 
+.footer_com ul { width: 95%; margin: 0 auto; }
+.footer_com ul li { display: inline-block;}
 footer address {
     color: #fff;
 }
