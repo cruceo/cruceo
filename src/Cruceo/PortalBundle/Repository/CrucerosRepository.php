@@ -23,11 +23,13 @@ class CrucerosRepository extends EntityRepository
     {
         $q = $this->getEntityManager()
             ->createQueryBuilder()
-            ->select('c, p, n, a, p2')
+            ->select('c, p, n, a, p2, f, b')
             ->from($this->getEntityName(), 'c')
             ->innerJoin('c.precios', 'p', Expr\Join::WITH, 'p.destacado >= 1')
             ->innerJoin('c.naviera', 'n')
             ->innerJoin('p.agencia', 'a')
+            ->innerJoin('c.barco', 'b')
+            ->innerJoin('b.fotos', 'f')
             ->leftJoin('c.precios', 'p2', Expr\Join::WITH, 'p2.destacado IS NULL')
             ->orderBy('p.destacado, p.precio')
             ->getQuery();
@@ -71,7 +73,6 @@ class CrucerosRepository extends EntityRepository
         $q = $this->getQueryBuilderForSearch($str, $start, $duration, $duration, $zone);
 
         $q->innerJoin('p.tipologia', 't')
-            ->innerJoin('c.barco', 'b')
             ->innerJoin('b.categoria', 'ct')
             ->innerJoin('b.equipamientos', 'e');
 
@@ -91,7 +92,7 @@ class CrucerosRepository extends EntityRepository
             $q->andWhere('n.id = :shipping')->setParameter('shipping', $shipping);
         }
 
-        $q->select('c, p, n, a, cc, cd, t, b, ct, e');
+        $q->select('c, p, n, a, cc, cd, t, b, ct, e, f');
 
         return $q->getQuery()->getResult();
     }
@@ -105,6 +106,8 @@ class CrucerosRepository extends EntityRepository
             ->innerJoin('p.agencia', 'a')
             ->innerJoin('c.ciudadesCruceros', 'cc')
             ->innerJoin('cc.ciudad', 'cd')
+            ->innerJoin('c.barco', 'b')
+            ->innerJoin('b.fotos', 'f')
             ->orderBy('p.destacado, p.precio');
 
         $strModule = $q->expr()->orX();
