@@ -12,7 +12,7 @@ div.contents a:focus, div.content a:hover, div.content a:active {
 	text-decoration: underline;
 }
 div.controls {
-    background-color: #FAFAFA;
+    background-color: #f6f6f6;
     border: 1px solid #CCCCCC;
     border-radius: 6px 6px 6px 6px;
     height: 23px;
@@ -89,7 +89,7 @@ div.caption {
     font-size: 12px;
     margin-right: 10px;
     padding: 12px;
-    background-color: #FAFAFA;
+    background-color: #f6f6f6;
     box-shadow: 1px 1px 2px #434343;
 }
 div.image-title {
