@@ -269,6 +269,17 @@ a:hover {
     font-size: 1.2em;
 }
 .crucitem h4 a, .crucitem h4 span { color: #555; font-size: 0.8em;}
+
+
+.crucitem table thead tr { background: #EF7911;}
+.crucitem .table-bordered thead tr, .crucitem .table-bordered thead th {
+    border: 0 none;
+    border-radius: 0;
+    color: #fff;
+}
+
+/*   Iconos para tenerlo localizado y generar sprites */
+
 .crucitem.zona { background-image: url('../img/crucero/zona.png')}
 .crucitem.duracion { background-image: url('../img/crucero/duration.png')}
 .crucitem.barco { background-image: url('../img/crucero/barco.png')}
@@ -278,13 +289,9 @@ a:hover {
 .crucitem.no-incluid { background-image: url('../img/crucero/no_incluid.png')}
 .crucitem.promocion { background-image: url('../img/crucero/promocion.png')}
 .crucitem.itinerario { background-image: url('../img/crucero/itinerario.png')}
+.crucitem.Restaurante { background-image: url('../img/ciudades/restaurante.png')}
+.crucitem.Monumento { background-image: url('../img/ciudades/monumentos.png')}
 
-.crucitem table thead tr { background: #EF7911;}
-.crucitem .table-bordered thead tr, .crucitem .table-bordered thead th {
-    border: 0 none;
-    border-radius: 0;
-    color: #fff;
-}
 
 /* Widgets, mas buscados, navieras */
 
