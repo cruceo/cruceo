@@ -187,6 +187,8 @@ a:hover {
 .navbar .brand {
     padding: 0; 
 }
+#searchfromhome input, #searchfromhome select { height: auto; padding: 3px 5px;}
+#searchfromhome select { height: auto;}
 
 .searchhome .navbar-inner {
     background-color: #45AEEA;
@@ -195,7 +197,7 @@ a:hover {
     border: 1px solid #1684C2;
     border-radius: 0;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
-    min-height: 50px;
+    min-height: 36px;
     padding-left: 20px;
     padding-right: 20px;
     color: #fff;
@@ -204,7 +206,7 @@ a:hover {
     box-shadow:0 2px 6px #111;
 
 }
-#searchfromhome { margin: 7px 0;}
+#searchfromhome { margin: 4px 0;}
 
 /* Contenidos, ofertas, etc */
 

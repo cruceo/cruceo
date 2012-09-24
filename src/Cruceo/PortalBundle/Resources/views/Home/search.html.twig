@@ -18,18 +18,15 @@
     <div class="accordion-group">
         <div class="accordion-heading">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accfilters" href="#barcos">
-                <i class="icon-chevron-up"></i> Categorías barcos
+                <i class="icon-chevron-right"></i> Categorías barcos
             </a>
         </div>
         <div id="barcos" class="accordion-body collapse in">
             <div id="filter-category-ships" class="accordion-inner">
                 <ul>
-                    <li><label class="checkbox"><input type="checkbox" value="option1" name="optionsCheckboxList1">Opción 1</li>
-                
-                
-              </label>
+      
         {% for category in categories %}
-                        <li attr-data="{{ category.getId }}">{{ category.getNombre }}</li>
+                        <li attr-data="{{ category.getId }}"><label class="checkbox"><input type="checkbox" value="{{ category.getNombre }}">{{ category.getNombre }}</label></li>
         {% endfor %}
                     </ul>
                 </div>
@@ -38,14 +35,14 @@
         <div class="accordion-group">
             <div class="accordion-heading">
                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accfilters" href="#camarotes">
-                    <i class="icon-chevron-down"></i> Camarotes
+                    <i class="icon-chevron-right"></i> Camarotes
                 </a>
             </div>
-            <div id="camarotes" class="accordion-body collapse">
+            <div id="camarotes" class="accordion-body collapse in">
                 <div id="filter-cabin" class="accordion-inner">
                     <ul>
         {% for cabin in cabins %}
-                            <li attr-data="{{ cabin.getId }}">{{ cabin.getNombre }}</li>
+                            <li attr-data="{{ cabin.getId }}"><label class="checkbox"><input type="checkbox" value="{{ cabin.getNombre }}">{{ cabin.getNombre }}</label></li>
         {% endfor %}
                         </ul>
                     </div>
@@ -54,14 +51,14 @@
             <div class="accordion-group">
                 <div class="accordion-heading">
                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accfilters" href="#equipamientos">
-                        <i class="icon-chevron-down"></i> Equipamientos
+                        <i class="icon-chevron-right"></i> Equipamientos
                     </a>
                 </div>
-                <div id="equipamientos" class="accordion-body collapse">
+                <div id="equipamientos" class="accordion-body collapse in">
                     <div id="filter-equipaments" class="accordion-inner">
                         <ul>
         {% for equipment in equipments %}
-                                <li attr-data="{{ equipment.getId }}">{{ equipment.getNombre }}</li>
+                                <li attr-data="{{ equipment.getId }}"><label class="checkbox"><input type="checkbox" value="{{ equipment.getNombre }}">{{ equipment.getNombre }}</label></li>
         {% endfor %}
                             </ul>
                         </div>
@@ -71,14 +68,14 @@
                 <div class="accordion-group">
                     <div class="accordion-heading">
                         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accfilters" href="#navieras">
-                            <i class="icon-chevron-down"></i> Navieras
+                            <i class="icon-chevron-right"></i> Navieras
                         </a>
                     </div>
-                    <div id="navieras" class="accordion-body collapse">
+                    <div id="navieras" class="accordion-body collapse in">
                         <div id="filter-equipaments" class="accordion-inner">
                             <ul>
         {% for company in companies %}
-                                    <li attr-data="{{ company.getId }}">{{ company.getNombre }}</li>
+                                    <li attr-data="{{ company.getId }}"><label class="checkbox"><input type="checkbox" value="{{ company.getNombre }}">{{ company.getNombre }}</label></li>
         {% endfor %}
                                 </ul>
                             </div>
