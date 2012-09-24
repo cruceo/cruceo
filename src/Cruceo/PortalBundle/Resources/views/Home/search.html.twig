@@ -18,7 +18,7 @@
     <div class="accordion-group">
         <div class="accordion-heading">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accfilters" href="#barcos">
-                <i class="icon-chevron-right"></i> Categorías barcos
+                <i class="icon-chevron-down"></i> Categorías barcos
             </a>
         </div>
         <div id="barcos" class="accordion-body collapse in">
@@ -35,7 +35,7 @@
         <div class="accordion-group">
             <div class="accordion-heading">
                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accfilters" href="#camarotes">
-                    <i class="icon-chevron-right"></i> Camarotes
+                    <i class="icon-chevron-down"></i> Camarotes
                 </a>
             </div>
             <div id="camarotes" class="accordion-body collapse in">
@@ -51,7 +51,7 @@
             <div class="accordion-group">
                 <div class="accordion-heading">
                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accfilters" href="#equipamientos">
-                        <i class="icon-chevron-right"></i> Equipamientos
+                        <i class="icon-chevron-down"></i> Equipamientos
                     </a>
                 </div>
                 <div id="equipamientos" class="accordion-body collapse in">
@@ -68,7 +68,7 @@
                 <div class="accordion-group">
                     <div class="accordion-heading">
                         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accfilters" href="#navieras">
-                            <i class="icon-chevron-right"></i> Navieras
+                            <i class="icon-chevron-down"></i> Navieras
                         </a>
                     </div>
                     <div id="navieras" class="accordion-body collapse in">
@@ -83,6 +83,12 @@
                     </div>             
                 </div>
             </div>
+
+<script>
+    $('.accordion').on('show hide', function(e){
+    $(e.target).siblings('.accordion-heading').find('.accordion-toggle i').toggleClass('icon-chevron-down icon-chevron-right', 200);
+});
+</script>
 
 
             <div id="searching">
