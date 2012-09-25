@@ -9,3 +9,4 @@
 /cruises/*
 /photos/*
 .DS_Store
+.DB
