@@ -116,6 +116,48 @@ img {
 
 .table-striped tbody tr:nth-child(2n+1) td, .table-striped tbody tr:nth-child(2n+1) th { background-color: #eee; }
 
+.w10{width: 10px;}
+.w12{width: 12px;}
+.w15{width: 15px;}
+.w20{width: 20px;}
+.w25{width: 25px;}
+.w30{width: 30px;}
+.w35{width: 35px;}
+.w40{width: 40px;}
+.w45{width: 45px;}
+.w50{width: 50px;}
+.w55{width: 55px;}
+.w60{width: 60px;}
+.w65{width: 65px;}
+.w70{width: 70px;}
+.w75{width: 75px;}
+.w80{width: 75px;}
+.w85{width: 75px;}
+.w90{width: 75px;}
+.w95{width: 75px;}
+.w100{width: 100px;}
+.w110{width: 110px;}
+.w120{width: 120px;}
+.w130{width: 130px;}
+.w140{width: 140px;}
+.w150{width: 150px;}
+.w160{width: 160px;}
+.w170{width: 170px;}
+.w180{width: 180px;}
+.w190{width: 190px;}
+.w200{width: 200px;}
+.w210{width: 210px;}
+.w220{width: 220px;}
+.w230{width: 230px;}
+.w240{width: 240px;}
+.w250{width: 250px;}
+.w260{width: 260px;}
+.w270{width: 270px;}
+.w280{width: 280px;}
+.w290{width: 290px;}
+.w300{width: 300px;}
+.w400{width: 400px;}
+
 /*Estilos personalizados para cruceo*/
 
 body {
@@ -170,9 +212,9 @@ a:hover {
 
 /* Busquedas y barra de navegación */
 
-.navbar.header {   
+.navbar.header {
     background-color: #E7EEF4;
-    background-image:  linear-gradient(center top , #FFFFFF 0%, #E7EEF4 100%);  
+    background-image:  linear-gradient(center top , #FFFFFF 0%, #E7EEF4 100%);
     background-image: -o-linear-gradient(center top , #FFFFFF 0%, #E7EEF4 100%);
     background-image: -moz-linear-gradient(center top , #FFFFFF 0%, #E7EEF4 100%);
     background-image: -webkit-linear-gradient(center top , #FFFFFF 0%, #E7EEF4 100%);
@@ -185,7 +227,7 @@ a:hover {
 }
 .navbar.header .container {  width: 1170px;}
 .navbar .brand {
-    padding: 0; 
+    padding: 0;
 }
 #searchfromhome input, #searchfromhome select { height: auto; padding: 3px 5px;}
 #searchfromhome select { height: auto;}
@@ -238,7 +280,7 @@ a:hover {
 }
 .cab.light {background-image: linear-gradient(center top , #FFFFFF 0%, #E7EEF4 100%);
             background-image: -moz-linear-gradient(center top , #FFFFFF 0%, #E7EEF4 100%);
-            border-color: #E3E3E3; 
+            border-color: #E3E3E3;
             color: #555;}
 .cab h3, .cab h4, .cab a { color: #fff; text-align: center; margin: 3px 0;}
 .contenidos .well { padding: 6px;
@@ -246,7 +288,7 @@ a:hover {
                      padding: 6px;
 }
 .offers .highligthed-title {   }
-.normal-offer.thumbnails > li {margin: 7px 8px 2px 7px; width: 49%; 
+.normal-offer.thumbnails > li {margin: 7px 8px 2px 7px; width: 49%;
                                font-size: 12px;
                                margin: 0 18px 5px 0;
                                width: 46%;}
@@ -265,7 +307,7 @@ a:hover {
     margin-bottom: 8px;
     background: url('../img/crucero/zona.png') no-repeat  0.5em 0.5em #f9f9f9;
 }
-.crucitem h4 { 
+.crucitem h4 {
     color: #45AEEA;
     margin: 8px 0;
     font-size: 1.2em;
@@ -349,6 +391,7 @@ a:hover {
 .widget.altern h3 {
     background-color: #EF7911;
     background-image: -moz-linear-gradient(center top , #EFA71E, #EF7911);
+    border-bottom: 1px solid #EF7911;
 }
 .widget.listicon li { text-indent: 18px;}
 .widget.listicon.arrow ul li {
@@ -393,7 +436,41 @@ border-bottom: 1px solid #45AEEA;
 footer {
     background: #333;
     padding: 20px 0;
-    color: #D3D3D3;   
+    color: #D3D3D3;
+}
+
+textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], select {
+    border-radius: 5px;
+}
+
+button#search {
+    background-color: #17cb5c;
+    background-image: linear-gradient(center top , #3eeb7f, #1e9539);
+    background-image: -moz-linear-gradient(center top , #3eeb7f, #1e9539);
+    background-repeat: repeat-x;
+    border-color: #2cac50 #2cac50 #2f844b;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 15px;
+    line-height: 20px;
+    padding: 4px 10px;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(15, 15, 15, 0.75);
+    vertical-align: middle;
+    margin-left: 7px;
+}
+button#search:hover {
+    -moz-transition: background-position 0.1s linear 0s;
+    -webkit-transition:background-position .1s linear;
+    -o-transition:background-position .1s linear;
+    transition:background-position .1s linear;
+    background-color: #1e9539;
+    background-position: 0 -15px;
+    text-decoration: none;
 }
 .footer_com ul { width: 95%; margin: 0 auto; }
 .footer_com ul li { display: inline-block;}

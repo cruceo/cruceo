@@ -1,32 +1,37 @@
+<script>
+    $(document).ready(function() {
+        $('#start').datepicker();
+    });
+</script>
 <div id="searchhome" class="searchhome">
-    <div class="navbar-inner" >
-    <div  class="container">
-    <form id="searchfromhome" name="searchfromhome" action="{{ path('home_search') }}" method="get" class="form-inline">
-    <fieldset>
-                <input type="text" id="searchtext" name="text" value="{{ app.session.flash('str') }}" placeholder="mediterraneo" />
-                <label for="start">Día de inicio</label>
-                <input type="text" id="start" name="start" value="{{ app.session.flash('start') }}" />
-                <label for="duration">Duración</label>
-                <select name="duration" id="duration">
-                    <option value=""></option>
-                    {% for x in 1..30%}
-                        <option value="{{ x }}"{% if x == app.session.flash('duration') %} selected="selected" {% endif %}>
-                            {{ x }}
-                        </option>
-                    {% endfor %}
-                </select>
-                <label for="zone">Zona</label>
-                <select name="zone" id="zone">
-                    <option value="">Seleccione zona...</option>
-                    {% for zone in zones%}
-                        <option value="{{ zone.id }}"{% if zone == app.session.flash('zone') %} selected="selected" {% endif %}>
-                            {{ zone.nombre }}
-                        </option>
-                    {% endfor %}
-                </select>
-                <button type="submit" name="search" id="search">Buscar</button>
-        </fieldset>
-    </form>
-    </div>
+    <div class="navbar-inner">
+        <div class="container">
+            <form id="searchfromhome" name="searchfromhome" action="{{ path('home_search') }}" method="get" class="form-inline">
+                <fieldset>
+                    <input type="text" id="searchtext" name="text" value="{{ app.session.flash('str') }}" placeholder="mediterraneo" />
+                    <label for="start" class="ml">Día de inicio</label>
+                    <input type="text" id="start" name="start" value="{{ app.session.flash('start') }}" class="input-small" data-date-language="es" />
+                    <label for="duration" class="ml">Duración</label>
+                    <select name="duration" id="duration" class="input-small">
+                        <option value=""></option>
+                        {% for x in 1..30%}
+                            <option value="{{ x }}"{% if x == app.session.flash('duration') %} selected="selected" {% endif %}>
+                                {{ x }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                    <label for="zone" class="ml">Zona</label>
+                    <select name="zone" id="zone" class="w200">
+                        <option value="">Seleccione zona...</option>
+                        {% for zone in zones%}
+                            <option value="{{ zone.id }}"{% if zone == app.session.flash('zone') %} selected="selected" {% endif %}>
+                                {{ zone.nombre }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit" name="search" id="search">Buscar</button>
+                </fieldset>
+            </form>
+        </div>
     </div>
 </div>

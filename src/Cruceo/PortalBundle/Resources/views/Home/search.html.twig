@@ -1,37 +1,62 @@
 {% extends "CruceoPortalBundle::layout3columns.html.twig" %}
 
+{% block css %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/cruceoportal/css/aristo.css') }}" />
+{% endblock %}
+
 {% block js %}
     {{ parent() }}
-<script src="{{ asset('bundles/cruceoportal/js/search.js') }}"></script>
+    <script src="{{ asset('bundles/cruceoportal/js/jquery-ui.js') }}"></script>
+    <script src="{{ asset('bundles/cruceoportal/js/search.js') }}"></script>
 {% endblock %}
 
 {% block center %}
-<div id="result-data">
+    <div id="result-data">
         {% include "CruceoPortalBundle:Partials:results.html.twig" with {'results': results} %}
     </div>
 {% endblock %}
 
 {% block left %}
-<div id="filters" class="widget nobg">     
-<h3>Mejora tu búsqueda</h3> 
-<div id="accfilters"class="accordion">
-    <div class="accordion-group">
-        <div class="accordion-heading">
-            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accfilters" href="#barcos">
-                <i class="icon-chevron-down"></i> Categorías barcos
-            </a>
+
+<div id="filters" class="widget nobg">
+<h3>Mejora tu búsqueda</h3>
+    <div id="accfilters"class="accordion">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accfilters" href="#price">
+                    <i class="icon-chevron-down"></i> Precio
+                </a>
+            </div>
+            <div id="price" class="accordion-body collapse in">
+                <div id="filter-price" class="accordion-inner">
+                    <div class="ui-slider-price">
+                        <p class="price-slider-values">Precio: <strong id="prices-values">{{ min }} - {{ max }} €</strong></p>
+                        <div id="price-slider"></div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div id="barcos" class="accordion-body collapse in">
-            <div id="filter-category-ships" class="accordion-inner">
-                <ul>
-      
-        {% for category in categories %}
-                        <li attr-data="{{ category.getId }}"><label class="checkbox"><input type="checkbox" value="{{ category.getNombre }}">{{ category.getNombre }}</label></li>
-        {% endfor %}
+
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accfilters" href="#barcos">
+                    <i class="icon-chevron-down"></i> Categorías barcos
+                </a>
+            </div>
+            <div id="barcos" class="accordion-body collapse in">
+                <div id="filter-category-ships" class="accordion-inner">
+                    <ul>
+                    {% for category in categories %}
+                        <li attr-data="{{ category.getId }}">
+                            <label class="checkbox"><input type="checkbox" value="{{ category.getNombre }}">{{ category.getNombre }}</label>
+                        </li>
+                    {% endfor %}
                     </ul>
                 </div>
             </div>
         </div>
+
         <div class="accordion-group">
             <div class="accordion-heading">
                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accfilters" href="#camarotes">
@@ -41,48 +66,49 @@
             <div id="camarotes" class="accordion-body collapse in">
                 <div id="filter-cabin" class="accordion-inner">
                     <ul>
-        {% for cabin in cabins %}
-                            <li attr-data="{{ cabin.getId }}"><label class="checkbox"><input type="checkbox" value="{{ cabin.getNombre }}">{{ cabin.getNombre }}</label></li>
-        {% endfor %}
-                        </ul>
-                    </div>
-                </div>
-            </div>           
-            <div class="accordion-group">
-                <div class="accordion-heading">
-                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accfilters" href="#equipamientos">
-                        <i class="icon-chevron-down"></i> Equipamientos
-                    </a>
-                </div>
-                <div id="equipamientos" class="accordion-body collapse in">
-                    <div id="filter-equipaments" class="accordion-inner">
-                        <ul>
-        {% for equipment in equipments %}
-                                <li attr-data="{{ equipment.getId }}"><label class="checkbox"><input type="checkbox" value="{{ equipment.getNombre }}">{{ equipment.getNombre }}</label></li>
-        {% endfor %}
-                            </ul>
-                        </div>
-                    </div>
-                </div> 
-
-                <div class="accordion-group">
-                    <div class="accordion-heading">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accfilters" href="#navieras">
-                            <i class="icon-chevron-down"></i> Navieras
-                        </a>
-                    </div>
-                    <div id="navieras" class="accordion-body collapse in">
-                        <div id="filter-equipaments" class="accordion-inner">
-                            <ul>
-        {% for company in companies %}
-                                    <li attr-data="{{ company.getId }}"><label class="checkbox"><input type="checkbox" value="{{ company.getNombre }}">{{ company.getNombre }}</label></li>
-        {% endfor %}
-                                </ul>
-                            </div>
-                        </div>
-                    </div>             
+                    {% for cabin in cabins %}
+                        <li attr-data="{{ cabin.getId }}"><label class="checkbox"><input type="checkbox" value="{{ cabin.getNombre }}">{{ cabin.getNombre }}</label></li>
+                    {% endfor %}
+                    </ul>
                 </div>
             </div>
+        </div>
+
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accfilters" href="#equipamientos">
+                    <i class="icon-chevron-down"></i> Equipamientos
+                </a>
+            </div>
+            <div id="equipamientos" class="accordion-body collapse in">
+                <div id="filter-equipaments" class="accordion-inner">
+                    <ul>
+                    {% for equipment in equipments %}
+                        <li attr-data="{{ equipment.getId }}"><label class="checkbox"><input type="checkbox" value="{{ equipment.getNombre }}">{{ equipment.getNombre }}</label></li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accfilters" href="#navieras">
+                    <i class="icon-chevron-down"></i> Navieras
+                </a>
+            </div>
+            <div id="navieras" class="accordion-body collapse in">
+                <div id="filter-shipping-companies" class="accordion-inner">
+                    <ul>
+                    {% for company in companies %}
+                        <li attr-data="{{ company.getId }}"><label class="checkbox"><input type="checkbox" value="{{ company.getNombre }}">{{ company.getNombre }}</label></li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
     $('.accordion').on('show hide', function(e){
@@ -91,16 +117,38 @@
 </script>
 
 
-            <div id="searching">
-                <form id="f-filters" name="f-filters" method="post" action="#">
-                    <input type="hidden" name="f-str" id="f-str" value="{{ data.str }}"/>
-                    <input type="hidden" name="f-start" id="f-start" value="{{ data.start }}"/>
-                    <input type="hidden" name="f-zone" id="f-zone" value="{{ data.zone }}"/>
-                    <input type="hidden" name="f-zone" id="f-duration" value="{{ data.duration }}"/>
-                    <input type="hidden" name="f-category" id="f-category" value=""/>
-                    <input type="hidden" name="f-cabin" id="f-cabin" value=""/>
-                    <input type="hidden" name="f-equipament" id="f-equipament" value=""/>
-                    <input type="hidden" name="f-shipping" id="f-shipping" value=""/>
-                </form>
-            </div>
+<div id="searching">
+    <form id="f-filters" name="f-filters" method="post" action="#">
+        <input type="hidden" name="f-str" id="f-str" value="{{ data.str }}"/>
+        <input type="hidden" name="f-start" id="f-start" value="{{ data.start }}"/>
+        <input type="hidden" name="f-zone" id="f-zone" value="{{ data.zone }}"/>
+        <input type="hidden" name="f-duration" id="f-duration" value="{{ data.duration }}"/>
+        <input type="hidden" name="f-category" id="f-category" value=""/>
+        <input type="hidden" name="f-cabin" id="f-cabin" value=""/>
+        <input type="hidden" name="f-equipament" id="f-equipament" value=""/>
+        <input type="hidden" name="f-shipping" id="f-shipping" value=""/>
+        <input type="hidden" name="f-min" id="f-min" value="{{ min }}"/>
+        <input type="hidden" name="f-max" id="f-max" value="{{ max }}"/>
+    </form>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('#price-slider').slider({
+            range: true,
+            min: {{ min }},
+            max: {{ max }},
+            values: [{{ min }}, {{ max }}],
+            slide: function(e, w) {
+                $('#prices-values').text(w.values[0] + ' - ' + w.values[1] + ' €');
+                $('#f-min').val(w.values[0]);
+                $('#f-max').val(w.values[1]);
+                $.post('/search/filters.json', $('#f-filters').serialize(), function(d) {
+                    $('#result-data').html(d);
+                });
+            }
+        });
+    });
+</script>
+
 {% endblock %}

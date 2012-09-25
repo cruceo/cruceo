@@ -22,7 +22,9 @@ class SearchController extends Controller
                 $request->request->get('f-category'),
                 $request->request->get('f-cabin'),
                 $request->request->get('f-equipament'),
-                $request->request->get('f-shipping')
+                $request->request->get('f-shipping'),
+                $request->request->get('f-min'),
+                $request->request->get('f-max')
             );
 
             return $this->render('CruceoPortalBundle:Partials:results.html.twig', array('results' => $results));

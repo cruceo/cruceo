@@ -3,24 +3,30 @@
         <h4><a href="{{ path('cruise_detail', {'slug': offer.getSlug} )}}">{{ offer.getNombre }}</a></h4>
     </div>
     <div class="row-fluid">
-    {% for highligthed in offer.getPrecios if highligthed.getDestacado %}
-            <div class="highlighted-offer span3">
-                <a class="thumbnail" href="#"><img src="{{ asset('bundles/cruceoportal/img/barcos/barco2.jpg') }}" alt="Barcopesquero1" title="Barcopesquero1" /></a>
-                <div class="agencia"><span>{{ highligthed.getAgencia.getNombre }}</span> &nbsp; <span>{{ highligthed.getPrecio }} &euro;</span></div>
-            </div>
-    {% endfor %}
-            <div class="span6">   
-                <ul class="normal-offer thumbnails">
-        {% for normal in offer.getPrecios if normal.getDestacado is null %}
-                        <li>{{ normal.getAgencia.getNombre }}<span class="precio">{{ normal.getPrecio }} &euro;</span></li>
-        {% endfor %}
-                </ul>
-            </div>
+        <div class="highlighted-offer span3">
+
+            {% set path = '/'~offer.getBarco.getUploadDir~'/'~offer.getBarco.getFotos[random((offer.getBarco.getFotos|length) - 1)].getRuta %}
+
+            <a class="thumbnail" href="{{ path('cruise_detail', {'slug': offer.getSlug} )}}">
+                <img src="{{ path }}" alt="{{ offer.getNombre }}" title="{{ offer.getNombre }}" />
+            </a>
+
+        </div>
+
+        <div class="span6">
+            <ul class="normal-offer thumbnails">
+            {% for normal in offer.getPrecios if normal.getDestacado is null %}
+                <li>{{ normal.getAgencia.getNombre }}<span class="precio">{{ normal.getPrecio }} &euro;</span></li>
+            {% endfor %}
+            </ul>
+        </div>
+
+        {% for highligthed in offer.getPrecios if highligthed.getDestacado %}
             <div class="destac span3 well">
-                <p>nombre agencia</p>
-                <p class="precio pagencia"> 45 &euro;</p>
+                <p>{{ highligthed.getAgencia.getNombre }}</p>
+                <p class="precio pagencia">{{ highligthed.getPrecio }} &euro;</p>
                 <p><a class="btn btn-small btn-info" href="#">Ver oferta</a></p>
-            
             </div>
-            </div>
+        {% endfor %}
+    </div>
  </div>
