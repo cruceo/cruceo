@@ -61,14 +61,15 @@ class CrucerosRepository extends EntityRepository
     public function searchHome($str, $start = null, $duration = null, $zone = null)
     {
         $q = $this->getQueryBuilderForSearch($str, $start, $duration, $duration, $zone)
-            ->select('c, p, n, a, cc, cd')
+            ->select('c, p, n, a, cc, cd, b, f')
             ->getQuery();
 
         return $q->getResult();
     }
 
     public function advancedSearch($str, $start = null, $duration = null, $zone = null,
-                                   $category = null, $cabin = null, $equipment = null, $shipping = null)
+                                   $category = null, $cabin = null, $equipment = null, $shipping = null,
+                                   $min = null, $max = null)
     {
         $q = $this->getQueryBuilderForSearch($str, $start, $duration, $duration, $zone);
 
@@ -92,6 +93,11 @@ class CrucerosRepository extends EntityRepository
             $q->andWhere('n.id = :shipping')->setParameter('shipping', $shipping);
         }
 
+        if ((is_numeric($min) && 0 != $min) && (is_numeric($max) && 0 != $max)) {
+            $between = $q->expr()->between('p.precio', $min, $max);
+            $q->andWhere($between);
+        }
+
         $q->select('c, p, n, a, cc, cd, t, b, ct, e, f');
 
         return $q->getQuery()->getResult();
@@ -107,7 +113,7 @@ class CrucerosRepository extends EntityRepository
             ->innerJoin('c.ciudadesCruceros', 'cc')
             ->innerJoin('cc.ciudad', 'cd')
             ->innerJoin('c.barco', 'b')
-            ->innerJoin('b.fotos', 'f')
+            ->leftJoin('b.fotos', 'f')
             ->orderBy('p.destacado, p.precio');
 
         $strModule = $q->expr()->orX();
@@ -131,5 +137,21 @@ class CrucerosRepository extends EntityRepository
         }
 
         return $q;
+    }
+
+    public function getMaxPriceForSearch($str, $start, $duration, $zone)
+    {
+        $q = $this->getQueryBuilderForSearch($str, $start, $duration, $zone);
+        $q->select('MAX(p.precio)');
+
+        return $q->getQuery()->getSingleScalarResult();
+    }
+
+    public function getMinPriceForSearch($str, $start, $duration, $zone)
+    {
+        $q = $this->getQueryBuilderForSearch($str, $start, $duration, $zone);
+        $q->select('MIN(p.precio)');
+
+        return $q->getQuery()->getSingleScalarResult();
     }
 }

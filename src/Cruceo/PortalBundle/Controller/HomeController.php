@@ -56,6 +56,20 @@ class HomeController extends Controller
             $zone
         );
 
+        $max = $this->getDoctrine()->getRepository('CruceoPortalBundle:Cruceros')->getMaxPriceForSearch(
+            $str,
+            $start,
+            $duration,
+            $zone
+        );
+
+        $min = $this->getDoctrine()->getRepository('CruceoPortalBundle:Cruceros')->getMinPriceForSearch(
+            $str,
+            $start,
+            $duration,
+            $zone
+        );
+
         if (count($results)) {
             $this->generateMostWanted($str);
         }
@@ -84,7 +98,9 @@ class HomeController extends Controller
             'cabins'     => $cabins,
             'categories' => $categories,
             'equipments' => $equipments,
-            'data'       => $data
+            'data'       => $data,
+            'min'        => (int) $min,
+            'max'        => ($max == 0 ? 2000 : (int) $max)
         );
     }
 
