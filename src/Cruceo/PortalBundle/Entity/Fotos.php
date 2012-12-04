@@ -3,6 +3,7 @@
 namespace Cruceo\PortalBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Cruceo\PortalBundle\Lib\Util;
 
 /**
  * Cruceo\PortalBundle\Entity\Fotos
@@ -13,6 +14,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Fotos
 {
+    static private $widthPhoto = 525;
+
     /**
      * @var integer $id
      *
@@ -153,6 +156,7 @@ class Fotos
     public function preUpload()
     {
         if (null !== $this->rutaFile) {
+            Util::scaleImage($this->rutaFile, self::$widthPhoto, $this->rutaFile->guessExtension(), $this->rutaFile);
             $this->ruta = uniqid().'.'.$this->rutaFile->guessExtension();
         }
     }

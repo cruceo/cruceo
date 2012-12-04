@@ -6,34 +6,37 @@
 <canvas zoom="100">
 <tables>
 <table name="categorias" view="colnames">
-<left>152</left>
-<top>601</top>
-<width>112</width>
-<height>94</height>
+<left>87</left>
+<top>608</top>
+<width>124</width>
+<height>110</height>
 <sql_create_table>CREATE TABLE `categorias` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
+  `icon` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="ciudades" view="colnames">
-<left>368</left>
-<top>31</top>
-<width>113</width>
-<height>110</height>
+<left>1072</left>
+<top>20</top>
+<width>112</width>
+<height>158</height>
 <sql_create_table>CREATE TABLE `ciudades` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
   `pais` varchar(100) NOT NULL,
+  `latitude` double(16,8) DEFAULT NULL,
+  `longitude` double(16,8) DEFAULT NULL,
   `slug` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="cruceros" view="colnames">
-<left>713</left>
-<top>109</top>
+<left>666</left>
+<top>74</top>
 <width>144</width>
-<height>280</height>
+<height>270</height>
 <sql_create_table>CREATE TABLE `cruceros` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
@@ -42,25 +45,22 @@
   `img_itinerario` varchar(255) DEFAULT NULL,
   `fecha_salida` date NOT NULL,
   `duracion` int(3) DEFAULT NULL,
-  `promocion` varchar(255) DEFAULT NULL,
-  `incluido_precio` varchar(255) DEFAULT NULL,
-  `no_incluido_precio` varchar(255) DEFAULT NULL,
+  `promocion` text,
+  `incluido_precio` text,
+  `no_incluido_precio` text,
   `slug` varchar(255) NOT NULL,
-  `naviera_id` int(11) NOT NULL,
   `zona_id` int(11) NOT NULL,
   `barco_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_cruceros_zona` (`zona_id`),
-  KEY `FK_cruceros_naviera` (`naviera_id`),
-  KEY `FK_cruceros_barcos` (`barco_id`),
-  CONSTRAINT `FK_cruceros_barcos` FOREIGN KEY (`barco_id`) REFERENCES `barcos` (`id`),
-  CONSTRAINT `FK_cruceros_naviera` FOREIGN KEY (`naviera_id`) REFERENCES `navieras` (`id`),
+  KEY `FK_cruceros_barco` (`barco_id`),
+  CONSTRAINT `FK_cruceros_barco` FOREIGN KEY (`barco_id`) REFERENCES `barcos` (`id`),
   CONSTRAINT `FK_cruceros_zona` FOREIGN KEY (`zona_id`) REFERENCES `zonas` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="fotos" view="colnames">
-<left>150</left>
-<top>444</top>
+<left>88</left>
+<top>442</top>
 <width>112</width>
 <height>126</height>
 <sql_create_table>CREATE TABLE `fotos` (
@@ -71,13 +71,13 @@
   PRIMARY KEY (`id`),
   KEY `FK_fotos_crucero` (`barco_id`),
   CONSTRAINT `FK_fotos_barco` FOREIGN KEY (`barco_id`) REFERENCES `barcos` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=132 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="navieras" view="colnames">
-<left>889</left>
-<top>95</top>
-<width>112</width>
-<height>115</height>
+<left>586</left>
+<top>465</top>
+<width>124</width>
+<height>108</height>
 <sql_create_table>CREATE TABLE `navieras` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
@@ -85,11 +85,11 @@
   `descripcion` text,
   PRIMARY KEY (`id`),
   UNIQUE KEY `slug` (`slug`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="zonas" view="colnames">
-<left>910</left>
-<top>329</top>
+<left>871</left>
+<top>372</top>
 <width>112</width>
 <height>94</height>
 <sql_create_table>CREATE TABLE `zonas` (
@@ -99,10 +99,10 @@
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="ciudades_cruceros" view="colnames">
-<left>542</left>
-<top>13</top>
-<width>139</width>
-<height>142</height>
+<left>844</left>
+<top>8</top>
+<width>112</width>
+<height>158</height>
 <sql_create_table>CREATE TABLE `ciudades_cruceros` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ciudad_id` int(11) NOT NULL,
@@ -114,25 +114,27 @@
   KEY `FK_ciudades_cruceros_ciudad` (`ciudad_id`),
   KEY `FK_ciudades_cruceros_crucero` (`crucero_id`),
   CONSTRAINT `FK_ciudades_cruceros_ciudad` FOREIGN KEY (`ciudad_id`) REFERENCES `ciudades` (`id`),
-  CONSTRAINT `FK_ciudades_cruceros_crucero` FOREIGN KEY (`crucero_id`) REFERENCES `cruceros` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8</sql_create_table>
+  CONSTRAINT `FK_ciudades_cruceros_crucero` FOREIGN KEY (`crucero_id`) REFERENCES `cruceros` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="agencias" view="colnames">
-<left>149</left>
-<top>337</top>
+<left>91</left>
+<top>137</top>
 <width>112</width>
-<height>86</height>
+<height>126</height>
 <sql_create_table>CREATE TABLE `agencias` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `logo` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="precios" view="colnames">
-<left>403</left>
-<top>189</top>
-<width>177</width>
-<height>191</height>
+<left>376</left>
+<top>100</top>
+<width>175</width>
+<height>206</height>
 <sql_create_table>CREATE TABLE `precios` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tipologia_id` int(11) NOT NULL,
@@ -150,52 +152,55 @@
   CONSTRAINT `FK_categorias_cruceros_crucero` FOREIGN KEY (`crucero_id`) REFERENCES `cruceros` (`id`),
   CONSTRAINT `FK_precios_agencias` FOREIGN KEY (`agencia_id`) REFERENCES `agencias` (`id`),
   CONSTRAINT `FK_precios_tipologias` FOREIGN KEY (`tipologia_id`) REFERENCES `tipologias` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="barcos" view="colnames">
-<left>420</left>
-<top>420</top>
-<width>127</width>
-<height>182</height>
+<left>321</left>
+<top>407</top>
+<width>126</width>
+<height>206</height>
 <sql_create_table>CREATE TABLE `barcos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
-  `descripcion` tinytext,
+  `descripcion` text,
   `velocidad` varchar(255) DEFAULT NULL,
   `manga` varchar(255) DEFAULT NULL,
   `eslora` varchar(255) DEFAULT NULL,
   `slug` varchar(255) NOT NULL,
   `categoria_id` int(11) DEFAULT NULL,
+  `naviera_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_barcos_categorias` (`categoria_id`),
-  CONSTRAINT `FK_barcos_categorias` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8</sql_create_table>
+  KEY `FK_barcos_navieras` (`naviera_id`),
+  CONSTRAINT `FK_barcos_navieras` FOREIGN KEY (`naviera_id`) REFERENCES `navieras` (`id`),
+  CONSTRAINT `FK_barcos` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="tipologias" view="colnames">
-<left>138</left>
-<top>204</top>
-<width>132</width>
-<height>81</height>
+<left>130</left>
+<top>36</top>
+<width>112</width>
+<height>94</height>
 <sql_create_table>CREATE TABLE `tipologias` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="equipamientos" view="colnames">
-<left>749</left>
-<top>568</top>
+<left>6</left>
+<top>272</top>
 <width>112</width>
 <height>94</height>
 <sql_create_table>CREATE TABLE `equipamientos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(150) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8</sql_create_table>
+) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="equipamientos_barcos" view="colnames">
-<left>578</left>
-<top>469</top>
+<left>162</left>
+<top>276</top>
 <width>138</width>
 <height>110</height>
 <sql_create_table>CREATE TABLE `equipamientos_barcos` (
@@ -205,13 +210,13 @@
   PRIMARY KEY (`id`),
   KEY `fk_equipamientos_barcos_barcos1_idx` (`barcos_id`),
   KEY `fk_equipamientos_barcos_equipamientos1_idx` (`equipamientos_id`),
-  CONSTRAINT `fk_equipamientos_barcos_barcos1` FOREIGN KEY (`barcos_id`) REFERENCES `barcos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_equipamientos_barcos` FOREIGN KEY (`barcos_id`) REFERENCES `barcos` (`id`),
   CONSTRAINT `fk_equipamientos_barcos_equipamientos1` FOREIGN KEY (`equipamientos_id`) REFERENCES `equipamientos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8</sql_create_table>
+) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="lugares_turisticos" view="colnames">
-<left>151</left>
-<top>41</top>
+<left>871</left>
+<top>191</top>
 <width>131</width>
 <height>142</height>
 <sql_create_table>CREATE TABLE `lugares_turisticos` (
@@ -225,11 +230,11 @@
   KEY `fk_lugares_turisticos_tipos_lugares1_idx` (`tipos_lugares_id`),
   CONSTRAINT `fk_lugares_turisticos_tipos_lugares1` FOREIGN KEY (`tipos_lugares_id`) REFERENCES `tipos_lugares` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_tourist_places_ciudades1` FOREIGN KEY (`ciudades_id`) REFERENCES `ciudades` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8</sql_create_table>
 </table>
 <table name="tipos_lugares" view="colnames">
-<left>7</left>
-<top>13</top>
+<left>1069</left>
+<top>232</top>
 <width>112</width>
 <height>94</height>
 <sql_create_table>CREATE TABLE `tipos_lugares` (

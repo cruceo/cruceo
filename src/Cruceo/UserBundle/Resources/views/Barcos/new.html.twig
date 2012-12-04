@@ -22,25 +22,31 @@
                 {{ form_errors(form.nombre) }}
             </div>
 
-             <div class="mb1">
+            <div class="mb1">
+                {{ form_label(form.naviera, 'Naviera', { 'attr': { 'class' : 'fl'} }) }}
+                {{ form_widget(form.naviera, { 'attr': { 'class' : 'w250'} }) }}
+                {{ form_errors(form.naviera) }}
+            </div>
+
+            <div class="mb1">
                 {{ form_label(form.categoria, 'Categoría', { 'attr': { 'class' : 'fl'} }) }}
                 {{ form_widget(form.categoria, { 'attr': { 'class' : 'w250'} }) }}
                 {{ form_errors(form.categoria) }}
             </div>
 
-             <div class="mb1">
+            <div class="mb1">
                 {{ form_label(form.velocidad, null, { 'attr': { 'class' : 'fl'} }) }}
                 {{ form_widget(form.velocidad, { 'attr': { 'class' : 'w250'} }) }}
                 {{ form_errors(form.velocidad) }}
             </div>
 
-             <div class="mb1">
+            <div class="mb1">
                 {{ form_label(form.manga, null, { 'attr': { 'class' : 'fl'} }) }}
                 {{ form_widget(form.manga, { 'attr': { 'class' : 'w250'} }) }}
                 {{ form_errors(form.manga) }}
             </div>
 
-             <div class="mb1">
+            <div class="mb1">
                 {{ form_label(form.eslora, null, { 'attr': { 'class' : 'fl'} }) }}
                 {{ form_widget(form.eslora, { 'attr': { 'class' : 'w250'} }) }}
                 {{ form_errors(form.eslora) }}

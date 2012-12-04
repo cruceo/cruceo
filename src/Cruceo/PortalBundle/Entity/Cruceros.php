@@ -77,21 +77,21 @@ class Cruceros
     /**
      * @var string $promocion
      *
-     * @ORM\Column(name="promocion", type="string", length=255, nullable=true)
+     * @ORM\Column(name="promocion", type="text", nullable=true)
      */
     private $promocion;
 
     /**
      * @var string $incluidoPrecio
      *
-     * @ORM\Column(name="incluido_precio", type="string", length=255, nullable=true)
+     * @ORM\Column(name="incluido_precio", type="text", nullable=true)
      */
     private $incluidoPrecio;
 
     /**
      * @var string $noIncluidoPrecio
      *
-     * @ORM\Column(name="no_incluido_precio", type="string", length=255, nullable=true)
+     * @ORM\Column(name="no_incluido_precio", type="text", nullable=true)
      */
     private $noIncluidoPrecio;
 
@@ -103,18 +103,18 @@ class Cruceros
     private $slug;
 
     /**
-     * @var Navieras
+     * @var Barco
      *
-     * @ORM\ManyToOne(targetEntity="Navieras")
+     * @ORM\ManyToOne(targetEntity="Barcos")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="naviera_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="barco_id", referencedColumnName="id")
      * })
      * @Assert\NotBlank
      */
-    private $naviera;
+    private $barco;
 
     /**
-     * @var Zonas
+     * @var Zona
      *
      * @ORM\ManyToOne(targetEntity="Zonas")
      * @ORM\JoinColumns({
@@ -151,17 +151,6 @@ class Cruceros
      * @Assert\NotBlank
      */
     private $precios;
-
-    /**
-     * @var Barcos
-     *
-     * @ORM\ManyToOne(targetEntity="Barcos")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="barco_id", referencedColumnName="id")
-     * })
-     * @Assert\NotBlank
-     */
-    private $barco;
 
 
     /**
@@ -397,21 +386,21 @@ class Cruceros
     /**
      * Set naviera
      *
-     * @param Cruceo\PortalBundle\Entity\Navieras $naviera
+     * @param Cruceo\PortalBundle\Entity\Navieras $barco
      */
-    public function setNaviera(\Cruceo\PortalBundle\Entity\Navieras $naviera)
+    public function setBarco(\Cruceo\PortalBundle\Entity\Navieras $barco)
     {
-        $this->naviera = $naviera;
+        $this->barco = $barco;
     }
 
     /**
-     * Get naviera
+     * Get barco
      *
-     * @return Cruceo\PortalBundle\Entity\Navieras
+     * @return Cruceo\PortalBundle\Entity\Barcos
      */
-    public function getNaviera()
+    public function getBarco()
     {
-        return $this->naviera;
+        return $this->barco;
     }
 
     /**
@@ -456,26 +445,6 @@ class Cruceros
     public function getPrecios()
     {
         return $this->precios;
-    }
-
-    /**
-     * Set barco
-     *
-     * @param Cruceo\PortalBundle\Entity\Barcos $barco
-     */
-    public function setBarco(\Cruceo\PortalBundle\Entity\Barcos $barco)
-    {
-        $this->barco = $barco;
-    }
-
-    /**
-     * Get barco
-     *
-     * @return Cruceo\PortalBundle\Entity\Barcos
-     */
-    public function getBarco()
-    {
-        return $this->barco;
     }
 
     public function __construct()

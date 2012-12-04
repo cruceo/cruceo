@@ -11,7 +11,8 @@ class CiudadesRepository extends EntityRepository
             ->createQueryBuilder()
             ->select('c.id, c.nombre')
             ->from('CruceoPortalBundle:Ciudades', 'c')
-            ->where('c.pais = ?1');
+            ->where('c.pais = ?1')
+            ->orderBy('c.nombre', 'ASC');
 
         return $q->getQuery()
             ->setParameter(1, $country)

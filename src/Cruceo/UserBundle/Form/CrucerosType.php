@@ -2,11 +2,11 @@
 namespace Cruceo\UserBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderInterface;
 
 class CrucerosType extends AbstractType
 {
-    public function buildForm(FormBuilder $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('nombre')
@@ -21,10 +21,10 @@ class CrucerosType extends AbstractType
             ->add('promocion', 'textarea')
             ->add('incluidoPrecio', 'textarea')
             ->add('noIncluidoPrecio', 'textarea')
-            ->add('naviera', 'entity', array(
+            /*->add('naviera', 'entity', array(
                 'class' => 'CruceoPortalBundle:Navieras',
                 'empty_value' => 'Selecciona Naviera...'
-            ))
+            ))*/
             ->add('barco', 'entity', array(
                 'class' => 'CruceoPortalBundle:Barcos',
                 'empty_value' => 'Selecciona Barco...'

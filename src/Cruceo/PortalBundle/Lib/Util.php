@@ -43,18 +43,20 @@ class Util {
 
     static public function deleteDir($path)
     {
-        $iterator = new \RecursiveDirectoryIterator($path);
-        $files = new \RecursiveIteratorIterator($iterator, \RecursiveIteratorIterator::CHILD_FIRST);
+        if (is_dir($path)) {
+            $iterator = new \RecursiveDirectoryIterator($path);
+            $files = new \RecursiveIteratorIterator($iterator, \RecursiveIteratorIterator::CHILD_FIRST);
 
-        foreach($files as $file) {
-            if ($file->isDir()) {
-                rmdir($file->getRealPath());
-            } else {
-                unlink($file->getRealPath());
+            foreach($files as $file) {
+                if ($file->isDir()) {
+                    rmdir($file->getRealPath());
+                } else {
+                    unlink($file->getRealPath());
+                }
             }
-        }
 
-        rmdir($path);
+            rmdir($path);
+        }
     }
 
     static public function generateSlug($str)
@@ -77,31 +79,39 @@ class Util {
 
         if (count($photos))
         {
-            @mkdir($pathThumbs);
+            mkdir($pathThumbs);
 
             foreach ($photos as $photo) {
                 $image = $path.DIRECTORY_SEPARATOR.$photo->getRuta();
                 $info  = pathinfo($image);
 
                 if (in_array($info['extension'], self::$extensions)) {
-                    $function  = 'imagecreatefrom'.($info['extension'] == 'jpg' ? 'jpeg' : $info['extension']);
-
-                    $imgGD = $function($image);
-
-                    $width   = imagesx($imgGD);
-                    $height  = imagesy($imgGD);
-                    $nHeight = floor($height * (self::$widthThumb / $width));
-                    $thumb   = imagecreatetruecolor(self::$widthThumb, $nHeight);
-
-                    imagecopyresized($thumb, $imgGD, 0, 0, 0, 0, self::$widthThumb, $nHeight, $width, $height);
-
-                    $function = 'image'.($info['extension'] == 'jpg' ? 'jpeg' : $info['extension']);
-
-                    $function($thumb, $pathThumbs.DIRECTORY_SEPARATOR.$photo->getRuta());
-
-                    imagedestroy($thumb);
+                    self::scaleImage($image, self::$widthThumb, $info['extension'], $pathThumbs.DIRECTORY_SEPARATOR.$photo->getRuta());
                 }
             }
+        }
+    }
+
+    static public function scaleImage($image, $w, $extension, $path)
+    {
+        $function  = 'imagecreatefrom'.($extension == 'jpg' ? 'jpeg' : $extension);
+
+        $imgGD = $function($image);
+
+        $width = imagesx($imgGD);
+
+        if ($width > $w) {
+            $height  = imagesy($imgGD);
+            $nHeight = round(($w * $height) / $width);
+            $thumb   = imagecreatetruecolor($w, $nHeight);
+
+            imagecopyresampled($thumb, $imgGD, 0, 0, 0, 0, $w, $nHeight, $width, $height);
+
+            $function = 'image'.($extension == 'jpg' ? 'jpeg' : $extension);
+
+            $function($thumb, $path);
+
+            imagedestroy($thumb);
         }
     }
 

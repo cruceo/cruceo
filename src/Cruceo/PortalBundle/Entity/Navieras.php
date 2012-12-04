@@ -45,10 +45,11 @@ class Navieras
     private $descripcion;
 
     /**
+     * @var Barcos
      *
-     * @ORM\OneToMany(targetEntity="Cruceros", mappedBy="naviera")
+     * @ORM\OneToMany(targetEntity="Barcos", mappedBy="naviera", cascade={"persist", "remove"})
      */
-    private $cruceros;
+    private $barcos;
 
 
     /**
@@ -122,26 +123,6 @@ class Navieras
     }
 
     /**
-     * Set cruceros
-     *
-     * @param array $crucero
-     */
-    public function setCruceros($crucero)
-    {
-        $this->cruceros[] = $crucero;
-    }
-
-    /**
-     * Get cruceros
-     *
-     * @return collection
-     */
-    public function getCruceros()
-    {
-        return $this->cruceros;
-    }
-
-    /**
      * Magic method
      *
      * @return string
@@ -160,5 +141,29 @@ class Navieras
     public function createSlug()
     {
         $this->setSlug(Util::generateSlug($this->getNombre()));
+    }
+
+    /**
+     * Set barcos
+     *
+     * @param Array $barcos
+     */
+    public function setBarcos($barcos)
+    {
+        $this->barcos = $barcos;
+
+        foreach ($this->barcos as $barco) {
+            $barco->setNaviera($this);
+        }
+    }
+
+    /**
+     * Get barcos
+     *
+     * @return Doctrine\Common\Collections\Collection $barcos
+     */
+    public function getBarcos()
+    {
+        return $this->barcos;
     }
 }

@@ -3,11 +3,12 @@
 namespace Cruceo\UserBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderInterface;
+use Doctrine\ORM\EntityRepository;
 
 class CiudadesCrucerosType extends AbstractType
 {
-    public function buildForm(FormBuilder $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('pais', 'country', array(
@@ -18,20 +19,18 @@ class CiudadesCrucerosType extends AbstractType
                 )
             ))
             ->add('ciudad', 'entity', array(
-                'class' => 'CruceoPortalBundle:Ciudades',
-                'empty_value' => 'Seleccione ciudad...',
+                'class'         => 'CruceoPortalBundle:Ciudades',
+                'empty_value'   => 'Seleccione ciudad...',
+                /*'query_builder' => function(EntityRepository $er) use ($builder) {
+                    die(var_dump($builder->getData()));
+                    return $er->createQueryBuilder('c')
+                        ->setMaxResults(10)
+                        ->orderBy('c.nombre', 'ASC');
+                },*/
                 'attr' => array(
                     'class' => 'searchCountry'
                 )
             ))
-            /*->add('horaLlegada', 'time', array(
-                'input'  => 'array',
-                'widget' => 'choice'
-            ))
-            ->add('horaSalida', 'time', array(
-                'input'  => 'array',
-                'widget' => 'choice'
-            ))*/
             ->add('horaLlegada')
             ->add('horaSalida')
             ->add('diaCrucero')

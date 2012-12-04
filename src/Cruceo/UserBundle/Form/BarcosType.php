@@ -3,15 +3,19 @@
 namespace Cruceo\UserBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderInterface;
 
 class BarcosType extends AbstractType
 {
-    public function buildForm(FormBuilder $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('nombre')
             ->add('descripcion')
+            ->add('naviera', 'entity', array(
+                'class' => 'CruceoPortalBundle:Navieras',
+                'empty_value' => 'Selecciona naviera...'
+            ))
             ->add('categoria', 'entity', array(
                 'class' => 'CruceoPortalBundle:Categorias',
                 'empty_value' => 'Selecciona categoría...'

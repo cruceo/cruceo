@@ -93,6 +93,23 @@ class Barcos
      */
     private $equipamientos;
 
+    /**
+     * @var Naviera
+     *
+     * @ORM\ManyToOne(targetEntity="Navieras")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="naviera_id", referencedColumnName="id", onDelete="CASCADE")
+     * })
+     */
+    private $naviera;
+
+    /**
+     * @var Cruceros
+     *
+     * @ORM\OneToMany(targetEntity="Cruceros", mappedBy="barco", cascade={"persist", "remove"})
+     */
+    private $cruceros;
+
 
     /**
      * Get id
@@ -347,5 +364,49 @@ class Barcos
     public function createSlug()
     {
         $this->setSlug(Util::generateSlug($this->getNombre()));
+    }
+
+    /**
+     * Set naviera
+     *
+     * @param Cruceo\PortalBundle\Entity\Navieras $naviera
+     */
+    public function setNaviera(\Cruceo\PortalBundle\Entity\Navieras $naviera)
+    {
+        $this->naviera = $naviera;
+    }
+
+    /**
+     * Get naviera
+     *
+     * @return Cruceo\PortalBundle\Entity\Navieras
+     */
+    public function getNaviera()
+    {
+        return $this->naviera;
+    }
+
+    /**
+     * Set cruceros
+     *
+     * @param Array $crcueros
+     */
+    public function setCruceros($cruceros)
+    {
+        $this->cruceros = $cruceros;
+
+        foreach ($this->cruceros as $crucero) {
+            $crucero->setBarco($this);
+        }
+    }
+
+    /**
+     * Get barcos
+     *
+     * @return Doctrine\Common\Collections\Collection $barcos
+     */
+    public function getBarcos()
+    {
+        return $this->barcos;
     }
 }
