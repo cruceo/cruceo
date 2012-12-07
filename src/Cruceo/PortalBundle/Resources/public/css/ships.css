@@ -1,12 +1,12 @@
 @import "galleriffic.css";
 
 div#ship {
-    margin: 10px;
+    margin: 3px 1px 20px 7px;
 }
 div#ship div.cab h1 {
     text-align: center;
     font-size: 20px;
-    line-height: 20px;
+    line-height: 6px;
 }
 div#ship div.itemship {
     border: 1px solid #E3E3E3;
@@ -16,17 +16,18 @@ div#ship div.itemship {
 }
 div#ship div.itemship h2 {
     margin: 0;
-    background-color: #909090;
-    background-image: -moz-linear-gradient(center top , #e5e5e5, #909090);
+    background-color: #5BB75B;
+    background-image: -moz-linear-gradient(center top , #62C462, #51A351);
+    background-image: linear-gradient(center top , #62C462, #51A351);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#62C462), to(#51A351));
     border-bottom: 1px solid #909090;
     border-radius: 6px 0 6px 0;
-    font-size: 17px;
-    line-height: 26px;
+    font-size: 15px;
+    line-height: 24px;
     padding-left: 10px;
     width: 75%;
     color: #fff;
-    box-shadow: 1px 1px 2px #434343;
-    text-shadow: 1px 1px #555;
+    text-shadow: 1px 1px #497C49;
 }
 div#ship div#ship-description p {
     text-align: justify;

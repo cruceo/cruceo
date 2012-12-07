@@ -11,7 +11,7 @@ class NavierasRepository extends EntityRepository
 			->createQueryBuilder()
 			->select('n, c, b')
 			->from($this->getEntityName(), 'n')
-            ->innerJoin('n.barcos', 'b')
+            ->leftJoin('n.barcos', 'b')
 			->leftJoin('b.cruceros', 'c')
 			->where('n.slug = ?1')
 			->setParameters(array(1 => $slug))

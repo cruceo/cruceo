@@ -45,6 +45,13 @@ class Navieras
     private $descripcion;
 
     /**
+     * @var string icon
+     *
+     * @ORM\Column(name="icon", type="string", nullable=true)
+     */
+    private $icon;
+
+    /**
      * @var Barcos
      *
      * @ORM\OneToMany(targetEntity="Barcos", mappedBy="naviera", cascade={"persist", "remove"})
@@ -120,6 +127,26 @@ class Navieras
     public function getDescripcion()
     {
         return $this->descripcion;
+    }
+
+    /**
+     * Set icon
+     *
+     * @param string $icon
+     */
+    public function setIcon($icon)
+    {
+        $this->icon = $icon;
+    }
+
+    /**
+     * Get icon
+     *
+     * @return string
+     */
+    public function getIcon()
+    {
+        return $this->icon;
     }
 
     /**

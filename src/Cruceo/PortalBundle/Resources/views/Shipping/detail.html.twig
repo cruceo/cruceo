@@ -3,18 +3,11 @@
 {% block main %}
 
 <div class="detalle_naviera mfcl well">
-    <div class="cab vpad">
+    <div class="cab">
         <h4>{{ entity.getNombre }}</h4>
     </div>
     <div id="shipping-company-description">
-        <div class="thumbnail">
-            <a href="#">
-                <img src="{{ asset('bundles/cruceoportal/img/navieras/msc-cruceros-logo.jpg') }}" alt="{{ entity.getNombre }}" title="{{ entity.getNombre }}" class="img-polaroid span3" />
-            </a>
-            <div class="caption">
-                <p>{{ entity.getNombre }}</p>
-            </div>
-        </div>
+        <img src="{{ asset('bundles/cruceoportal/img/navieras/'~entity.getIcon) }}" alt="{{ entity.getNombre }}" title="{{ entity.getNombre }}" class="thumbnail thumb-shipping" />
         <p>{{ entity.getDescripcion }}</p>
     </div>
 </div>

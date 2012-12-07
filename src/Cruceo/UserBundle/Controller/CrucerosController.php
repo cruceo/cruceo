@@ -201,11 +201,9 @@ class CrucerosController extends Controller
             $entity = $this->getDoctrine()->getEntityManager()->getRepository('CruceoPortalBundle:Cruceros')
                 ->findOneByImgItinerario($img);
 
-            if (null === $entity) {
-                throw new NotFoundHttpException();
+            if (null !== $entity) {
+                @unlink($entity->getUploadRootDir().DIRECTORY_SEPARATOR.$img);
             }
-
-            @unlink($entity->getUploadRootDir().DIRECTORY_SEPARATOR.$img);
 
             return new Response(json_encode(array('msg' => 'OK', 'image' => $img)));
         } else {

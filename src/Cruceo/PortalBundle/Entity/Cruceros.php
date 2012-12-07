@@ -507,7 +507,7 @@ class Cruceros
     public function preUpload()
     {
         if (null !== $this->imgItinerarioFile) {
-            $this->imgItinerario = uniqid().'.'.$this->imgItinerarioFile->guessExtension();
+            $this->setImgItinerario(uniqid().'.'.$this->imgItinerarioFile->guessExtension());
         }
     }
 

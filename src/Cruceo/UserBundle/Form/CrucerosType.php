@@ -12,7 +12,9 @@ class CrucerosType extends AbstractType
             ->add('nombre')
             ->add('detalles', 'textarea')
             ->add('itinerario', 'textarea')
-            ->add('imgItinerarioFile', 'file')
+            ->add('imgItinerarioFile', 'file', array(
+                'required' => false
+            ))
             ->add('fechaSalida', 'date', array(
                 'widget' => 'single_text',
                 'format' => 'dd-MM-yyyy'
